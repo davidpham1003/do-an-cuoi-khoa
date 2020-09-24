@@ -1,0 +1,95 @@
+<div *ngIf="chiTietPhim.ngayKhoiChieu" class="detail" [ngClass]='{"dark-detail":isTheme}'>
+    <div class="detail-header">
+        <div class="styleGradient"></div>
+        <img class="img-header" src="../../../assets/img/bg-detail.jpg" alt="">
+        <div *ngIf="currentWidth <= 767  " class="img-header-sm" [ngStyle]="{'background-image': 'url(' + chiTietPhim.hinhAnh + ')'}">
+            <div (click)="getTrailer()" class="play-icon">
+                <img src="../../../assets/img/icon-play.png" alt="">
+            </div>
+            <div class="header-title">
+                <p class="khoiChieu">{{chiTietPhim.ngayKhoiChieu | formatDate:'1'}}-2020</p>
+                    <!-- <p class="Cyber">Cyber</p> -->
+                    <div class="detail-header__title my-2 d-flex">
+                        <p class="Cyber">Cyber</p>
+                        <p>{{chiTietPhim.tenPhim}}</p>
+                    </div>
+                <p class="">120 Phut - IDMb 8.5 - 2D/Digital</p>
+            </div>
+        </div>
+        <div class="detail-header__content d-flex">
+            <div *ngIf="currentWidth > 767" class="detail-header-info">
+                <div class="header-detail-img">
+                    <div class="img-phim">
+                        <img [src]=chiTietPhim.hinhAnh alt="">
+                    </div>
+                    <div class="img-border">
+                        <img src="../../../assets/img/border.png" alt="">
+                    </div>
+                    <div class="img-hover">
+                        <img src="../../../assets/img/bghover.png" alt="">
+                    </div>
+                    <div (click)="getTrailer()" class="play-icon">
+                        <img src="../../../assets/img/icon-play.png" alt="">
+                    </div>
+                </div>
+
+                <div class="header-title">
+                    <p class="">{{chiTietPhim.ngayKhoiChieu | formatDate:'1'}}-2020</p>
+                    <div class="detail-header__title my-2 d-flex">
+                        <p class="Cyber">Cyber</p>
+                        <p>{{chiTietPhim.tenPhim}}</p>
+                    </div>
+                    <p class="">120 Phut - IDMb 8.5 - 2D/Digital</p>
+                    <div class="header-title__button mt-3">
+                        <a (click)="changeDieuKien('lichChieu')" class="btn  my-2" pageScroll href="#lichChieu"
+                            [pageScrollDuration]="300"><span>Mua Vé</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header-circleStar ml-auto">
+                <div class="circlePercent text-center">
+                    <circle-progress [percent]="chiTietPhim.danhGia*10" [radius]="70" [outerStrokeWidth]="12"
+                        [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'"
+                        [animation]="true" [animationDuration]="300" [titleFontSize]="60" [backgroundPadding]="-20"
+                        [toFixed]="1" [animationDuration]="1000">
+                    </circle-progress>
+                    <span class="circle-danhGia">{{chiTietPhim.danhGia/2}}</span>
+                </div>
+                <div class="circleStar-star">
+                    <app-danh-gia [danhGia]=chiTietPhim.danhGia [phimItem]="3"></app-danh-gia>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="lichChieu" class="detail-footer  mx-auto">
+        <div class="detai-footer-title text-center">
+            <h3 class="d-inline" (click)='changeDieuKien("lichChieu")' [ngClass]='{"active":dieuKien=="lichChieu"}'>Lịch
+                Chiếu</h3>
+            <h3 class="d-inline" (click)='changeDieuKien("thongTin")' [ngClass]='{"active":dieuKien=="thongTin"}'>Thông
+                Tin</h3>
+            <h3 class="d-inline" (click)='changeDieuKien("danhGia")' [ngClass]='{"active":dieuKien=="danhGia"}'>Đánh Giá
+            </h3>
+        </div>
+        <div class="detail-footer__content ">
+            <div [@enterAnimation] *ngIf="dieuKien === 'lichChieu'">
+                <app-chi-tiet-rap  [isTheme]=isTheme [chiTietRap]=chiTietPhim.heThongRapChieu
+                    [cumRamChieu]=cumRapActive [chiTietPhim]=chiTietPhim>
+                </app-chi-tiet-rap>
+            </div>
+            <div  *ngIf="dieuKien === 'thongTin'">
+                <app-chi-tiet-info [isTheme]=isTheme [phim]=chiTietPhim>
+                </app-chi-tiet-info>
+            </div>
+            <div [@enterAnimation] *ngIf="dieuKien === 'danhGia'">
+                <app-chi-tiet-rate [isTheme]=isTheme>
+                </app-chi-tiet-rate>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div *ngIf="trailer">
+    <app-modal-youtube (click)="removeTrailer()" [trailer]=trailer></app-modal-youtube>
+</div>

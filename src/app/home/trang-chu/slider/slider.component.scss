@@ -1,0 +1,38 @@
+@import 'mixin';
+.carousel{
+    @include for-size(sm) {
+        margin-top: 76px;
+      }
+}
+.carousel-inner--content img{
+    height: 100%;
+};
+.carousel-item:hover .carousel-item__blur{
+    opacity: 1;
+    transition: all 1.5s ;
+}
+.carousel-item__blur .carousel__iconplay:hover{
+    opacity: 1;
+    transition: all 1s ;
+}
+.carousel__background-item{
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;     
+}
+.carousel-item .carousel__iconplay{
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+    top: 45%;
+    left: 50%;
+    z-index: 1;
+    opacity: .5;
+    transition: all 1s ;
+}
+.carousel-item__blur{
+    opacity: 0;
+    transition: all .5s ;  
+}

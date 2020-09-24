@@ -1,0 +1,153 @@
+<div id="dat-ve">
+    <div class="trang-datVe mx-auto">
+        <div class="d-md-flex d-sm-block">
+            <!-- <div class="col-lg-5 giaVe__time ml-md-auto  d-flex d-lg-block">
+                <p class="">Thời Gian Giữ Ghế</p>
+                <p class="count-down">
+                    <countdown #cd [config]="{ leftTime: leftTime, format: 'm:ss' }"
+                        (event)="onTimerFinished($event)"></countdown>
+                </p>
+            </div> -->
+            <div class="thongTinGhe" [ngClass]='{"hide-ghe":isThanhToan}'>
+                <div class="dat-ve-left">
+                    <app-danh-sach-ghe [isWarning]=isWarning (getGhe)="datGhe($event)" *ngIf="danhSachGhe"
+                        [danhSachGhe]=danhSachGhe>
+                    </app-danh-sach-ghe>
+                </div>
+            </div>
+            <!-- <div class="center col-1"></div> -->
+            <div *ngIf="thongTinPhim ml-auto  " class=" thongTinPhim">
+                <div class="dat-ve-right ">
+                    <div class="ve__info-phim d-flex  col-md-12  "  *ngIf="isThanhToan"> 
+                        <img [src]="thongTinPhim.hinhAnh" alt="">
+                        <div class="img-border">
+                            <img src="../../../assets/img/border.png" alt="">
+                        </div>
+                        <div class="ve_info">
+                            <p class="info-title">{{thongTinPhim.tenPhim}}</p>
+                            <p class="small">{{thongTinPhim.gioChieu}}- Cyber Cinema - 8.5 IMDb</p>
+                            <div class="ngayChieu d-flex">
+                                <p class="suatChieu__2D mr-3">2D</p>
+                                <p class="ngayGio">{{thongTinPhim.gioChieu}}
+                                    <span> - {{thongTinPhim.ngayChieu}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ve__info-rap d-flex  ml-auto col-md-12" [ngClass]="{'rapBuoc1':!isThanhToan}">
+                        <img src="../../../assets/img/rap-demo.jpg" alt="">
+                        <div class="veRap-info">
+                            <p class="info-title">{{thongTinPhim.tenCumRap}}</p>
+                            <p class="small">{{thongTinPhim.diaChi}}</p>
+                            <div class="ghe-da-dat d-xl-flex d-block">
+                                {{thongTinPhim.tenRap}} -
+                                Ghế Đang Đặt : &nbsp;
+                                <div class="gheDat ">
+                                    <span class=" pr-2 tenGhe" *ngFor="let ghe of gheDangChon">
+                                        {{ghe.tenGhe}}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ve__giaVe col-12">
+                        <div class="row d-md-block d-flex d-lg-flex">
+                            <div class="col-lg-7 col-md-12 col-6  giaVe-bap "  *ngIf="isThanhToan">
+                                <div class="row" >
+                                    <div  class="col-12 d-flex  bap-nuoc">
+                                        <p class="giaVe__left">Bắp Nước:</p>
+                                        <p class="giaVe__right">{{tienCombo | formatCurrency}} </p>
+                                    </div>
+                                    <div class="col-12 d-flex  bap-nuoc">
+                                        <p class="giaVe__left">Vé:</p>
+                                        <p class="giaVe__right">{{tienVe | formatCurrency}}</p>
+                                    </div>
+                                    <div class="col-12 tongTien d-flex">
+                                        <p class="giaVe__left">Tổng Tiền:</p>
+                                        <p class="giaVe__right">{{tienVe + tienCombo | formatCurrency}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-12 col-6 giaVe__time ml-md-auto  d-block d-md-flex d-lg-block " [ngClass]="{'timeBuoc1':!isThanhToan}">
+                                <p class="">Thời Gian Giữ Ghế</p>
+                                <p class="count-down">
+                                    <countdown #cd [config]="{ leftTime: leftTime, format: 'm:ss' }"
+                                        (event)="onTimerFinished($event)"></countdown>
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="isConfirm && isThanhToan ; else buoc1" class="button-ve text-center py-2" (click)="datVe()"
+                        data-toggle="modal" data-target="#modalConfirm"
+                        [ngClass]="{'active':gheDangChon[0] && !isWarning}">
+                        Mua Vé
+                    </div>
+                    <ng-template #buoc1>
+                        <div class="button-ve text-center py-2" (click)="datVeBuoc1()" [ngClass]="{'active':gheDangChon[0] && !isWarning}">
+                            Đặt Ghế
+                            <i *ngIf="isConfirm" class=" mx-2 fa fa-spinner fa-spin" ></i>
+                        </div>
+                    </ng-template>
+
+                    <img  *ngIf="isThanhToan" class="btn-combo" [ngClass]="{'show-combo':isCombo}" (click)="combo()"
+                        src="../../../assets/img/comboIcon.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+        aria-labelledby="modelTitleId" aria-hidden="true">
+        <app-modal-confirm [mangDatVe]=mangDatVe></app-modal-confirm>
+    </div>
+    <div (click)='backBuoc1()' class="btn-back" *ngIf='isThanhToan && currentWidth <= 420'>
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div *ngIf=!thongTinPhim class="ve-spinner">
+        <app-spinner></app-spinner>
+    </div>
+    <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalWarning">
+        <app-modal-warning [warning]="'timer'"></app-modal-warning>
+    </div>
+    <button id="openModal" #openModal [hidden]="true" data-toggle="modal" data-target="#modalWarning"></button>
+</div>
+<div [ngClass]="{'show-background':isCombo}" class="background-drop"></div>
+<div class="bg-combo" [ngClass]="{'show-combo':isCombo}">
+    <table class="table">
+        <div class="col-12 combo-content">
+            <div (click)='closeCombo()' class="button-close">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <h1 class="combo-heading">Combo</h1>
+            <div class="d-flex combo-body align-items-center py-2" *ngFor='let combo of mangCombo'>
+                <div class="combo-img col-3">
+                    <img [src]=combo.img alt="">
+                </div>
+                <div class="combo-text col-5">
+                    <p>{{combo.ten}}</p>
+                    <p>{{combo.gia}}</p>
+                </div>
+                <div class="combo-sl col-4 d-flex mx-auto">
+                    <div (click)="datCombo(combo.id,false)" class="minus text-center">
+                        -
+                    </div>
+                    <span class="soLuong text-center align-self-center">{{combo.soLuong}}</span>
+                    <div (click)="datCombo(combo.id,true)" class="plus text-center">
+                        +
+                    </div>
+                </div>
+            </div>
+            <div class="combo-line"></div>
+            <div class="combo-footer">
+                <span>Thành Tiền:</span>
+                <span>{{tienCombo | formatCurrency}}</span>
+            </div>
+        </div>
+    </table>
+</div>
+
+<!-- <app-popup-combo (Popup)="getPopup($event)" *ngIf="isPopup" ></app-popup-combo> -->

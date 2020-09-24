@@ -1,0 +1,56 @@
+<div class="chiTiet-info mx-auto" id="detailMain" [ngClass]='{"dark-info":isTheme}'>
+    <div class="row isFlex detailMainStyle">
+        <div class="col-md-8 col-lg-6 col-12 film left">
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Ngày công chiếu</p>
+                <p class="contentInfo ng-binding">{{phim.ngayKhoiChieu | formatDate:'1'}}-2020</p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Đạo diễn</p>
+                <p class="contentInfo ng-binding"> Anthony Bell </p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Diễn viên</p>
+                <p class="contentInfo ng-binding"></p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Thể Loại</p>
+                <p class="contentInfo ng-binding">hoạt hình, phiêu lưu, hài hước</p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Định dạng</p>
+                <p class="contentInfo ng-binding">2D/Digital</p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentTitle">Quốc Gia SX</p>
+                <p class="contentInfo ng-binding">Mỹ</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-6 col-12 film right">
+            <div class="row rowLeftInfo">
+                <p class="contentTitle ">Nội dung</p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentInfoFull description ng-binding">{{phim.moTa}}</p>
+            </div>
+
+            <div class="row rowLeftInfo">
+                <p class="contentInfoFull"></p>
+            </div>
+        </div>
+    </div>
+    <div class="chiTiet-trailer ">
+        <p>Trailer Phim</p>
+        <div class="trailer text-center my-4">
+            <iframe width="100%" height="550px" [src]="phim.trailer|urlYoutube|safe" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

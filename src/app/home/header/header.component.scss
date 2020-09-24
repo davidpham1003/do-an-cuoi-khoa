@@ -1,0 +1,272 @@
+@import "../../../assets/scss/Helpers/mixin";
+.header {
+  .UserName {
+    align-self: center;
+    color: black;
+    font-weight: 550;
+  }
+  position: fixed;
+  top: 0%;
+  z-index: 9999;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: 0.5s all;
+  padding: 0 10%;
+  &:hover {
+    background-color: rgba(255, 255, 255);
+  }
+  @include for-size(md) {
+    padding-left: 0;
+    background-color: rgba(255, 255, 255);
+  }
+  @include for-size(sm) {
+    padding: 0;
+  }
+  @include for-size(xs) {
+    overflow: hidden;
+  }
+  &.noneHide{
+    overflow: visible;
+  }
+  a {
+    color: black;
+    transition: all 0.5s;
+  }
+  i {
+    color: black;
+  }
+  .navbar--config {
+    .navbar-toggler--config {
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 30px;
+      &.hide i {
+        transform: rotateX(180deg);
+        left: 47%;
+      }
+
+    }
+    .navbar-collapse--config {
+      @include for-size(sm) {
+        margin-bottom: 1%;
+      }
+    }
+    .navbar-nav {
+      @include for-size(xs) {
+        margin-top: 50px;
+        margin-bottom: 10px;
+      }
+      .nav-item {
+        .nav-link {
+          transition: 0.4s all;
+          font-weight: 400;
+          &:hover {
+            color: rgb(240, 53, 47);
+          }
+        }
+      }
+    }
+  }
+}
+img {
+  width: 150px;
+}
+.dark-header {
+  
+  background-color: hsla(211, 30%, 19%, 0.7);
+  &:hover {
+    background-color: #22303f;
+  }
+  @include for-size(md) {
+    background-color: #22303f;
+  }
+  a {
+    color: white;
+  }
+  i {
+    color: white;
+  }
+  .UserName {
+    align-self: center;
+    color:white;
+    font-weight: 550;
+  }
+}
+
+.navbar__right {
+  @include for-size(sm) {
+    position: absolute;
+    right: 50%;
+    top: 20px;
+    transform: translateX(50%);
+  }
+  @include for-size(xs) {
+    top: 77px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+  position: relative;
+  .btn-dangNhap {
+   
+    background-image: linear-gradient(
+      to right top,
+      #216bd3e6,
+      #1b5ebbe6,
+      #1651a3e6,
+      #13468fe6,
+      #123e7ce6,
+      #133b74e6
+    );
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    width: 135px;
+    font-weight: 550;
+    height: 30px;
+    display: inline-block;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    cursor: pointer;
+    @include for-size(sm) {
+      padding-left: 5%;
+    }
+  }
+  .helloUser {
+    padding: 0 15px;
+    color: white;
+    .UserName-img {
+      position: relative;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      .UserInfo {
+        cursor: pointer;
+        position: absolute;
+        top: 75%;
+        right: -262%;
+        transition: all 0.5s;
+        overflow: hidden;
+        color: #000;
+        text-align: center;
+        width: 250px;
+        display: none;
+        .arrow-up {
+          height: 16px;
+          img {
+            width: 15px;
+            height: 10px;
+          }
+        }
+        .UserInfo__content {
+          background-image: linear-gradient(
+            to bottom,
+            rgb(255, 255, 255),
+            rgb(212, 212, 212)
+          );
+          border: 1.5px solid rgba(163, 163, 163, 0.781);
+          width: 100%;
+          box-shadow: 1px 1px 7px 2px #0000002e;
+          .inFo {
+            padding: 10px 0 5px 0;
+            border-bottom: 1.5px solid rgba(163, 163, 163, 0.781);
+          }
+          .logOut {
+            padding: 5px 0 10px 0;
+          }
+          .inFo,
+          .logOut {
+            &:hover {
+              background-color: rgb(82, 147, 238);
+              color: white;
+              border-left: 5px solid rgb(8, 50, 109);
+              font-weight: 550;
+            }
+          }
+        }
+      }
+      .activeUserInfo {
+        display: block;
+      }
+    }
+    
+  }
+}
+
+// Nút đổi theme
+#checkbox-demo {
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  padding: 5px 10px;
+  transform: translateY(-40%);
+  @include for-size(sm) {
+    position: absolute;
+    right: 2%;
+    top: 21px;
+    transform: scale(0.8);
+    // transform: translateY(-50%);
+  }
+  input[type="checkbox"] {
+    margin: 0;
+    position: relative;
+    width: 50px;
+    height: 20px;
+    appearance: none;
+    box-shadow: 0 0 2px #ffffff, 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
+      inset 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.5),
+      inset 0 0 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(0deg, #ffffff, #d9e2e2);
+    border-radius: 20px;
+    outline: none;
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      transition: 0.5s;
+      box-shadow: 0 0 0 1px #232323;
+      transform: scale(0.98, 0.96);
+    }
+    &:before {
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 20px;
+      border-radius: 10px;
+      background: linear-gradient(0deg, #000, #6b6b6b);
+      //   background: #e4f3fa;
+      box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
+    }
+    &:after {
+      top: calc(50% - 2px);
+      width: 4px;
+      height: 4px;
+      left: 47%;
+      border-radius: 50%;
+      background: #e4f3fa;
+      box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
+    }
+    &:checked {
+      background: linear-gradient(0deg, #333, #000);
+      border-radius: 20px;
+      box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
+        inset 0 0 10px rgba(0, 0, 0, 0.1), 0 5px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(0, 0, 0, 0.2);
+      &:before {
+        left: 20px;
+        background: linear-gradient(0deg, #000, #6b6b6b);
+        box-shadow: none;
+      }
+      &:after {
+        left: 86%;
+        background: linear-gradient(0deg, #6b6b6b, #000);
+      }
+    }
+  }
+}

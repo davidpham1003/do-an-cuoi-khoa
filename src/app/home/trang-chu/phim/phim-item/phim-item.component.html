@@ -1,0 +1,35 @@
+<div class="item-phim mx-auto p-3" [ngClass]="{'item-phim-dark':isTheme}">
+    <div class="item-phim-wrap">
+        <div class="item-phim__content">
+            <div class="item-phim__img">
+                <img class="item-phim__thumbnail" [src]="phim.hinhAnh">
+            </div>
+            <div *ngIf='phim.danhGia' class="item-phim__bom-tan" [ngClass]="{'bom-tan':phim.danhGia >= 9}">
+                <img src="../../../../../../assets/img/item-phim-bomtan.png" alt="">
+            </div>
+            <div class="item-phim__rate">
+                <p>{{(phim.danhGia)/2}}</p>
+                <div class="item-danhGia ">
+                    <app-danh-gia [danhGia]="phim.danhGia" [phimItem]="1"></app-danh-gia>
+                </div>
+            </div>
+        </div>
+        <div class="item-phim__info py-2">
+            <div class="item-phim__title">
+                <span class="item-phim__maPhim">Cyber</span>
+                <span>{{phim.tenPhim}}</span>
+            </div>
+            <p class="small">120 Phút</p>
+        </div>
+        <div class="item-phim__hover">
+            <div class="hover__bg">
+                <img (click)="getTrailer(phim.trailer)" src="../../../../../../assets/img/icon-play.png" alt="">
+            </div>
+            <div class="hover__button">
+                <button routerLink="/chitiet/{{phim.maPhim}}" class="btn w-100 my-2">
+                    <span>Mua Vé</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

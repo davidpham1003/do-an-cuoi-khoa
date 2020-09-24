@@ -1,0 +1,98 @@
+@import 'helper-dir';
+
+.dang-nhap {
+  position: absolute;
+  right: -80%;
+  transition: all 0.5s;
+  overflow: hidden;
+  width: 360px;
+  @include for-size(xs) {
+    position: fixed;
+  }
+}
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid rgba(20, 50, 93);
+  display: block;
+  margin: 0 auto;
+  background-position-y: center;
+}
+.dang-nhap__body {
+  position: relative;
+  max-width: 360px;
+  padding: 40px 50px 30px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(20, 50, 93, 0.9),
+    rgba(34, 56, 97, 0.9)
+  );
+  text-align: center;
+  color: #fff;
+  border-radius: 6px;
+
+  // .body__inside {
+  //   position: absolute;
+  //   background-image: linear-gradient(
+  //     to bottom,
+  //     rgba(16, 41, 77),
+  //     rgba(6, 17, 36)
+  //   );
+  //   height: 85%;
+  //   width: 90%;
+  //   filter: blur(20px);
+  //   top: 20%;
+  //   right: 5%;
+  //   z-index: -1;
+  // }
+}
+.button-dang-nhap {
+  background-image: linear-gradient(rgb(22, 150, 65), rgb(12, 110, 28));
+  color: #fff;
+  font-weight: 550;
+  font-size: 15px;
+  &:hover {
+    background-image: linear-gradient(
+      to right bottom,
+      #048e6a,
+      #0a8a64,
+      #0e865e,
+      #128259,
+      #157e53,
+      #1e8653,
+      #288d52,
+      #339551,
+      #4aaa53,
+      #64bf54,
+      #80d452,
+      #9ee84f
+    );
+  }
+}
+.dang-nhap__footer {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: none;
+  margin: 0;
+  letter-spacing: normal;
+  color: #fff;
+  text-align: left;
+  a {
+    color: #fee71b !important;
+  }
+}
+.hide {
+  height: 0;
+}
+.show {
+  height: 350px;
+  opacity: 1;
+  transition: 0.5s all;
+}
+.error{
+  padding: 5px 0 0 10px;
+  color: #ff4242;
+}

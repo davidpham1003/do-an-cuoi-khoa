@@ -1,0 +1,137 @@
+@import "mixin";
+.rap {
+  width: 100%;
+  @include for-size(xl) {
+    width: 75%;
+  }
+  @include for-size(lg) {
+    width: 85%;
+  }
+  @include for-size(md) {
+    width: 95%;
+  }
+  @include for-size(phone-sm) {
+    width: 100%;
+  }
+  .rap__title {
+    text-align: center;
+  }
+  .rap__content {
+    position: relative;
+    .rap__logo {
+      @include for-size(xl) {
+        width: 70%;
+        margin: 15px auto !important;
+      }
+      @include for-size(sm) {
+        width: 80%;
+      }
+      @include for-size(xs) {
+        width: 90%;
+        display: flex;
+      }
+      @include for-size(phone-sm) {
+        display: block;
+        width: 100%;
+      }
+      .rap__item {
+        list-style: none;
+        opacity: 0.5;
+        transition: all 0.3s;
+        padding: 25px;
+        p,
+        i {
+          display: none;
+        }
+        &.active {
+          opacity: 1;
+        }
+        &:hover {
+          opacity: 1;
+        }
+
+        @include for-size(xl) {
+        }
+        @include for-size(ll) {
+          padding: 20px;
+        }
+        @include for-size(lg) {
+          padding: 15px;
+        }
+        @include for-size(md) {
+          padding: 10px;
+        }
+        @include for-size(sm) {
+          padding: 0 40px 20px 40px;
+        }
+        @include for-size(xs) {
+          display: flex;
+          width: 33.3333%;
+          padding: 0 30px 20px 30px;
+          img {
+            width: 100%;
+          }
+        }
+        @include for-size(phone-sm) {
+          padding: 10px;
+          display: flex;
+          width: 100%;
+          position: relative;
+          opacity: 1;
+          border-bottom: 0.5px solid black;
+          background-color: white;
+          & .bg-item {
+            width: 100%;
+            .img-logo {
+              position: relative;
+              img {
+                width: 20%;
+                margin: 0px 0 0px 30px;
+              }
+              & p,
+              i {
+                position: absolute;
+                // width: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                display: block;
+                font-weight: 550;
+                color: black;
+              }
+              & p {
+                left: 35%;
+              }
+              & i {
+                right: 10%;
+              }
+            }
+          }
+        }
+        img {
+          width: 100%;
+        }
+        // @include for-size(xs) {
+        //   padding: 0 40px 20px 40px ;
+        // }
+
+        .rap__lich-chieu-item {
+          @include for-size(phone-sm) {
+          //  height: 500px;
+            // overflow: auto;
+            // transition: max-height 0.15s ease-out;
+            // &.show-rap {
+            //   max-height: 100%;
+            //   transition: max-height 0.25s ease-in;
+            // }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-rap {
+  p {
+    color: white;
+  }
+}

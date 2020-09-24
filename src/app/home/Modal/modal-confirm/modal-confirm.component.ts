@@ -1,0 +1,27 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { GheService } from 'src/app/core/Servers/ghe.service';
+
+@Component({
+  selector: 'app-modal-confirm',
+  templateUrl: './modal-confirm.component.html',
+  styleUrls: ['./modal-confirm.component.scss'],
+})
+export class ModalConfirmComponent implements OnInit {
+  @Input() mangDatVe: any;
+  isConfirm: boolean;
+  constructor(private ghe: GheService) {}
+  datVe() {
+    this.isConfirm = true;
+    if (this.mangDatVe) {
+      this.ghe.datVe(this.mangDatVe).subscribe({
+        next: (result) => {
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        },
+      });
+    }
+  }
+
+  ngOnInit(): void {}
+}

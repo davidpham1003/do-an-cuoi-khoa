@@ -1,0 +1,15 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="content-title">
+            <p>Xác Nhận Đặt Vé?</p>
+        </div>
+        <div class="button w-100 d-flex">
+            <div type="button" class="w-50 btn-cancel" data-dismiss="modal">Hủy</div>
+            <div type="button" class="w-50 btn-ok" [ngClass]="{'confirm':isConfirm}" (click)="datVe()">
+                Đồng Ý
+                <i *ngIf="isConfirm" class=" mx-2 fa fa-spinner fa-spin" ></i>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="chiTiet_danhGia" [ngClass]='{"dark-danhGia":isTheme}'>
+    <div data-toggle="modal" data-target="#warning-dangNhap" class="danhGia_header">
+        <!-- data-toggle="modal" data-target="#modelId" -->
+        <div class="danhGia-header__content d-flex">
+            <img src="../../../../assets/img/avatar.png" alt="">
+            <p>Cảm nghĩ của bạn về phim...</p>
+            <div class="star ml-auto">
+                <div class="rating-star">
+                    <i class=" star-item fas fa-star"></i>
+                    <i class=" star-item fas fa-star"></i>
+                    <i class=" star-item fas fa-star"></i>
+                    <i class=" star-item fas fa-star"></i>
+                    <i class=" star-item fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="danhGia_body">
+        <div class="body__content" *ngFor="let comment of mangContent;let even = even"
+            [ngClass]="{'right ml-auto':!even}">
+            <div class="body__title d-flex">
+                <p>{{comment.taiKhoan}}</p>
+                <div class="body__star ml-auto">
+                    <app-danh-gia [danhGia]="comment.danhGia" [phimItem]='2'></app-danh-gia>
+                </div>
+            </div>
+            <div class=" danhGia-body__content d-flex ">
+                <ng-template #noAvatar>
+                    <img [src]=" url ? url : '../../../../assets/img/avatar.png'" alt="" style="border: none;">
+                </ng-template>
+                <img *ngIf="comment.img;else noAvatar" [src]=comment.img alt="">
+                <p>{{comment.binhLuan}}</p>
+            </div>
+        </div>
+        <div class="show-more">
+            <i *ngIf="mangComment.length > mangContent.length" (click)="showMore()"
+                class=" show fas fa-angle-double-down"></i>
+            <i *ngIf="mangContent.length > 5" (click)="hideee()" class="px-3 hide fas fa-angle-double-up"></i>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #danhGia>
+    <div data-backdrop="static" class="modal-danhGia modal fade" id="warning-dangNhap" tabindex="-1" role="dialog"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button #close type="button" class="close ml-auto button-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="content-star text-center">
+                    <div class="modal-rating">{{star/2}}</div>
+                    <div class="modal-star">
+                        <div class="rating-star">
+                            <input id="star10" name="rating" type="radio" value="10" />
+                            <label (click)="setStar(10)" for="star10" title="Tuyệt Vời"> <i
+                                    class=" star-item fas fa-star"></i></label>
+                            <input id="star9" name="rating" type="radio" value="9" />
+                            <label (click)="setStar(9)" for="star9" class="half"><i
+                                    class="fas fa-star-half"></i></label>
+                            <input id="star8" name="rating" type="radio" value="8" />
+                            <label (click)="setStar(8)" for="star8" title="Phim Hay"> <i
+                                    class=" star-item fas fa-star"></i></label>
+                            <input id="star7" name="rating" type="radio" value="7" />
+                            <label (click)="setStar(7)" for="star7" class="half"><i
+                                    class="fas fa-star-half"></i></label>
+                            <input id="star6" name="rating" type="radio" value="6" />
+                            <label (click)="setStar(6)" for="star6" title="Tạm Được"> <i
+                                    class=" star-item fas fa-star"></i></label>
+                            <input id="star5" name="rating" type="radio" value="5" />
+                            <label (click)="setStar(5)" for="star5" class="half"><i
+                                    class="fas fa-star-half"></i></label>
+                            <input id="star4" name="rating" type="radio" value="4" />
+                            <label (click)="setStar(4)" for="star4" title="Không Hay"> <i
+                                    class=" star-item fas fa-star"></i></label>
+                            <input id="star3" name="rating" type="radio" value="3" />
+                            <label (click)="setStar(3)" for="star3" class="half"><i
+                                    class="fas fa-star-half"></i></label>
+                            <input id="star2" name="rating" type="radio" value="2" />
+                            <label (click)="setStar(2)" for="star2" title="Dở Tệ"> <i
+                                    class=" star-item fas fa-star"></i></label>
+                            <input id="star1" name="rating" type="radio" value="1" />
+                            <label (click)="setStar(1)" for="star1" class="half"><i
+                                    class="fas fa-star-half"></i></label>
+                        </div>
+                    </div>
+                </div>
+                <form [formGroup]="formComment" (ngSubmit)="Comment(formComment.value)" method="SUBMIT" action="">
+                    <div class="content-message">
+                        <textarea #text id="message" class="input100" name="message"
+                            placeholder="Bạn Nghĩ Gì Về Phim ..." formControlName='binhLuan'>
+                    </textarea>
+                    </div>
+                    <div class="d-sm-flex d-block mess-footer ">
+                        <div *ngIf="formComment.get('binhLuan').invalid && (formComment.get('binhLuan').dirty ||
+                    formComment.get('binhLuan').touched)" class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf='formComment.get("binhLuan").errors["required"]'>
+                                * Bạn Chưa Bình Luận Về Phim
+                            </div>
+                        </div>
+                        <ng-container *ngIf="rate">
+                            <div *ngIf="!star" class="text-danger mt-1 small p-1 text-left"> * Bạn Chưa Đánh Giá Phim
+                            </div>
+                        </ng-container>
+                        <div class="btn-mess d-flex ml-auto">
+                            <button class="btn button content-button ml-auto">Đăng</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- Modal Warning  -->
+<div *ngIf="!currentUser.taiKhoan;else danhGia" data-backdrop="static" data-keyboard="false" class="modal fade"
+    id="warning-dangNhap" tabindex="-1" role="dialog" aria-hidden="true">
+    <app-modal-warning [warning]="'danhGia'"></app-modal-warning>
+</div>
+<!-- Modal Warning  -->

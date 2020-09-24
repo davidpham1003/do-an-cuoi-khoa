@@ -1,0 +1,170 @@
+<div class="user-info mx-auto" [ngClass]="{'dark-userInfo':isTheme}">
+    <div class="row user-info--content">
+        <div class="col-5 col- user-info-left">
+            <div class="user-avatar">
+                <div class="avatar">
+                    <label for="fileInput">
+                        <img [src]="url ? url : '../../../assets/img/avatar.png'" alt="">
+                        <i class="fas fa-upload"></i>
+                        <div class="bgc-label"></div>
+                    </label>
+
+                </div>
+                <div class="avatar-upload">
+                    <input id="fileInput" type='file' accept="image/*" (change)="onSelectFile($event)">
+                </div>
+            </div>
+            <div class="user-name">
+                <p>Hi! {{currentUser.taiKhoan}}</p>
+            </div>
+            <div class="user-info-method">
+                <p (click)="changeMethod('thongTin')" class="method-item" [ngClass]="{'active':method =='thongTin'}">
+                    Thông Tin Tài Khoản</p>
+                <p (click)="changeMethod('matKhau')" class="method-item" [ngClass]="{'active':method =='matKhau'}">Đổi
+                    Mật Khẩu</p>
+                <p (click)="changeMethod('lichSuVe')" class="method-item" [ngClass]="{'active':method =='lichSuVe'}">
+                    Lịch Sử Đặt Vé</p>
+            </div>
+
+        </div>
+        <div class="col-7  user-info-right">
+            <form [formGroup]='formUpdate' (ngSubmit)="capNhat(formUpdate.value)" *ngIf="method =='thongTin'"
+                [@enterAnimation] class="user-info__content">
+                <h1 class="title info-title">Thông Tin Tài Khoản</h1>
+                <div #abc class="info__content">
+                    <div class="info-item">
+                        <label for="">Tài Khoản</label>
+                        <input type="text" class="disabled" disabled [value]=currentUser.taiKhoan>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Mật Khẩu</label>
+                        <input type="password" class="disabled" name="" id="" disabled [value]=currentUser.matKhau>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Họ Tên</label>
+                        <input type="text" [value]=currentUser.hoTen formControlName='hoTen'>
+                        <div *ngIf="formUpdate.get('hoTen').invalid && (formUpdate.get('hoTen').touched || formUpdate.get('hoTen').dirty )"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formUpdate.get('hoTen').errors['required']">
+                                * Vui Lòng Nhập Họ Tên
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Email</label>
+                        <input class="disabled" disabled type="text" [value]=currentUser.email>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Số Điện Thoại</label>
+                        <input type="text" [value]=currentUser.soDT formControlName='soDt'>
+                        <div *ngIf="formUpdate.get('soDt').invalid && (formUpdate.get('soDt').touched || formUpdate.get('soDt').dirty )"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formUpdate.get('soDt').errors['required']">
+                                * Vui Lòng Nhập Họ Tên
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-capNhat" type="submit">
+                    <input type="submit" value="Cập Nhật">
+                </div>
+            </form>
+            <form [formGroup]='formUpdatePass' (ngSubmit)="capNhatMatKhau(formUpdatePass.value)"
+                *ngIf="method =='matKhau'" [@enterAnimation] class="change-pass__content">
+                <h1 class="title change-pass-title">Đổi Mật Khẩu</h1>
+                <div class="pass-content">
+                    <div class="info-item">
+                        <label for="">Mật Khẩu Cũ</label>
+                        <input type="password" formControlName='matKhau'>
+                        <div *ngIf="formUpdatePass.get('matKhau').invalid && (formUpdatePass.get('matKhau').touched || formUpdatePass.get('matKhau').dirty )"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formUpdatePass.get('matKhau').errors['required']">
+                                * Vui lòng nhập mật khẩu
+                            </div>
+                            <div *ngIf="formUpdatePass.get('matKhau').errors['minlength']">
+                                * Mật khẩu phải lớn hơn 6 ký tự
+                            </div>
+                        </div>
+                        <div class="text-danger mt-1 small p-1 text-left" *ngIf="warning==='saiMkCu'">
+                            * Mật Khẩu Cũ Không Chính Xác
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Mật Khẩu Mới</label>
+                        <input type="password" formControlName='matKhauMoi'>
+                        <div *ngIf="formUpdatePass.get('matKhauMoi').invalid && (formUpdatePass.get('matKhauMoi').touched || formUpdatePass.get('matKhauMoi').dirty )"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formUpdatePass.get('matKhauMoi').errors['required']">
+                                * Vui lòng nhập mật khẩu mới
+                            </div>
+                            <div *ngIf="formUpdatePass.get('matKhauMoi').errors['minlength']">
+                                * Mật khẩu phải lớn hơn 6 ký tự
+                            </div>
+                        </div>
+                        <div class="text-danger mt-1 small p-1 text-left" *ngIf="warning==='trungMkCu'">
+                            * Mật Khẩu Mới Không Được Trùng Với Mật Khẩu Cũ
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label for="">Xác Mật Khẩu Mới</label>
+                        <input type="password" formControlName='xacNhanMk'>
+                        <div *ngIf="formUpdatePass.get('xacNhanMk').invalid && (formUpdatePass.get('xacNhanMk').touched || formUpdatePass.get('xacNhanMk').dirty )"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formUpdatePass.get('xacNhanMk').errors['required']">
+                                * Vui lòng xác nhận mật khẩu mới
+                            </div>
+                            <div *ngIf="formUpdatePass.get('xacNhanMk').errors['minlength']">
+                                * Mật khẩu phải lớn hơn 6 ký tự
+                            </div>
+                        </div>
+                        <div class="text-danger mt-1 small p-1 text-left" *ngIf="warning==='saiXacNhan'">
+                            * Xác Nhận Mật Khẩu Mới Không Chính Xác
+                        </div>
+                    </div>
+                </div>
+                <div class="button-capNhat" type="submit">
+                    <input type="submit" value="Cập Nhật">
+                </div>
+            </form>
+            <div *ngIf="method =='lichSuVe'" [@enterAnimation] class="lichsu-datve__content">
+                <h1 class="title lichSuVe-title">Lịch sử đặt vé</h1>
+                <div class="lichSuVe-content">
+                    <table class="table table-light table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Phim</th>
+                                <th>Thời Gian Đặt</th>
+                                <th>Số Ghế</th>
+                                <th>Mã Vé</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let veItem of thongTinDatVe | paginate: {
+                            id:"foo",
+                            itemsPerPage: 5,
+                            currentPage: page,
+                            totalItems: thongTinDatVe.length}'>
+                                <td scope="row">{{veItem.tenPhim}}</td>
+                                <td>{{(veItem.ngayDat | formatTime).substring(0,5)}} ~
+                                    ({{veItem.ngayDat | formatDate:'1'}})
+                                </td>
+                                <td>
+                                    <ng-container *ngFor='let soGhe of veItem.danhSachGhe'>
+                                        {{soGhe.tenGhe}}
+                                    </ng-container>
+                                </td>
+                                <td>{{veItem.maVe}}</td>
+                                <td>{{veItem.giaVe *veItem.danhSachGhe.length}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls id="foo" (pageChange)="page = $event"
+                        (pageBoundsCorrection)="pageChanged($event)" maxSize="5" directionLinks="true" responsive="true"
+                        previousLabel="Previous" nextLabel="Next">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

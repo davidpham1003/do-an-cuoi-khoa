@@ -1,0 +1,202 @@
+@import "mixin";
+$height: 620px;
+.lich-chieu {
+  @include for-size(sm) {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.692);
+  }
+
+  @include for-size(phone-sm) {
+    border-top: none;
+    padding-top: 0px;
+  }
+  .lich-chieu__content {
+    padding: 0;
+    @include for-size(phone-sm) {
+      width: 90%;
+      margin: 0 auto;
+      border-top: #188f57 solid 1px;
+    }
+    .lich-chieu__rap {
+      max-height: $height;
+      overflow: auto;
+      @include for-size(md) {
+        padding-right: 50px;
+      }
+      @include for-size(xs) {
+        max-height: ($height/1.5);
+      }
+      @include for-size(sm) {
+        width: 90%;
+        margin: 20px auto;
+      }
+      @include for-size(phone-sm) {
+        // max-height: 100px;
+        width: 100%;
+        margin: 5px auto;
+        padding: 0;
+        padding-left: 15px;
+      }
+
+      li.lich-chieu__item {
+        cursor: context-menu;
+        list-style: none;
+        transition: all 0.5s;
+        opacity: 0.5;
+        border-bottom: 1px solid rgba(148, 148, 148, 0.418);
+        &.active {
+          // Active khi click
+          opacity: 1 !important;
+          transition: all 0.5s;
+        }
+        @include for-size(ll) {
+          padding: 10px 0;
+          margin: 0 auto;
+        }
+        @include for-size(sm) {
+          
+          
+        }
+        @include for-size(phone-sm) {
+          transition: 0;
+          padding-left: 20px ;
+        }
+
+        // Item , logo cụm rạp
+
+        img {
+          width: 15%;
+          // @include for-size(lg) {
+          //   width: 20%;
+          //   align-self: center;
+          // }
+          @include for-size(md) {
+            width: 55px;
+            height: 55px;
+            align-self: center;
+          }
+          @include for-size(sm) {
+            width: 15%;
+            height: 100%;
+            align-self: center;
+          }
+          @include for-size(phone-sm) {
+            align-self: auto;
+            padding-top: 10px;
+            width: 60px;
+            height: 70px;
+          }
+        }
+        .item__title {
+          // Tên. địa chỉ cụm rạp
+          margin-top: 7px;
+          span {
+            &.BHD {
+              color: #68b306;
+            }
+            &.CGV {
+              color: #ee2d24;
+            }
+            &.CineStar {
+              color: #3372e2;
+            }
+            &.Galaxy {
+              color: #ff8600;
+            }
+            &.LotteCinima {
+              color: #ec2a5a;
+            }
+            &.MegaGS {
+              color: #ebbb1f;
+            }
+          }
+          .tenRap {
+            font-weight: 500;
+            @include for-size(md) {
+              font-size: 14px;
+            }
+            @include for-size(ll) {
+              font-size: 15px;
+            }
+          }
+          span {
+            font-weight: bold;
+            @include for-size(ll) {
+              font-size: 15px;
+            }
+            @include for-size(md) {
+              font-size: 14px;
+            }
+            @include for-size(sm) {
+              font-size: 18px;
+            }
+            @include for-size(xs) {
+              font-size: 15px;
+            }
+          }
+          .dsRap-diaChi {
+            @include for-size(md) {
+              font-size: 12px;
+              // color: white;
+            }
+            @include for-size(sm) {
+              font-size: 15px;
+              // color: white;
+            }
+            @include for-size(xs) {
+              font-size: 12px;
+            }
+            @include for-size(phone-sm) {
+              color: black;
+            }
+          }
+        }
+      }
+    }
+  }
+  .lich-chieu__phim {
+    max-height: $height;
+    overflow: auto;
+    padding-left: 50px;
+  }
+  .lich-chieu__phim {
+    @include for-size(md) {
+      margin: 0 auto;
+      width: 90%;
+      padding-left: 0px;
+      padding-right: 50px;
+    }
+    @include for-size(sm) {
+      padding: 0;
+    }
+  }
+}
+.line {
+  border-right: dashed 2px #dee2e6;
+  position: absolute;
+  height: ($height - 30px);
+  width: 2px;
+  top: 0;
+  right: 5px;
+  z-index: -1;
+}
+.lich-chieu-dark {
+  @include for-size(sm) {
+    border-top: 1px solid rgba(255, 255, 255, 0.692);
+  }
+  .lich-chieu__content {
+    .dsRap-diaChi {
+      color: #fff;
+      @include for-size(md) {
+        color: white;
+      }
+    }
+    span {
+      color: #fff;
+      @include for-size(phone-sm) {
+       color: black;
+      }
+    }
+  }
+}

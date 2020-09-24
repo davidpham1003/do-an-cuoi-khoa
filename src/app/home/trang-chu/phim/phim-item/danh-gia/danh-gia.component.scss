@@ -1,0 +1,21 @@
+@import 'mixin';
+.danhGia {
+  justify-content: center;
+  img {
+    width: 10px;
+  }
+}
+.danhGiaDetail{
+  // justify-content: center;
+  img {
+    width: 25px;
+    @include for-size(xs) {
+      width: 15px;
+    }
+  }
+}
+.danhGiaDetail2{
+  img{
+    width: 50px;
+  }
+}

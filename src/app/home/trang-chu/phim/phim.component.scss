@@ -1,0 +1,63 @@
+@import 'mixin';
+.dsPhim {
+  .dsPhim__title {
+    .active {
+      border-bottom: 2px solid #fb422691;
+      color: #fb4226;
+      font-weight: bold;
+      font-size: 25px;
+    }
+    .disabled {
+      color: rgba(0, 0, 0, 0.521);
+      cursor: pointer;
+      transition: all 0.4s;
+      border: none;
+      font-size: 20px;
+      &:hover {
+        color: rgb(0, 0, 0);
+        font-size: 25px;
+      }
+    }
+  }
+  .dsPhim__content {
+    width: 90%;
+    max-width: 1160px;
+    margin: 0 auto;
+    .disabled {
+      animation: fade-in 0.3s; // Tên Keyframe
+    }
+    @include for-size(lg) {
+      max-width: 760px;
+    }
+    @include for-size(sm) {
+      max-width: 560px;
+    }
+    @include for-size(xs) {
+      max-width: 85%;
+    }
+    @include for-size(phone-sm) {
+      max-width: 250px;
+    }
+   
+
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.dsPhim-dark {
+  .dsPhim__title {
+    .disabled {
+      color: rgba(255, 255, 255, 0.6);
+      &:hover {
+        color: #ffffff;
+        font-size: 25px;
+      }
+    }
+  }
+}

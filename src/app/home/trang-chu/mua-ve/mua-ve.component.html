@@ -1,0 +1,98 @@
+<div class="dropDown-muaVe d-md-none d-lg-flex mx-auto" [ngClass]='{"dropDown-dark":isTheme}'>
+    <!-- Dropdown Phim  -->
+
+    <div class="dropdown dropDown--item dropdown--selectPhim">
+
+        <div class="dropdown-select "  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span *ngIf="!TenPhim; else tenPhim">Phim</span>
+            <ng-template #tenPhim>
+                <a >{{TenPhim}}</a>
+            </ng-template>
+        </div>
+        <!-- Dropdown Phim Item  -->
+        <div class="dropdown-menu dropdown-menu--config">
+            <a (click)="selectFilm(phimItem.tenPhim,phimItem.maPhim)" *ngFor="let phimItem of danhSachPhim"
+                class="dropdown-item">{{phimItem.tenPhim}}</a>
+        </div>
+    </div>
+    <!-- Dropdown Rạp  -->
+
+    <div class="dropdown  dropDown--item w-item-drop">
+        <div class=" dropdown-select "  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span *ngIf="!TenRap; else tenRap">Rạp</span>
+        </div>
+        <ng-template #tenRap>
+            <a >{{TenRap}}</a>
+        </ng-template>
+        <!-- Dropdown Rạp Item  -->
+        <!-- <ng-template #Rap>
+            <div class="dropdown-menu dropdown-menu--config2" aria-labelledby="triggerId">
+                <a class="dropdown-item">Vui Lòng Chọn Phim</a>
+            </div>
+        </ng-template> -->
+        <div class="dropdown-menu dropdown-menu--config open" aria-labelledby="triggerId">
+            <a *ngFor="let rapItem of dsRap" class="dropdown-item"
+                (click)=(selectCinema(rapItem.tenCumRap,rapItem.maCumRap))>
+                {{rapItem.tenCumRap}}
+            </a>
+        </div>
+    </div>
+    <!-- Dropdown Ngày Xem  -->
+    <div class="dropdown dropDown--item w-item-drop">
+        <div class=" dropdown-select" type="button" id="" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <span *ngIf="!ngayChieu; else Ngay">Ngày Xem</span>
+            <ng-template #Ngay>
+                {{ngayChieu | formatDate:'2'}}
+            </ng-template>
+        </div>
+        <!-- Dropdown Ngày Xem  item-->
+        <!-- <div *ngIf="!TenRap; else Ngay2" [ngClass]="{'show':isChonNgay}" class="dropdown-menu dropdown-menu--config2 ">
+            <a class="dropdown-item">Vui Lòng Chọn Phim và Rạp</a>
+        </div> -->
+
+        <div class="dropdown-menu dropdown-menu--config" [ngClass]="{'show':isChonNgay}">
+            <a *ngFor="let dateItem of danhSachNgayChieu" (click)="selectDate(dateItem)"
+                class="dropdown-item">{{dateItem | formatDate:'2'}}</a>
+        </div>
+
+
+    </div>
+    <!-- Dropdown Suất Chiếu  -->
+    <div class="dropdown dropDown--item w-item-drop">
+        <div class=" dropdown-select" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span *ngIf="!gioChieu ;else Time">Suất Chiếu</span>
+            <ng-template #Time>
+                {{gioChieu | formatTime}}
+            </ng-template>
+
+        </div>
+        <!-- Dropdown Suất Chiếu Item-->
+
+        <div class="dropdown-menu dropdown-menu--config" aria-labelledby="triggerId">
+            <a (click)="selectTime(itemGio.ngayChieuGioChieu,itemGio.maLichChieu)"
+                *ngFor="let itemGio of danhSachGioChieu"
+                class="dropdown-item">{{itemGio.ngayChieuGioChieu | formatTime}}</a>
+        </div>
+        <!-- <ng-template #Time1>
+            <div class="dropdown-menu dropdown-menu--config2" aria-labelledby="triggerId">
+                <a class="dropdown-item">Vui Lòng Chọn Ngày Chiếu</a>
+            </div>
+        </ng-template> -->
+    </div>
+
+    <!-- Button -->
+    <div class="drop-button w-item-drop">
+        <div data-toggle="modal" data-target="#warning-dangNhap" (click)="datVe()" class="text-center">Mua Vé</div>
+    </div>
+</div>
+<div  data-backdrop="static" data-keyboard="false" class="modal fade" id="warning-dangNhap"
+    tabindex="-1" aria-hidden="true">
+    <app-modal-warning [warning]=warning></app-modal-warning>
+</div>
+<!-- <ng-template #chonPhim>
+    <div *ngIf="!currentUser.taiKhoan" data-backdrop="static" data-keyboard="false" class="modal fade" id="warning-dangNhap"
+    tabindex="-1" aria-hidden="true">
+    <app-modal-warning [warning]=warning></app-modal-warning>
+</div>
+</ng-template> -->

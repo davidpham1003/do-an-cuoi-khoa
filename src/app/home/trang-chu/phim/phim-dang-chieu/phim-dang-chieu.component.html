@@ -1,0 +1,21 @@
+<div class="phim-dc mx-auto">
+  <!-- <owl-carousel-o [options]="customOptions">
+    <ng-template *ngFor='let phimItem of phimDC; let even = even' carouselSlide>
+      <app-phim-item (transTrailer)="getTrailer($event)" [phim]="phimItem" [isTheme]=isTheme></app-phim-item>
+    </ng-template>
+  </owl-carousel-o> -->
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let phimItem of phimDC" class="slide">
+      <app-phim-item (transTrailer)="getTrailer($event)" [phim]="phimItem" [isTheme]=isTheme></app-phim-item>
+    </div>
+  </ngx-slick-carousel>
+</div>
+
+
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div *ngIf="trailer">
+  <app-modal-youtube (click)="closeModal()" [trailer]=trailer></app-modal-youtube>
+  <div>

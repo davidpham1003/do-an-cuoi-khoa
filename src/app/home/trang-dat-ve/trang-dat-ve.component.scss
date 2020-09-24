@@ -1,0 +1,536 @@
+@import "main";
+
+@mixin bgc {
+  background-color: #0a0f13;
+  box-shadow: 0 0 6px 1px #1b1b1b;
+  border-radius: 15px;
+}
+
+#dat-ve {
+  background-image: linear-gradient(180deg, #00000000 0%, #2c3e50 74%);
+  height: 850px;
+  @include for-size(ll) {
+    margin-top: 76px;
+    height: 730px;
+  }
+  @include for-size(lg) {
+    height: 650px;
+  }
+  @include for-size(sm) {
+    height: 100%;
+  }
+  // @include for-size(phone-sm) {
+  //   height: 795px;
+  // }
+}
+.row {
+  margin: 0 !important;
+}
+.trang-datVe {
+  color: white;
+  padding: 8% 0;
+  width: $width-xl;
+  @include for-size(ll) {
+    width: $width-ll;
+    padding: 6% 0;
+  }
+  @include for-size(lg) {
+    width: $width-lg;
+  }
+  @include for-size(md) {
+    width: 95%;
+  }
+
+  .thongTinGhe {
+    @include for-size(xl) {
+      max-width: (100%/12 * 8);
+    }
+    @include for-size(ll) {
+      max-width: (100%/12 * 7);
+    }
+    @include for-size(lg) {
+      max-width: (100%/12 * 8);
+    }
+    @include for-size(sm) {
+      max-width: 100%;
+    }
+  }
+  .thongTinPhim {
+    position: relative;
+    // transform: translateX(-50px);
+    @include for-size(xl) {
+      max-width: (100%/12 * 4);
+    }
+    @include for-size(ll) {
+      max-width: (100%/12 * 5);
+    }
+    @include for-size(lg) {
+      max-width: (100%/12 * 4);
+    }
+    @include for-size(sm) {
+      max-width: 100%;
+      display: flex;
+    }
+    .dat-ve-right {
+      @include for-size(sm) {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  }
+  .info-title {
+    font-size: 18px;
+    @include for-size(lg) {
+      font-size: 15px;
+    }
+  }
+  .ve__info-phim,
+  .ve__info-rap,
+  .ve__giaVe,
+  .danhSach-combo {
+    @include bgc;
+    padding: 10px 30px;
+    margin: 15px 0;
+    @include for-size(lg) {
+      padding: 10px;
+    }
+    img {
+      position: relative;
+      margin-right: 20px;
+      width: 70px;
+      height: 100px;
+      @include for-size(lg) {
+        height: 85px;
+      }
+      @include for-size(md) {
+        display: none;
+      }
+      @include for-size(sm) {
+        display: block;
+        width: 60px;
+      }
+      @include for-size(xs) {
+        display: none;
+      }
+      @include for-size(phone-sm) {
+        display: block;
+      }
+    }
+    .img-border {
+      position: absolute;
+      top: 10px;
+    }
+    @include for-size(md) {
+      padding: 10px 15px;
+    }
+  }
+  .button-ve {
+    background-color: #afafaf;
+    background-image: none;
+    pointer-events: none;
+    padding: 10px;
+    border-radius: 3px;
+    width: 12%;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 500;
+    @include for-size(sm) {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      font-size: 30px;
+      z-index: 10;
+    }
+    @include for-size(xs) {
+      font-size: 40px;
+    }
+    &.active {
+      background-image: linear-gradient(
+        -225deg,
+        #22e1ff 0%,
+        #1d8fe1 48%,
+        #625eb1 100%
+      );
+      cursor: pointer;
+      pointer-events: visible;
+      &:hover {
+        background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+      }
+    }
+  }
+  .ve__giaVe {
+    @include for-size(md) {
+      background: none;
+      box-shadow: none;
+      padding: 0 0;
+    }
+    @include for-size(sm) {
+      @include bgc;
+      padding: 10px 30px;
+    }
+    @include for-size(xs) {
+      padding: 10px 5px;
+    }
+    @include for-size(xs) {
+      // background: none;
+      // box-shadow: none;
+    }
+    @include for-size(phone-sm) {
+      background: none;
+      box-shadow: none;
+      padding: 10px 0;
+    }
+
+
+    line-height: 25px;
+    .tongTien {
+      padding: 0 5px;
+      padding-top: 15px;
+      p:last-child {
+        font-size: 18px;
+        color: #5cd4e4;
+        font-weight: bold;
+        text-shadow: 0 0 10px #a4dbd68a;
+      }
+    }
+    .bap-nuoc {
+      // Loại bỏ padding của col
+      padding: 0 5px;
+    }
+    .giaVe__left {
+      width: 80%;
+      @include for-size(lg) {
+        font-size: 15px;
+      }
+    }
+    .giaVe-bap,
+    .giaVe__time {
+      @include for-size(md) {
+        @include bgc;
+        padding: 10px;
+      }
+      @include for-size(sm) {
+        background: none;
+        box-shadow: none;
+      }
+      @include for-size(phone-sm) {
+        @include bgc;
+        max-width: 100%;
+        flex: 0 0 100%;
+      }
+    }
+    .giaVe-bap {
+      @include for-size(phone-sm) {
+      }
+    }
+    .giaVe__time {
+      text-align: right;
+      border-left: 1px solid rgba(255, 255, 255, 0.7);
+      @include for-size(md) {
+        text-align: left;
+        border: none;
+        margin-top: 15px;
+      }
+      @include for-size(sm) {
+        text-align: right;
+        border-left: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 0;
+        margin-top: 0;
+      }
+      @include for-size(phone-sm) {
+        border: none;
+        margin-top: 15px;
+        text-align: left;
+        display: flex !important;
+        border-radius: 5px;
+      }
+
+      .count-down {
+        padding-top: calc(25px + 0.75rem);
+        font-size: 25px;
+        color: #5cd4e4;
+        font-weight: bold;
+        text-shadow: 0 0 10px #a4dbd68a;
+        @include for-size(lg) {
+          padding-top: 15px;
+        }
+        @include for-size(md) {
+          text-align: right;
+        }
+        @include for-size(md) {
+          padding: 0;
+          margin-left: auto;
+        }
+        @include for-size(sm) {
+          padding-top: calc(25px + 0.75rem);
+        }
+        @include for-size(phone-sm) {
+          padding: 0;
+        }
+      }
+    }
+  }
+  .ve__info-phim {
+    @include for-size(sm) {
+      flex: 0 0 48%;
+      max-width: 48%;
+    }
+    @include for-size(phone-sm) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    .ve_info {
+      .ngayChieu {
+        .suatChieu__2D {
+          text-align: center;
+          font-size: 20px;
+          font-weight: bold;
+          color: rgb(255, 255, 255);
+          margin: 0;
+          background-image: linear-gradient(#3beb98, #188f57);
+          width: 50px;
+          margin: 10px 0;
+        }
+        .ngayGio {
+          align-self: center;
+          font-size: 18px;
+          color: #5cd4e4;
+          font-weight: bold;
+          text-shadow: 0 0 10px #a4dbd68a;
+          @include for-size(lg) {
+            font-size: 15px;
+          }
+          span {
+            font-size: 15px;
+            text-shadow: none;
+            color: rgba(255, 255, 255, 0.7);
+            @include for-size(lg) {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .ve__info-rap {
+    @include for-size(sm) {
+      flex: 0 0 48%;
+      max-width: 48%;
+    }
+    @include for-size(phone-sm) {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      @include for-size(md) {
+        display: none;
+      }
+      @include for-size(sm) {
+        display: block;
+        width: 60px;
+        height: 60px;
+      }
+      @include for-size(xs) {
+        display: none;
+      }
+      @include for-size(phone-sm) {
+        display: block;
+      }
+    }
+    .veRap-info {
+      width: 100%;
+      .ghe-da-dat {
+        margin-top: 5px;
+        // @include for-size(phone-sm) {
+        //   display: flex !important;
+        // }
+        .veRap-info__rap,
+        span {
+          font-size: 18px;
+          color: #5cd4e4;
+          font-weight: bold;
+          text-shadow: 0 0 10px #a4dbd68a;
+        }
+        .gheDat {
+          width: 45%;
+          @include for-size(lg) {
+            width: 100%;
+          }
+          
+        }
+      }
+    }
+  }
+}
+.small {
+  color: rgba(255, 255, 255, 0.7);
+}
+.btn-combo {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  @include for-size(lg) {
+    @include wh-circle(120px);
+  }
+  @include for-size(sm) {
+    @include wh-circle(100px);
+  }
+  bottom: 100px;
+  right: 25px;
+  transition: all 0.5s;
+  z-index: 10;
+  cursor: pointer;
+  
+  img {
+    width: 100%;
+    position: relative;
+  }
+  &.show-combo {
+    transform: translateX(-450px) rotate(-360deg);
+  }
+}
+
+.background-drop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(8, 8, 8, 0.5);
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all;
+  &.show-background {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.bg-combo {
+  width: 0;
+  background-color: #fff;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  overflow-x: hidden;
+  // width: 450px;
+  transition: ease-out 0.4s;
+  &.show-combo {
+    width: 450px;
+    transition: ease-in 0.3s;
+    @include for-size(xs) {
+      width: 100%;
+    }
+  }
+}
+
+table {
+  transform: translateY(40%);
+  .combo-content {
+    color: black;
+  }
+  .button-close {
+    text-align: right;
+    font-size: 25px;
+    color: hsla(347, 70%, 48%, 0.7);
+    cursor: pointer;
+    &:hover {
+      color: hsla(347, 70%, 48%);
+    }
+    transform: translateX(-20px);
+  }
+  h1 {
+    color: rgb(110, 110, 110);
+    text-align: center;
+    border-bottom: 1px solid #cecece;
+    padding-bottom: 15px;
+  }
+  .combo-body {
+    margin: 15px auto;
+  }
+  .combo-text {
+    font-size: 18px;
+    line-height: 30px;
+    p:first-child {
+      color: black;
+    }
+    p:last-child {
+      color: #eed545;
+      font-weight: 550;
+    }
+  }
+  .combo-line {
+    background-color: #cecece;
+    height: 1px;
+    width: 50%;
+    margin-left: auto;
+  }
+  .combo-footer {
+    margin-top: 15px;
+    font-size: 18px;
+    text-align: right;
+    span:last-child {
+      margin-left: 50px;
+      width: 100px;
+    }
+  }
+  img {
+    width: 75px;
+    border-radius: 5px;
+  }
+  .minus,
+  .plus {
+    width: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: #397d90;
+    color: #fff;
+  }
+  .soLuong {
+    width: 40px;
+    background-color: #fff;
+    line-height: 30px;
+    color: #0a0f13;
+    font-weight: 600;
+  }
+}
+.ve-spinner {
+  top: -100px;
+  position: relative;
+  @include for-size(phone-sm) {
+    top: -30px;
+  }
+}
+.modal.show {
+  display: block;
+}
+
+//
+.timeBuoc1{
+  transform: translateY(-100%);
+}
+.btn-back{
+  position: fixed;
+  bottom: 180px;
+  left: 10px;
+  color: rgb(255, 255, 255,0.8);
+  font-size: 50px;
+  transition: .5s all;
+  &:hover{
+    color: #fff;
+  }
+}
+.hide-ghe{
+  @include for-size(phone-sm) {
+    display: none;
+  }
+}

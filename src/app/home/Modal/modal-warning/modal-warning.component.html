@@ -1,0 +1,13 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content seat-error-modal-content">
+        <div class="modal-body seat-error-modal-body">
+            <div class="seat-error-header"><img src="../../../../../assets/img/Post-notification.png"></div>
+            <div class="seat-error-content ng-binding">{{thongBao}}
+                 <span (click)="reload()" *ngIf="warning=='timer'"> Đặt Lại</span>
+                </div>
+            <div data-dismiss="modal" class="seat-error-footer">
+                <span (click)='reload()' class="btn btnOk">OK</span>
+            </div>
+        </div>
+    </div>
+</div>

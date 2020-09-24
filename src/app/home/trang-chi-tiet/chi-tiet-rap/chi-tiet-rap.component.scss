@@ -1,0 +1,124 @@
+@import "../../trang-chu/he-thong-rap/he-thong-rap.component.scss";
+@import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-rap.component.scss";
+@import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-phim/lich-chieu-phim.component.scss";
+@import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-phim/gio-xem/gio-xem.component.scss";
+#chiTietRap.rap {
+  width: 100%;
+  margin: 0 auto;
+  @include for-size(sm) {
+    width: 95%;
+  }
+  @include for-size(phone-sm) {
+    width: 100%;
+  }
+  .rap__content {
+    .rap__logo {
+      display: flex;
+      .rap__item {
+        padding-right:  50px;
+        padding-left:  50px;
+        img {
+          width: 100px;
+          height: 100px;
+          @include for-size(md) {
+            height: 80px;
+            width: 80px;
+          }
+          @include for-size(xs) {
+            height: 70px;
+            width: 70px;
+          }
+        }
+        @include for-size(lg) {
+          padding: 10px 30px;
+        }
+        @include for-size(xs) {
+          padding-bottom: 0;
+        }
+        @include for-size(phone-sm) {
+          padding-bottom: 10px;
+          & .bg-item {
+            width: 100%;
+            .img-logo {
+              position: relative;
+              img {
+                width: 50%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .rap__lich-chieu {
+      .lich-chieu {
+        @include for-size(xs) {
+          padding-top: 0;
+        }
+        .lich-chieu__content {
+          border: none;
+          .lich-chieu__rap {
+            padding-right: 15px;
+            .lich-chieu__item{
+              img{
+                @include for-size(phone-sm) {
+                  width: 50px;
+                  height: 60px;
+                }
+              }
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.lich-chieu__phim {
+  padding-left: 50px;
+}
+.lich-phim__ngayXem {
+  height: 85px;
+  overflow: auto;
+  @include for-size(lg) {
+    height: 74px;
+  }
+  @include for-size(sm) {
+  }
+  .ngay-xem-item {
+    padding: 0 40px;
+    font-size: 21px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .active {
+    color: #fb4226;
+  }
+}
+.rap-dark {
+  .lich-phim__ngayXem {
+    color: rgba(255, 255, 255, 0.918);
+  }
+  .suatChieu__content {
+    span {
+      color: #16db5e !important;
+    }
+  }
+  .tenPhim {
+    color: white !important;
+  }
+  .thoiLuong {
+    color: rgba(255, 255, 255, 0.589) !important;
+  }
+  .tenCumRap {
+    color: white !important;
+  }
+}
+.lich-phim__suatChieu {
+  .suatChieu__content {
+    span {
+      color: #108f3e;
+      font-size: 18px !important;
+    }
+  }
+}

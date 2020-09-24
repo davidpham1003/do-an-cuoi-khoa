@@ -1,0 +1,64 @@
+<div class="header" [ngClass]="{'dark-header':isTheme,'noneHide':isTogggle}" >
+    <nav class="navbar navbar--config navbar-expand-md">
+        <a *ngIf='isTheme;else logo2' class="navbar-brand " routerLink='/'>
+            <img src="../../../assets/img/logo.png" alt="">
+        </a>
+        <ng-template #logo2>
+            <a class="navbar-brand " routerLink='/'>
+                <img src="../../../assets/img/logo2.png" alt="">
+            </a>
+        </ng-template>
+        <button (click)="toggle()" class="navbar-toggler navbar-toggler--config" [ngClass]="{'hide':isTogggle}" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="collapse navbar-collapse navbar-collapse--config" id="navbarNav">
+            <ul class="navbar-nav text-center mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['']" pageScroll href="#phim">Kho Phim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['']" pageScroll href="#cumRap">Cụm Rạp</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['']" pageScroll href="#tinTuc">Tin Tức</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " [routerLink]="['']" pageScroll href="#ungDung">Ứng Dụng</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar__right">
+            <div *ngIf="!currentUser.taiKhoan;else hello" (click)="showLogin()" class="btn-dangNhap">Đăng Nhập</div>
+            <ng-template #hello>
+                <div #helloUser class="helloUser d-flex">
+                    <div class="UserName-img ">
+                        <img (click)='UserInfo()' [src]=" url ? url : '../../../assets/img/avatar.png' " alt="">
+                        <div class="UserInfo" [ngClass]='{"activeUserInfo":isInfo}'>
+                            <div class="arrow-up">
+                                <img src="../../../assets/img/togglle.png" alt="">
+                            </div>
+                            <div class="UserInfo__content">
+                                <div class="inFo">
+                                    <p routerLink='/thongTin'>Thông Tin Người Dùng</p>
+                                </div>
+                                <div class="logOut">
+                                    <p (click)="logOut()">Đăng Xuất</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="UserName px-2">{{currentUser.taiKhoan}}</span>
+                </div>
+            </ng-template>
+            <app-trang-dang-nhap *ngIf="!currentUser.taiKhoan" [isLogin]=isLogin>
+            </app-trang-dang-nhap>
+        </div>
+        <div id="checkbox-demo" class="d-inline">
+            <input (click)="changeThemes()" type="checkbox" name="" id="checkbox-1">
+        </div>
+    </nav>
+
+
+
+</div>

@@ -1,0 +1,331 @@
+@import "main";
+.user-info {
+  // height: 1000px;
+  margin-top: 76px;
+  padding: 100px 0;
+  transition: all 0.5s;
+  max-width: $width-xl;
+  @include for-size(ll) {
+    max-width: $width-ll;
+  }
+  @include for-size(lg) {
+    max-width: $width-lg;
+  }
+  @include for-size(md) {
+    max-width: $width-md;
+  }
+  @include for-size(sm) {
+    max-width: 98%;
+    padding: 50px 0;
+  }
+
+  .user-info--content {
+    margin-top: -40px;
+    border: 1px solid rgba(59, 59, 59, 0.452);
+    padding: 50px 40px 20px 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s;
+    // height: 760px;
+    @include for-size(sm) {
+      padding-top: 10px;
+    }
+    @include for-size(xs) {
+      padding: 10px;
+    }
+  }
+  .user-info-left {
+    // margin-top: 20px;
+    text-align: center;
+    padding: 0 80px;
+    margin-top: 30px;
+    @include for-size(lg) {
+      text-align: center;
+      padding: 0 80px 0 0;
+      max-width: 35%;
+    }
+    @include for-size(md) {
+      padding: 0;
+    }
+    @include for-size(sm) {
+      display: flex;
+      flex-wrap: wrap;
+      @include col-bs4(100%);
+    }
+    @include for-size(xs) {
+      margin-top: 10px;
+    }
+    .user-avatar {
+      @include for-size(sm) {
+        margin-left: auto;
+        max-width: 50%;
+        padding-right: 10px;
+      }
+      .avatar {
+        // @include for-size(sm){
+        //   max-width: 50%;
+        //   // flex: 0 0 50%;
+        // }
+        label {
+          position: relative;
+          cursor: pointer;
+          i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+          }
+          .bgc-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.473);
+            @include wh-circle(150px);
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.5s;
+            @include for-size(xs) {
+              @include wh-circle(120px);
+            }
+          }
+          &:hover .bgc-label,
+          &:hover i {
+            opacity: 1;
+          }
+          img {
+            @include wh-circle(150px);
+            border-radius: 50%;
+            z-index: 0;
+            @include for-size(xs) {
+              @include wh-circle(120px);
+            }
+          }
+        }
+      }
+      .avatar-upload {
+        #fileInput {
+          display: none;
+        }
+      }
+    }
+    .user-name {
+      padding: 15px 0;
+      font-size: 25px;
+      font-weight: 550;
+      border-bottom: solid 1px rgb(194, 194, 194);
+      @include for-size(sm) {
+        @include col-bs4(50%);
+        text-align: left;
+        padding-left: 10px;
+        border-bottom: none;
+        align-self: center;
+      }
+      @include for-size(xs) {
+        font-size: 18px;
+        padding-left: 0;
+      }
+    }
+    .user-info-method {
+      @include for-size(sm) {
+        display: flex;
+        justify-content: space-around;
+        @include col-bs4(100%);
+      }
+      @include for-size(xs) {
+        display: flex;
+        justify-content: space-between;
+        @include col-bs4(100%);
+      }
+
+      p.method-item {
+        color: rgb(95, 95, 95);
+        cursor: pointer;
+        padding: 10px 0;
+        position: relative;
+        transition: all 0.3s;
+        @include for-size(sm) {
+          font-size: 15px;
+          align-self: flex-end;
+        }
+        @include for-size(phone-sm) {
+          font-size: 18px;
+        }
+        &.active {
+          color: #fb4226;
+          font-size: 18px;
+        }
+        &:after {
+          content: "";
+          background-color: #00c6d7;
+          position: absolute;
+          bottom: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0;
+          height: 1px;
+          width: 50%;
+          transition: all 0.5s;
+          @include for-size(md) {
+            width: 80%;
+          }
+        }
+        &.active:after {
+          opacity: 1;
+        }
+        &:hover:after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .user-info-right {
+    h1 {
+      color: rgb(88, 88, 88);
+      @include for-size(xs) {
+        font-size: 30px;
+      }
+    }
+    @include for-size(md) {
+      @include col-bs4(65%);
+      padding-left: 50px;
+    }
+    @include for-size(sm) {
+      @include col-bs4(100%);
+      margin-top: 30px;
+      padding: 0;
+    }
+    text-align: center;
+    .user-info__content,
+    .change-pass__content,
+    .lichsu-datve__content {
+      .lichSuVe-title {
+        margin-bottom: 30px;
+      }
+      .info__content,
+      .pass-content {
+        .info-item {
+          text-align: left;
+          label {
+            font-weight: 550;
+            font-size: 18px;
+            margin-top: 30px;
+            @include for-size(xs) {
+              margin: 20px 0 0;
+              font-size: 15px;
+            }
+          }
+          input {
+            width: 100%;
+            padding: 5px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #00c6d7;
+            color: rgb(48, 48, 48);
+            // margin-left: 10px;
+            &.disabled {
+              color: rgb(153, 153, 153);
+              border-bottom: 1px solid rgb(153, 153, 153);
+            }
+          }
+        }
+      }
+
+      .button-capNhat {
+        text-align: center;
+        margin: 2em;
+        input[type="submit"] {
+          text-align: center;
+          border: 0;
+          color: #000000;
+          font-size: 17px;
+          font-weight: 600;
+          padding: 14px 90px;
+          background-color: #ffffffe7;
+          border: 3px solid rgba(95, 113, 141, 0.43);
+          box-shadow: 0 12px 32px 0 rgba(114, 239, 255, 0.71);
+          outline: none;
+          cursor: pointer;
+          font-family: "Open Sans", sans-serif;
+          letter-spacing: 1px;
+          transition: all 0.5s;
+          &:hover {
+            border-color: #00c6d7;
+          }
+        }
+      }
+    }
+  }
+}
+.dark-userInfo {
+  color: white;
+  .user-info--content {
+    border: 1px solid rgba(255, 255, 255, 0.452);
+    background-color: rgba(95, 95, 95, 0.158);
+    .user-info-left {
+      .user-name {
+        border-bottom: solid 1px rgb(194, 194, 194);
+        @include for-size(sm) {
+          border: none;
+        }
+      }
+      .user-info-method {
+        p.method-item {
+          color: rgb(194, 194, 194);
+          &.active {
+            color: #fb4226ff;
+          }
+          &:after {
+            content: "";
+            background-color: #00c6d7;
+          }
+        }
+      }
+    }
+    .user-info-right {
+      h1 {
+        color: rgb(182, 182, 182);
+      }
+      text-align: center;
+      .user-info__content,
+      .change-pass__content,
+      .lichsu-datve__content {
+        .lichSuVe-title {
+          margin-bottom: 30px;
+        }
+        .info__content,
+        .pass-content {
+          .info-item {
+            input {
+              border-bottom: 1px solid #00c6d7;
+              color: #eee;
+              &.disabled {
+                color: rgb(153, 153, 153);
+                border-bottom: 1px solid rgb(153, 153, 153);
+              }
+            }
+          }
+        }
+        .info__content {
+          label {
+            @include for-size(lg) {
+              margin-top: 20px;
+            }
+          }
+        }
+        .button-capNhat {
+          input[type="submit"] {
+            color: #ffffff;
+            border: 3px solid rgba(255, 255, 255, 0.43);
+            background-color: #02737e4d;
+            box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.71);
+            &:hover {
+              color: #ffffff;
+              border-color: #00c6d7;
+            }
+          }
+        }
+      }
+    }
+  }
+}

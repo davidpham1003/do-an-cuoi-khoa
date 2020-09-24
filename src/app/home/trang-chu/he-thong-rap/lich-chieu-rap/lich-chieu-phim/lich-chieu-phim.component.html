@@ -1,0 +1,31 @@
+<div *ngIf="!phimChieu;else dsPhim">
+    <div class="lichPhim-empty">
+        <p [ngClass]="{'lichPhim-dark':isTheme}"> Không Có Lịch Chiếu</p>
+    </div>
+</div>
+<ng-template #dsPhim>
+    <ul class="lichPhim" [ngClass]="{'lichPhim-dark':isTheme}">
+        <li *ngFor="let lichPhimItem of lichChieuPhim;let index = index" class="lich-phim__item"> 
+                    <div data-toggle="collapse" data-target="#demo" [attr.data-target]="'#a'+index" (click)="layMaPhim(lichPhimItem.maPhim);showGio()" class="lich-phim__content d-flex ">
+                        <img [src]="lichPhimItem.hinhAnh" alt="">
+                        <div class="lich-phim__title mx-3 mt-2">
+                            <span class="lich-tenPhim mr-2"> Cyber </span>
+                            <span class="font-weight-bold tenPhim"> {{lichPhimItem.tenPhim}}</span>
+                            <p>120 Phút</p>
+                        </div>
+                    </div>
+                    <div [id]='"a"+index' [ngClass]='{"show":currentWindowWidth>420}'  class=" collapse lich-phim__suatChieu">
+                        <div class="mt-sm-3 d-flex">
+                            <div class="suatChieu">
+                                <p class="suatChieu__2D mr-5">2D</p>
+                            </div>
+                            <app-gio-xem [isTheme]=isTheme class="suatChieu__gioXem"
+                                [mangGioXem]=lichPhimItem.lstLichChieuTheoPhim></app-gio-xem>
+                        </div>
+                    </div>
+
+
+            <div class="lich-chieu__border my-3"></div>
+        </li>
+    </ul>
+</ng-template>

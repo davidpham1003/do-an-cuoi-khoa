@@ -1,0 +1,249 @@
+@import "mixin";
+.chiTiet_danhGia {
+  padding: 50px;
+  @include for-size(sm) {
+    padding: 0;
+  }
+}
+.danhGia_header {
+  border: rgba(0, 0, 0, 0.2) solid 1px;
+  background-color: rgba(255, 255, 255);
+  max-width: 75%;
+  @include for-size(lg) {
+    max-width: 90%;
+  }
+  border-radius: 5px;
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+  .danhGia-header__content {
+    align-self: center;
+    padding: 8px 15px;
+    @include for-size(phone-sm) {
+      padding: 5px;
+    }
+    img {
+      height: 40px;
+      width: 40px;
+      margin-right: 15px;
+      @include for-size(phone-sm) {
+        margin-right: 5px;
+      }
+    }
+    p {
+      align-self: center;
+      color: rgba(0, 0, 0, 0.637);
+      @include for-size(xs) {
+        font-size: 15px;
+      }
+    }
+    .star {
+      text-align: right;
+      align-self: center;
+      font-size: 25px;
+      color: var(--yellow);
+      text-align: left;
+      @include for-size(xs) {
+        line-height: 0;
+      }
+      .star-item {
+        padding: 0 1px;
+        @include for-size(xs) {
+          font-size: 15px;
+        }
+        @include for-size(phone-sm) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+.danhGia_body {
+  max-width: 75%;
+  padding: 25px 15px;
+  margin: 0 auto;
+  position: relative;
+  translate: all 0.5s;
+  @include for-size(lg) {
+    max-width: 85%;
+  }
+  @include for-size(xs) {
+    padding: 15px;
+    max-width: 90%;
+  }
+  @include for-size(phone-sm) {
+    max-width: 95%;
+  }
+
+  .body__content {
+    width: 45%;
+    @include for-size(md) {
+      width: 100%;
+    }
+    .body__title {
+      padding: 15px 10px;
+      @include for-size(xs) {
+        padding: 15px 10px 5px 10px;
+      }
+
+      p {
+        align-self: center;
+        @include for-size(xs) {
+          font-size: 15px;
+        }
+      }
+      .body__star {
+        text-align: center;
+      }
+    }
+  }
+  .danhGia-body__content {
+    pointer-events: none;
+    background-color: #fff;
+    border: rgba(0, 0, 0, 0.2) solid 1px;
+    border-radius: 5px;
+    padding: 8px 15px;
+    @include for-size(xs) {
+      padding: 5px 10px;
+    }
+
+    img {
+      align-self: center;
+      height: 45px;
+      width: 45px;
+      margin-right: 15px;
+      border-radius: 50%;
+      border: 3px solid #629ab2;
+      @include for-size(xs) {
+        height: 35px;
+        width: 35px;
+      }
+    }
+    p {
+      align-self: center;
+      color: rgba(0, 0, 0);
+      font-weight: 450;
+    }
+    .star {
+      align-self: center;
+      font-size: 25px;
+      color: var(--yellow);
+      text-align: left;
+      .star-item {
+        padding: 0 1px;
+      }
+    }
+  }
+  .show-more {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 25px;
+  }
+}
+//Modal
+.modal-danhGia {
+  top: 20%;
+  .modal-dialog {
+    max-width: 750px;
+    .modal-content {
+      width: 100%;
+      padding: 20px;
+      @include for-size(xs) {
+        padding: 20px 20px 60px 20px;
+        max-height: 330px;
+        overflow: hidden;
+      }
+      .button-close {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+      }
+      .content-star {
+        font-size: 30px;
+        padding-bottom: 30px;
+        .modal-rating {
+          font-size: 35px;
+        }
+        .modal-star {
+          .rating-star {
+            cursor: pointer;
+            display: inline-flex;
+            flex-direction: row-reverse;
+          }
+          .rating-star input {
+            display: none;
+          }
+          .rating-star label,
+          .rating-star label.half {
+            padding: 0 5px;
+          }
+          .rating-star label.half {
+            width: 25px;
+            overflow: hidden;
+            position: relative;
+            margin-right: -25px;
+          }
+          .rating-star input:checked ~ label {
+            text-shadow: 0px 0 10px rgba(255, 157, 180, 0.28);
+            color: var(--yellow);
+          }
+          .rating-star:not(:checked) > label:hover,
+          .rating-star:not(:checked) > label:hover ~ label {
+            color: var(--yellow);
+          }
+        }
+      }
+      .content-message {
+        padding: 10px;
+        border: solid 1px rgba(134, 128, 128, 0.623);
+        border-radius: 5px;
+      }
+      .mess-footer {
+        position: relative;
+        .btn-mess {
+          .content-button {
+            margin-top: 10px;
+            padding: 2px 15px;
+            background-color: #fb4226;
+            border-radius: 5px;
+            color: white;
+            font-weight: 550;
+            font-size: 18px;
+            @include for-size(xs) {
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+textarea.input100 {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+.dark-danhGia {
+  .danhGia_body {
+    .body__title {
+      p {
+        color: #fff;
+        font-weight: 550;
+      }
+    }
+    .show-more {
+      color: rgba(255, 255, 255, 0.651);
+    }
+  }
+}

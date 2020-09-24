@@ -1,0 +1,5 @@
+<div class="d-flex mx-auto" [ngClass]='{"danhGia":phimItem == 1,"danhGiaDetail":phimItem == 2,"danhGiaDetail2":phimItem == 3}'>
+        <ng-container *ngFor="let sao of soLuongSao">
+                <img [src]="sao" alt="">
+        </ng-container>
+</div>

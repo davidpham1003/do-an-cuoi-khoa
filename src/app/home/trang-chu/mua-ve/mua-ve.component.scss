@@ -1,0 +1,104 @@
+@import "../../../../assets/scss/Helpers/mixin";
+
+.dropDown-muaVe {
+  margin-top: 20px;
+  align-items: center;
+  font-weight: 500;
+  @include for-size(xl) {
+    width: 75%;
+  }
+  @include for-size(lg) {
+    width: 85%;
+  }
+  @include for-size(md) {
+    width: 90%;
+  }
+  @include for-size(sm) {
+    width: 90%;
+  }
+  .dropDown--item {
+    background-image: url("../../../../assets/img/background-dropdown.png");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: rgba(240, 240, 240, 0.603);
+    box-shadow: 0px 3px 4px 0px rgba(182, 182, 182, 0.884);
+
+    @include for-size(sm) {
+      margin: 10px 0;
+    }
+    &.dropdown--selectPhim {
+      width: 30%;
+      @include for-size(sm) {
+        width: 100%;
+      }
+    }
+    &.w-item-drop {
+      width: (60%/4);
+      @include for-size(sm) {
+        width: 100%;
+      }
+    }
+    .dropdown-select {
+      background-image: url("../../../../assets/img/dropdown-icon.png");
+      background-repeat: no-repeat;
+      z-index: 500;
+      background-position: right center;
+      cursor: pointer;
+      a {
+        display: block;
+        width: 90%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .dropdown-menu--config {
+      top: 2px !important;
+      left: -10px !important;
+      height: 350px;
+      overflow: auto;
+      width: 100%;
+      transform: translate3d(10px, 33px, 0px) !important;
+      .dropdown-item {
+        padding: 0.25rem 0.5rem;
+      }
+    }
+    .dropdown-menu--config2 {
+      max-height: 60px;
+      top: 5px !important;
+      left: -10px !important;
+      width: 100%;
+    }
+  }
+  .drop-button {
+    background-image: linear-gradient(
+      -225deg,
+      #22e1ff 0%,
+      #1d8fe1 48%,
+      #625eb1 100%
+    );
+    padding: 10px;
+    border-radius: 3px;
+    width: 12%;
+    color: #fff;
+    transition: all 0.5s;
+    @include for-size(sm) {
+      width: 100%;
+    }
+    &:hover {
+      background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+    }
+    
+  }
+}
+
+.dropDown-dark {
+  .dropDown--item {
+    background-color: rgb(230, 230, 230);
+  }
+  p {
+    color: white;
+  }
+}

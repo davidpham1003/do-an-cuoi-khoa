@@ -1,0 +1,82 @@
+<div class="dang-ky d-flex">
+    <div class="dangky__content">
+        <div class="dangky_header">
+            <img routerLink='/' src="../../../assets/img/logo.png" alt="">
+            <p class="title">Mang cả hế giới phim đến với bạn.</p>
+        </div>
+        <div class="dangky__body">
+            <div *ngIf="errors.error" class="text-danger  small py-2">
+                * {{errors.error}}
+            </div>
+            <form class="form-dk" [formGroup]="formDangKy" (ngSubmit)="DangKy(formDangKy.value)" method="SUBMIT">
+                <div class="row">
+                    <div class="form-item col-lg-12 col-sm-6 col-12">
+                        <input placeholder="Tên Tài Khoản" type="text" formControlName='taiKhoan'>
+                        <i class="icon-form fas fa-user"></i>
+                        <div *ngIf="
+                    formDangKy.get('taiKhoan').invalid &&
+                    (formDangKy.get('taiKhoan').dirty ||
+                      formDangKy.get('taiKhoan').touched)" class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf='formDangKy.get("taiKhoan").errors["required"]'>
+                                * Tài Khoản Không được bỏ trống
+                            </div>
+                            <div *ngIf='formDangKy.get("taiKhoan").errors["minlength"]'>
+                                * Tài Khoản phải lớn hơn 6 ký tự
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item col-lg-12 col-sm-6 col-12">
+                        <input placeholder="Mật Khẩu" formControlName='matKhau' type="password" name="text">
+                        <i class="icon-form fas fa-unlock-alt"></i>
+                        <div *ngIf="formDangKy.get('matKhau').invalid && (formDangKy.get('matKhau').dirty || formDangKy.get('matKhau').touched)"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formDangKy.get('matKhau').errors.required">
+                                * Mật Khẩu Không được bỏ trống
+                            </div>
+                            <div *ngIf="formDangKy.get('matKhau').errors.minlength">
+                                * Mật Khẩu phải lớn hơn 6 ký tự
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item col-lg-12 col-sm-6 col-12">
+                        <input type="text" name="hoTen" class="form-item__input" placeholder="Họ Và Tên"
+                            formControlName='hoTen' aria-describedby="helpId">
+                        <i class="icon-form fas fa-info-circle"></i>
+                        <div *ngIf="formDangKy.get('hoTen').invalid && (formDangKy.get('hoTen').dirty || formDangKy.get('hoTen').touched)"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formDangKy.get('hoTen').errors.required">
+                                * Họ và Tên Không được bỏ trống
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item col-lg-12 col-sm-6 col-12">
+                        <input placeholder="Email" class="input--style-5" type="text" name="email"
+                            formControlName='email'>
+                        <i class="icon-form fas fa-envelope"></i>
+                        <div *ngIf="formDangKy.get('email').invalid && (formDangKy.get('email').dirty || formDangKy.get('email').touched)"
+                            class="text-danger mt-1 small p-1 text-left">
+                            <div *ngIf="formDangKy.get('email').errors.required">
+                                * Email Không được bỏ trống
+                            </div>
+                            <div *ngIf="formDangKy.get('email').errors.pattern">
+                                * Email Không hợp lệ!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item col-12">
+                        <div class="value">
+                            <div class="input-group">
+                                <input placeholder="Số Điện Thoại" class="input--style-5" type="text" name="soDT"
+                                    formControlName='soDt'>
+                                <i class="icon-form fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-dangky col-12" type="submit">
+                        <input type="submit" value="Đăng Ký">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

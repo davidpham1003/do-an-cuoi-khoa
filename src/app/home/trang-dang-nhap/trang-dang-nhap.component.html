@@ -1,0 +1,34 @@
+<div class="dang-nhap"  [ngClass]='{"show":isLogin,"hide":!isLogin}' >
+    <div class="dang-nhap__header">
+        <div class="arrow-up"></div>
+    </div>
+    <div class="dang-nhap__body ">
+        <div class="small error" *ngIf="errors">{{errors.error}}</div>
+        <form class="mx-auto" [formGroup]='formDangNhap' (ngSubmit)='dangNhap()'>
+            <div class="form-group ">
+                <label for="">Tài Khoản</label>
+                <input type="text" name="" class="form-control" formControlName='TaiKhoan'>
+                <div *ngIf='formDangNhap.get("TaiKhoan").invalid && formDangNhap.get("TaiKhoan").touched'>
+                    <div class="small error" *ngIf='formDangNhap.get("TaiKhoan").errors["required"]'>* Vui Lòng Nhập Tài Khoản</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Mật Khẩu</label>
+                <input type="password" name="" class="form-control" formControlName='MatKhau'>
+                <div *ngIf='formDangNhap.get("MatKhau").invalid && formDangNhap.get("MatKhau").touched'>
+                    <div class="small error" *ngIf='formDangNhap.get("MatKhau").errors["required"]'>* Vui Lòng Nhập Mật Khẩu</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn form-control button-dang-nhap" type="submit">Đăng Nhập</button>
+            </div>
+            <div class="body__inside"></div>
+        </form>
+        <div class="dang-nhap__footer mx-auto">
+            <label>
+                Quý khách chưa có tài khoản?
+                <a (click)='hideLoginPopup()' routerLink="/dangky" class="clickheretxt">Đăng Ký</a>
+            </label>
+        </div>
+    </div>
+</div>

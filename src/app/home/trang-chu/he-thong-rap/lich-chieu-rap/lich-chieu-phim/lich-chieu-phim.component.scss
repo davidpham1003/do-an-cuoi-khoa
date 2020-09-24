@@ -1,0 +1,167 @@
+@import "mixin";
+.lichPhim {
+  padding-left: 0;
+  cursor: context-menu;
+  list-style: none;
+  @include for-size(sm) {
+    margin-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.692);
+    padding: 30px 40px 0 40px;
+  }
+  @include for-size(phone-sm) {
+    border-top: #188f57 solid 1px;
+    margin-top: 20px;
+    margin-right: 5px;
+    padding: 10px 5px 10px 20px;
+  }
+  .lich-phim__content {
+    // Nội dung phía trên lịch phim item gồm img và tiêu đề
+    img {
+      // HÌnh Ảnh
+      width: 80px;
+      height: 105px;
+      @include for-size(ll) {
+        width: 60px;
+        height: 90px;
+      }
+
+      @include for-size(sm) {
+        width: 75px;
+        height: 105px;
+      }
+      @include for-size(xs) {
+        width: 65px;
+        height: 90px;
+      }
+      @include for-size(phone-sm) {
+        width: 50px;
+        height: 60px;
+        align-self: center;
+      }
+    }
+    .lich-phim__title {
+      font-weight: bold;
+      .lich-tenPhim {
+        // Tiêu đề - Cyber
+        font-size: 15px;
+        background-color: #fb4226;
+        border-radius: 4px;
+        padding: 1px 8px;
+        color: #fff;
+        min-width: 33px;
+        text-align: center;
+        display: inline-block;
+        margin-bottom: 10px;
+        @include for-size(phone-sm) {
+          font-size: 12px;
+          display: block;
+          margin-bottom: 0px;
+          width: 50px;
+        }
+      }
+      .tenPhim {
+        @include for-size(phone-sm) {
+          font-size: 12px;
+        }
+      }
+      p {
+        color: rgba(0, 0, 0, 0.521);
+        @include for-size(phone-sm) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .mat-expansion-panel-body {
+    display: block;
+    height: 100%;
+    visibility: visible;
+  }
+  .lich-phim__suatChieu {
+    // display: block;
+    // height: 100%;
+    // visibility: visible;
+
+    // @include for-size(phone-sm) {
+    //   height: 0;
+    //   overflow: hidden;
+    //   &.show-gio {
+    //     height: 100%;
+    //   }
+    // }
+
+    // Suất chiếu ở bên dưới
+    .suatChieu__2D {
+      //Chữ 2D
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: rgb(255, 255, 255);
+      margin: 0;
+      background-image: linear-gradient(#3beb98, #188f57);
+      width: 50px;
+      @include for-size(phone-sm) {
+        margin-right: 15px !important;
+        font-size: 15px;
+        padding: 4px;
+      }
+    }
+    .suatChieu__gioXem {
+      width: 80%;
+      @include for-size(phone-sm) {
+        width: 100%;
+      }
+    }
+  }
+}
+.lich-chieu__border {
+  // Border ngang
+  background-color: #9e9e9ec5;
+  height: 1px;
+  width: 100%;
+  opacity: 0.5;
+}
+.lichPhim-dark {
+  @include for-size(sm) {
+    border-top: 1px solid rgba(255, 255, 255, 0.692);
+  }
+  .lich-phim__content {
+    cursor: pointer;
+    .lich-phim__title {
+      .tenPhim {
+        color: #e0e0e0;
+        @include for-size(phone-sm) {
+          color: rgb(58, 58, 58);
+        }
+      }
+      p {
+        color: rgba(255, 255, 255, 0.6);
+        @include for-size(phone-sm) {
+          color: rgb(0, 0, 0, 0.6);
+        }
+      }
+    }
+  }
+}
+.lichPhim-empty {
+  padding: 2% 25%;
+  font-size: 20px;
+  text-shadow: 0px 0 4px rgba(0, 0, 0, 0.5);
+  margin: 10px auto;
+  @include for-size(phone-sm) {
+    text-shadow: 0px 0 5px hsla(8, 96%, 57%, 0.5);
+    color: #fb4226;
+    font-size: 15px;
+    & p {
+      margin: 0;
+    }
+  }
+  .lichPhim-dark {
+    text-shadow: 0px 0 4px white;
+    color: white;
+    @include for-size(phone-sm) {
+      text-shadow: 0px 0 5px hsla(8, 96%, 57%, 0.5);
+      color: #fb4226;
+    }
+  }
+}

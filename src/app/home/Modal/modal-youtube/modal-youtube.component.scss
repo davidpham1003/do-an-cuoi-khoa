@@ -1,0 +1,43 @@
+.modal-content--config {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 480px;
+  width: 854px;
+  background-color: rgba(255, 255, 255, 0) !important;
+  z-index: 501;
+  .close-modal {
+    opacity: 0.5;
+    position: absolute;
+    top: -6%;
+    right: -3.5%;
+    width: 7%;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+}
+.modal-youtube,.popup-combo {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.showModal{
+    opacity: 1;
+    visibility: visible;
+    transition:all .5s;
+}
+.hideModal{
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s;
+}

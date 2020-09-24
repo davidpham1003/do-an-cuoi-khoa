@@ -1,0 +1,88 @@
+<div id="chiTietRap" class="rap" [ngClass]="{'rap-dark':isTheme}">
+    <div class="rap__content">
+        <div class="rap__logo justify-content-center">
+            <ng-container *ngFor="let rapItem of chiTietRap;let index = index">
+                <div #logoRap class="rap__item" [ngClass]="{'active':index === indexActive}"
+                    (click)='changeRapChieu(rapItem.maHeThongRap);changeIndex(index)'>
+                    <div class="bg-item">
+                        <div class="img-logo">
+                            <img [src]="rapItem.logo" alt="">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="rap__lich-chieu">
+            <div class="row lich-chieu" [ngClass]="{'lich-chieu-dark' : isTheme}">
+                <div class="col-lg-5 col-md-6 lich-chieu__content">
+                    <ul class="lich-chieu__rap">
+                        <li *ngFor="let thongTinRap of cumRamChieu,let index = index, let last = last"
+                            (click)="changeLichChieu(thongTinRap.maCumRap);changeIndexCumRap(index)"
+                            class="lich-chieu__item py-2"
+                            [ngClass]="{'active':index === indexActiveCumRap}">
+
+                            <div class="d-flex">
+                                <img src="../../../../../assets/img/rap-demo.jpg" alt="">
+                                <div class="item__title ml-2">
+                                    <span class="tenRap" [ngClass]="{'BHD':maRap=='BHDStar',
+                        'CGV':maRap=='CGV','CineStar':maRap=='CineStar','Galaxy':maRap=='Galaxy',
+                        'LotteCinima':maRap=='LotteCinima','MegaGS':maRap=='MegaGS'}">
+                                        {{thongTinRap.tenCumRap.split("-")[0]}}
+                                    </span>
+                                    <span class="tenCumRap"> - {{thongTinRap.tenCumRap.split("-")[1]}}</span>
+                                    <p class="dsRap-diaChi small my-0">{{thongTinRap.diaChi}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7 col-md-6 lich-chieu__phim">
+                    <ul class="lichPhim" [ngClass]="{'lichPhim-dark':isTheme}">
+                        <li class="lich-phim__item">
+                            <div class="lich-phim__ngayXem d-flex">
+                                <div (click)="changeTime(ngayChieuItem);changeNgayActive(index)"
+                                    *ngFor="let ngayChieuItem of ngayChieu; let index = index" class="ngay-xem-item "
+                                    [ngClass]='{"active": index === ngayActive}'>
+                                    <p>{{(ngayChieuItem | formatDate :'1').split('-')[0]}}</p>
+                                    <p>{{(ngayChieuItem | formatDate :'1').split('-')[1]}}</p>
+                                </div>
+
+                            </div>
+                            <div class="lich-chieu__border mb-4"></div>
+                            <div class="lich-phim__content d-flex ">
+                                <img [src]="chiTietPhim.hinhAnh" alt="">
+                                <div class="lich-phim__title mx-3 mt-2">
+                                    <span class="lich-tenPhim mr-2"> Cyber </span>
+                                    <span class="font-weight-bold tenPhim"> {{chiTietPhim.tenPhim}}</span>
+                                    <p class="thoiLuong">120 Phút</p>
+                                </div>
+                            </div>
+                            <div class="lich-phim__suatChieu">
+                                <div class="mt-3 d-flex">
+                                    <div>
+                                        <p class="suatChieu__2D mr-5">2D</p>
+                                    </div>
+                                    <!-- <app-gio-xem [isTheme]=isTheme class="suatChieu__gioXem"
+                                    [mangGioXem]=gioChieu></app-gio-xem> -->
+                                    <div class="suatChieu__gioXem">
+                                        <p data-toggle="modal" data-target="#warning-dangNhap"
+                                            (click)="datVe(gioChieuItem.maLichChieu)"
+                                            [ngClass]='{"suatChieu-dark":isTheme}' class="suatChieu__content"
+                                            *ngFor="let gioChieuItem of gioChieu">
+                                            <span> {{gioChieuItem.ngayChieuGioChieu | formatTime}} </span>
+                                        </p>
+                                        <div data-backdrop="static" data-keyboard="false" class="modal fade"
+                                            id="warning-dangNhap" tabindex="-1" role="dialog"
+                                            aria-labelledby="modelTitleId" aria-hidden="true">
+                                            <app-modal-warning [warning]="'muaVe'"></app-modal-warning>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

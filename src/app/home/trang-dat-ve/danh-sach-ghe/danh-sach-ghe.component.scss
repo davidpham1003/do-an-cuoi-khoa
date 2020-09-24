@@ -1,0 +1,65 @@
+@import 'main';
+.danhSach-ghe {
+  padding: 30px 15px 0 15px;
+  margin: 0 15px  !important;
+  .gheItem {
+    padding: 3px;
+  }
+  @include for-size(ll) {
+    height: 430px;
+    max-height: 400px;
+    overflow: auto;
+  }
+  @include for-size(sm) {
+    height: 350px;
+    max-height: 320px;
+    overflow: auto;
+  }
+}
+.screen {
+  position: relative;
+  width: 80%;
+  height: 15px;
+  background-color: rgb(199, 205, 211);
+  box-shadow: 0 5px 12px 4px rgba(233, 236, 240, 0.568);
+}
+.PS-Ghe {
+    pointer-events: none;
+    margin-top: 30px;
+    p{
+      @include for-size(md) {
+        margin-top: 10px;
+      }
+    }
+  .ghe-dangDat,
+  .ghe-daDat,
+  .ghe-chuaDat {
+    width: 40px;
+    height: 40px;
+    border: 1px #c7c6c7 solid;
+    border-radius: 5px;
+    margin-right: 10px;
+    @include for-size(lg) {
+      width: 30px;
+      height: 30px;
+      align-self: center;
+    }
+    @include for-size(md) {
+      margin-bottom: 10px;
+      margin: 0 auto;
+    }
+  }
+  .ghe-daDat {
+    background-color: #4d4d4d;
+  }
+  .ghe-dangDat {
+    background-color: #0196aa;
+    box-shadow: inset 0 0 11px 4px #0b4a52;
+  }
+  .ghe-chuaDat {
+    background-color: #002f4f;
+  }
+  p{
+      align-self: center;
+  }
+}

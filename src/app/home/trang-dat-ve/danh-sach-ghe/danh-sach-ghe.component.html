@@ -1,0 +1,24 @@
+<div id=danhSachGhe>
+    <div class="screen mx-auto my-2">
+        <p class="small text-center">Screen</p>
+    </div>
+    <div class="danhSach-ghe justify-content-center row">
+        <div class="gheItem" *ngFor="let gheItem of danhSachGhe">
+            <app-ghe-item [isWarning]=isWarning [gheItem]=gheItem (getGhe)="sendTenGhe($event)"></app-ghe-item>
+        </div>
+    </div>
+    <div class="PS-Ghe d-flex mx-auto justify-content-center">
+        <div class="chuaDat d-block d-lg-flex mx-3">
+            <div class="ghe-chuaDat "></div>
+            <p>Ghế Chưa Đặt</p>
+        </div>
+        <div class="dangDat d-block d-lg-flex  mx-3">
+            <div class="ghe-dangDat "></div>
+            <p>Ghế Đang Đặt</p>
+        </div>
+        <div class="daDat d-block d-lg-flex  mx-3">
+            <div class="ghe-daDat "></div>
+            <p>Ghế Đã Đặt</p>
+        </div>
+    </div>
+</div>

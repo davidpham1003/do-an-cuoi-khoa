@@ -1,0 +1,27 @@
+.button {
+  color: white;
+  font-size: 20px;
+  .btn-cancel,
+  .btn-ok {
+    padding: 15px 0;
+  }
+  .btn-cancel {
+    background-color: #d8493f;
+  }
+  .btn-ok {
+    background-color: #54b85a;
+    &.confirm {
+      background-color: rgb(201, 201, 201);
+    }
+  }
+}
+.modal-content {
+  top: 150px;
+  text-align: center;
+  color: rgb(99 100 105);
+  font-size: 25px;
+  font-weight: 550;
+  .content-title {
+    padding: 50px 0;
+  }
+}

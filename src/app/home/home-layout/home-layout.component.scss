@@ -1,0 +1,11 @@
+*{
+    // background-color: #fff;
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    transition: all .5s;
+}
+
+.dark{
+    background-color: #485461;
+    background-color: #000000;
+    background-image: linear-gradient(180deg, #00000000 0%, #2c3e50 74%);
+}

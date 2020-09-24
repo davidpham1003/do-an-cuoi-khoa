@@ -1,0 +1,18 @@
+<div  data-toggle="modal" data-target="#modelId" (click)="datGhe()"
+    class="ghe d-flex" [ngClass]='{"gheVip":gheItem.loaiGhe === "Vip","dangDat":isDatGhe,"ghe-selected":gheItem.daDat}'>
+    <p>{{gheItem.tenGhe}}</p>
+</div>
+<!-- <ng-template #daDat>
+    <div class="ghe-selected">
+    </div>
+</ng-template> -->
+<!-- <div class="gheItem-select d-flex">
+    {{gheItem.tenGhe}}
+</div> -->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div *ngIf='isWarning' data-backdrop="static" data-keyboard="false" class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <app-modal-warning></app-modal-warning>
+</div>

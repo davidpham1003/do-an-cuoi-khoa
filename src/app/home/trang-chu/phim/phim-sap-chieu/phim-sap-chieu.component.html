@@ -1,0 +1,10 @@
+<div class="phim-sc mx-auto">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let phimItem of phimSC.reverse()" class="slide">
+      <app-phim-item (transTrailer)="getTrailer($event)" [phim]="phimItem" [isTheme]=isTheme></app-phim-item>
+    </div>
+  </ngx-slick-carousel>
+</div>
+<div *ngIf="trailer">
+  <app-modal-youtube (click)="closeModal()" [trailer]=trailer></app-modal-youtube>
+</div>

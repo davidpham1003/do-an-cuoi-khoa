@@ -1,0 +1,49 @@
+.seat-error-modal-content {
+    top: 100px;
+    width: 480px;
+    margin: auto;
+    .seat-error-modal-body {
+      padding: unset;
+      .seat-error-header {
+        width: 80px;
+        margin: 30px calc(50% - 20px) 0;
+        img{
+          width: 100%;
+        }
+      }
+      .seat-error-content {
+        font-size: 16px;
+        text-align: center;
+        background: #fff;
+        color: rgba(3, 3, 3, 0.75);
+        padding: 15px 25px;
+        border-radius: 6px;
+        span{
+          color: #fb4226;
+          cursor: pointer;
+        }
+      }
+      .seat-error-footer {
+        border-top: 1.2px solid rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border-radius: 0 0 6px 6px;
+        margin: 0 15px;
+        .btnOk {
+          font-size: 16px;
+          cursor: pointer;
+          padding: 7px 25px;
+          color: #fb4226;
+          background-color: transparent;
+          border: 1.2px solid #fb4226;
+          border-radius: 20px;
+          margin: 15px 0;
+          &:hover{
+            color: #fff;
+            background-color: #fb4226;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+  

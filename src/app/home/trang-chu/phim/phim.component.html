@@ -1,0 +1,19 @@
+<div class="dsPhim pt-5" [ngClass]='{"dsPhim-dark": isTheme}'>
+    <div class="dsPhim__title text-center  ">
+        <h3 class="d-inline mr-4 px-1" [ngClass]='{"active":isActive, "disabled":!isActive}' (click)='doiPhim(true)'>
+            ĐANG CHIẾU</h3>
+        <h3 class="d-inline mr-4 px-1" [ngClass]='{"active":!isActive,"disabled":isActive}' (click)='doiPhim(false)'>
+            SẮP CHIẾU</h3>
+    </div>
+    <div class="dsPhim__content">
+        <div [@simpleFadeAnimation]="'in'" *ngIf='isActive;else PSC' class="pt-3" class="content_DC">
+            <app-phim-dang-chieu [isTheme]=isTheme  [phimDC]=dsPhim></app-phim-dang-chieu>
+        </div>
+        <ng-template  #PSC>
+            <div [@simpleFadeAnimation]="'in'" class="content_SC" >
+                <app-phim-sap-chieu [isTheme]=isTheme [phimSC]=dsPhim></app-phim-sap-chieu>
+            </div>
+        </ng-template>
+    </div>
+
+</div>
