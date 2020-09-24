@@ -1,17 +1,20 @@
-@import "mixin";
+@import "main";
 // @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 // *{
 //   font-family: 'SF Text Regular';
 // }
+// *{
+//   color: $color-fontL;
+// }
 h3 {
-  color: rgba(0, 0, 0, 0.521);
   font-weight: bold;
   font-size: 25px;
   cursor: pointer;
 }
 h3.active{
-  color: #fb4226;
+  color:$color-headingA;
 }
+
 .row {
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -38,6 +41,7 @@ h5,
 h6 {
   padding: 0;
   margin: 0;
+  color: white;
 }
 //Custom Scroll-bar
 ::-webkit-scrollbar {

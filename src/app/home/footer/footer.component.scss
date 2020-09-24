@@ -1,15 +1,16 @@
-@import "mixin";
+@import "main";
 .footer {
   background: #152f4f;
-  color: white;
+  color: $color-fontD-o8;
+  padding-top: 35px;
   @include for-size(md) {
     text-align: center;
   }
 
   .links {
     @include for-size(md) {
-        margin: 25px 0;
-      }
+      margin: 25px 0;
+    }
     ul {
       list-style-type: none;
       @include for-size(md) {
@@ -28,11 +29,11 @@
     }
     li a {
       font-size: 15px;
-      color: white;
-      transition: color 0.2s;
+      color: $color-fontD-o8;
+      transition: color 0.3s;
       &:hover {
         text-decoration: none;
-        color: #4180cb;
+        color: $color-but-lo;
       }
       img {
         width: 18px;
@@ -59,17 +60,21 @@
       font-size: 25px;
     }
     a {
-      color: white;
-      transition: color 0.2s;
+      color: $color-fontD;
+      transition: color 0.3s;
       &:hover {
-        color: #4180cb;
+        color: $color-but-lo;
       }
     }
   }
   .location {
+    p {
+      color: $color-fontD-o8;
+    }
     i {
       font-size: 18px;
       width: 30px;
+      color:$color-fontD;
     }
     .location-item {
       margin: 5px 0;

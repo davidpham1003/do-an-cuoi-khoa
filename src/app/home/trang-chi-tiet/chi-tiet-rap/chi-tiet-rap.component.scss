@@ -2,7 +2,9 @@
 @import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-rap.component.scss";
 @import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-phim/lich-chieu-phim.component.scss";
 @import "../../trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-phim/gio-xem/gio-xem.component.scss";
+@import 'main';
 #chiTietRap.rap {
+  padding-top:  $pad-mar5;
   width: 100%;
   margin: 0 auto;
   @include for-size(sm) {
@@ -10,38 +12,40 @@
   }
   @include for-size(phone-sm) {
     width: 100%;
+    padding-top:  0;
   }
   .rap__content {
     .rap__logo {
       display: flex;
       .rap__item {
-        padding-right:  50px;
-        padding-left:  50px;
+        padding-right:  $pad-mar8;
+        padding-left:  $pad-mar8;
         img {
-          width: 100px;
-          height: 100px;
+
+          @include wh-circle(100px);
           @include for-size(md) {
-            height: 80px;
-            width: 80px;
+            @include wh-circle(80px);
+
           }
           @include for-size(xs) {
-            height: 70px;
-            width: 70px;
+            @include wh-circle(70px);
+
           }
         }
         @include for-size(lg) {
-          padding: 10px 30px;
+          padding: $pad-mar2 $pad-mar6;
         }
         @include for-size(xs) {
           padding-bottom: 0;
         }
         @include for-size(phone-sm) {
-          padding-bottom: 10px;
+          padding-bottom: $pad-mar2;
           & .bg-item {
             width: 100%;
             .img-logo {
               position: relative;
               img {
+                transform: translateX(-10px);
                 width: 50%;
                 height: 100%;
               }
@@ -75,7 +79,7 @@
   }
 }
 .lich-chieu__phim {
-  padding-left: 50px;
+  padding-left: $pad-mar8;
 }
 .lich-phim__ngayXem {
   height: 85px;
@@ -86,7 +90,7 @@
   @include for-size(sm) {
   }
   .ngay-xem-item {
-    padding: 0 40px;
+    padding: 0 $pad-mar8;
     font-size: 21px;
     text-align: center;
     cursor: pointer;
@@ -97,27 +101,27 @@
 }
 .rap-dark {
   .lich-phim__ngayXem {
-    color: rgba(255, 255, 255, 0.918);
+    color:$color-fontD-o8;
   }
   .suatChieu__content {
     span {
-      color: #16db5e !important;
+      color:$color-timeD !important;
     }
   }
   .tenPhim {
-    color: white !important;
+    color: $color-fontD !important;
   }
   .thoiLuong {
-    color: rgba(255, 255, 255, 0.589) !important;
+    color: $color-fontD-o6 !important;
   }
   .tenCumRap {
-    color: white !important;
+    color: $color-fontD !important;
   }
 }
 .lich-phim__suatChieu {
   .suatChieu__content {
     span {
-      color: #108f3e;
+      color: $color-timeL;
       font-size: 18px !important;
     }
   }

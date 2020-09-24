@@ -1,7 +1,14 @@
+@import 'mixin';
 .seat-error-modal-content {
     top: 100px;
     width: 480px;
     margin: auto;
+    @include for-size(xs){
+      width: 85%;
+    }
+    @include for-size(phone-sm){
+      width: 100%;
+    }
     .seat-error-modal-body {
       padding: unset;
       .seat-error-header {

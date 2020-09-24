@@ -1,4 +1,4 @@
-@import "mixin";
+@import "main";
 .styleGradient {
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   z-index: 1;
 }
 .detail-header {
-  color: white;
+  // color: white;
   position: relative;
   @include for-size(md) {
     margin-top: 76px;
@@ -47,26 +47,26 @@
       bottom: 10px;
       left: 30px;
       p {
-        font-size: 18px;
+        font-size: $font-size3;
         color: rgba(0, 0, 0, 0.7);
       }
       .detail-header__title {
         p {
           font-size: 35px;
           font-weight: 500;
-          color: rgb(0, 0, 0);
+          color:$color-fontL;
         }
         .Cyber {
-          font-size: 15px;
-          background-color: #fb4226;
+          font-size: $font-size2;
+          background-color: $color-but-lo;
           border-radius: 4px;
-          padding: 5px 8px;
+          padding: $pad-mar1 8px;
           min-width: 33px;
           text-align: center;
           display: inline-block;
           margin-right: 8px;
           align-self: center;
-          color: rgb(255, 255, 255);
+          color: $color-font-but-lo;
         }
       }
     }
@@ -77,7 +77,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 960px;
+    max-width: $width-lg;
     width: 100%;
     transition: all 0.5;
     @include for-size(lg) {
@@ -157,25 +157,25 @@
       }
     }
     .header-title {
-      margin-left: 20px;
+      margin-left: $pad-mar4;
       align-self: center;
 
       p {
-        font-size: 15px;
-        color: rgb(0, 0, 0,0.8);
+        font-size: $font-size2;
+        color:$color-fontL-o8;
         font-weight: 550;
       }
       .detail-header__title {
         font-weight: bold;
         font-family: "SF Medium";
-        color: rgb(0, 0, 0);
+        color: $color-fontL;
         // color: #000;
         .Cyber {
-          font-size: 15px;
-          background-color: #fb4226;
+          font-size: $font-size2;
+          background-color: $color-but-lo;
           border-radius: 4px;
-          padding: 5px 8px;
-          color: #fff;
+          padding: $pad-mar1 8px;
+          color: $color-font-but-lo;
           min-width: 33px;
           text-align: center;
           display: inline-block;
@@ -183,14 +183,14 @@
           align-self: center;
         }
         p {
-          font-size: 25px;
+          font-size: $font-size3;
         }
       }
       .header-title__button a {
-        background-color: #fb4226;
-        padding: 5px 20px;
-        color: white;
-        font-size: 18px;
+        background-color: $color-but-lo;
+        padding: $pad-mar1 $pad-mar4;       
+        font-size: $font-size3;
+          color: $color-font-but-lo;
       }
     }
     .header-circleStar {
@@ -219,55 +219,56 @@
 }
 .detail-footer {
   padding:50px 0;
-  max-width: 1140px;
+  max-width: $width-ll;
   @include for-size(lg) {
-    max-width: 960px;
+    max-width: $width-lg;
   }
   @include for-size(md) {
     max-width: 100%;
   }
   @include for-size(sm) {
-    padding: 10px 0; 
+    padding: $pad-mar2 0; 
   }
   .detai-footer-title {
     padding:0 50px;
     h3 {
-      padding-right: 50px;
+      color: $color-headingL;
+      padding: 0 $pad-mar5;
       transition: all 0.5s;
-      font-size: 20px;
+      font-size: $font-size4;
       font-weight: 400;
       &:hover {
-        color: #fb4226;
-        font-size: 25px;
+        color: $color-headingA;
+        font-size: $font-size5;
         @include for-size(xs) {
-          font-size: 20px;
+          font-size: $font-size3;
         }
       }
       @include for-size(xs) {
-        font-size: 15px;
-        padding: 0 20px;
+        font-size: $font-size2;
+        padding: 0 $pad-mar4;
       }
     }
     h3.active {
       font-weight: 550;
-      color: #fb4226;
-      font-size: 25px;
+      color: $color-headingA;
+      font-size: $font-size5;
       pointer-events: none;
       @include for-size(xs) {
-        font-size: 20px;
+        font-size: $font-size3;
       }
       @include for-size(iphone) {
-        font-size: 18px;
+        font-size: $font-size3;
       }
     }
     @include for-size(sm) {
-      padding: 40px 30px;
+      padding: $pad-mar4 $pad-mar4;
     }
     @include for-size(xs) {
-      padding: 30px 20px;
+      padding: $pad-mar4 $pad-mar4;
     }
     @include for-size(phone-sm) {
-      padding: 20px 0;
+      padding: $pad-mar4 0;
     }
   }
 }
@@ -280,11 +281,11 @@
   .detail-header {
     .header-title {
       p {
-        color: rgba(255, 255, 255, 0.7);
+        color: $color-fontD-o8;
       }
       .detail-header__title {
         p {
-          color: rgb(255, 255, 255);
+          color:$color-fontD;
         }
       }
     }
@@ -292,9 +293,9 @@
 
   .detai-footer-title {
     h3 {
-      color: rgba(255, 255, 255, 0.6);
+      color: $color-fontD-o6;
       &:hover {
-        color: #fb4226;
+        color: $color-headingA;
       }
     }
   }

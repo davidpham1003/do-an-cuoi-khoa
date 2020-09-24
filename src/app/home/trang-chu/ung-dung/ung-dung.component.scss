@@ -1,47 +1,48 @@
-@import 'mixin';
+@import 'main';
 .ung-dung {
+  margin-top:$pad-mar8;
   background-image: url("../../../../assets/img/background.jpg");
   background-attachment: fixed;
   padding: 100px;
   @include for-size(md) {
-    padding: 50px;
+    padding: $pad-mar8;
   }
   @include for-size(sm) {
-    padding: 50px 0;
+    padding: $pad-mar8 0;
   }
   .ung-dung__text {
-    padding-right: 30px;
-    color: white;
+    padding-right: $pad-mar6;
+    color: $color-fontD-o8;
     align-self: center;
     @include for-size(md) {
       text-align: center;
     }
     .text-u-left{
-      color: #fff;
+      color: $color-fontD;
     font-weight: 700;
     font-size: 35px;
-    padding: 5px 0;
+    padding: $pad-mar1 0;
     @include for-size(sm) {
-      font-size: 30px;
+      font-size: $font-size6;
     }
     @include for-size(phone-sm) {
-      font-size: 25px;
+      font-size: $font-size5;
     }
     }
     p {
-      font-size: 18px;
+      font-size: $font-size3;
       padding: 0;
       @include for-size(sm) {
-        font-size: 15px;
+        font-size: $font-size2;
       }
     }
     button {
-      background-color: #fb4226;
-      margin: 15px 0;
-      color: white;
-      font-size: 18px;
+      background-color:$color-but-lo;
+      margin: $pad-mar3 0;
+      color: $color-fontD;
+      font-size: $font-size3;
       @include for-size(md) {
-        margin-bottom: 40px ;
+        margin-bottom: $pad-mar7 ;
       }
     }
   }

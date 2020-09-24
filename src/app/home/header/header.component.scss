@@ -1,13 +1,12 @@
-@import "../../../assets/scss/Helpers/mixin";
+@import 'main';
 .header {
   .UserName {
     align-self: center;
-    color: black;
     font-weight: 550;
   }
   position: fixed;
   top: 0%;
-  z-index: 9999;
+  z-index: 100;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -64,7 +63,7 @@
           transition: 0.4s all;
           font-weight: 400;
           &:hover {
-            color: rgb(240, 53, 47);
+            color: $color-but-lo;
           }
         }
       }
@@ -84,14 +83,14 @@ img {
     background-color: #22303f;
   }
   a {
-    color: white;
+    color: $color-fontD;
   }
   i {
-    color: white;
+    color: $color-fontD;
   }
   .UserName {
     align-self: center;
-    color:white;
+    color:$color-fontD;
     font-weight: 550;
   }
 }
@@ -138,7 +137,7 @@ img {
   }
   .helloUser {
     padding: 0 15px;
-    color: white;
+    color: $color-fontD;
     .UserName-img {
       position: relative;
       img {
@@ -182,9 +181,14 @@ img {
           }
           .inFo,
           .logOut {
+            p{
+              font-size: $font-size2;
+            }
             &:hover {
               background-color: rgb(82, 147, 238);
-              color: white;
+              p{
+                color: white;
+              }
               border-left: 5px solid rgb(8, 50, 109);
               font-weight: 550;
             }

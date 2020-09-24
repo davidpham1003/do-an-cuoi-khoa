@@ -1,3 +1,4 @@
+@import 'main';
 .modal-content--config {
   position: absolute;
   top: 50%;
@@ -5,6 +6,18 @@
   transform: translate(-50%, -50%);
   height: 480px;
   width: 854px;
+  @include for-size(md){
+   width: 90%;
+
+  }
+  @include for-size(sm){
+    height: 360px;
+   }
+   @include for-size(phone-sm){
+     width: 100%;
+    top: 40%;
+    height: 250px;
+   }
   background-color: rgba(255, 255, 255, 0) !important;
   z-index: 501;
   .close-modal {
@@ -20,6 +33,12 @@
     &:hover {
       opacity: 0.85;
     }
+    @include for-size(sm){
+      opacity: 1;
+     }
+     @include for-size(phone-sm){
+      right: 0;
+     }
   }
 }
 .modal-youtube,.popup-combo {

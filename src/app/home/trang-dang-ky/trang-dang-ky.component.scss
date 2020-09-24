@@ -1,4 +1,4 @@
-@import 'mixin';
+@import "main";
 .dang-ky {
   background-image: url("../../../assets/img/background.jpg");
   background-size: contain;
@@ -12,18 +12,18 @@
   max-width: 565px;
   @include for-size(md) {
     width: 100%;
-   }
-   @include for-size(xs) {
+  }
+  @include for-size(xs) {
     max-width: 70%;
-   }
-   @include for-size(phone-sm) {
+  }
+  @include for-size(phone-sm) {
     max-width: 95%;
     padding-top: 20px;
-   }
-   @include for-size(iphone) {
+  }
+  @include for-size(iphone) {
     padding: 10px;
     padding-bottom: 30px;
-   }
+  }
   padding: 40px 32px 30px;
   position: absolute;
   top: 50%;
@@ -46,10 +46,10 @@
       @include for-size(md) {
         width: 50%;
         padding: 0 5px;
-       }
-       @include for-size(phone-sm) {
+      }
+      @include for-size(phone-sm) {
         width: 60%;
-       }
+      }
     }
     .title {
       color: #fff;
@@ -61,7 +61,7 @@
       text-shadow: 3px 3px 4px #000;
       @include for-size(phone-sm) {
         font-size: 15px;
-       }
+      }
     }
   }
   .dangky__body {
@@ -69,20 +69,20 @@
     margin: 0 auto;
     @include for-size(md) {
       max-width: 100%;
-     }
-    .form-dk{
+    }
+    .form-dk {
       @include for-size(md) {
         width: 100%;
-       }
-       @include for-size(md) {
+      }
+      @include for-size(md) {
         width: 100%;
         padding: 0 5px;
-       }
+      }
       .form-item {
         @include for-size(md) {
           width: 100%;
           padding: 0 5px;
-         }
+        }
         position: relative;
         margin-bottom: 20px;
         input[type="text"],
@@ -111,18 +111,29 @@
           padding: 18px 20px;
           font-size: 16px;
           @include for-size(md) {
-            background-color:rgba(255, 255, 255, 0);
+            background-color: rgba(255, 255, 255, 0);
             padding: 18px 20px;
-           }
+          }
+        }
+        &.form-item--SDT {
+          padding-right: 0;
+          @include for-size(md) {
+            padding-right: 5px;
+          }
         }
       }
       .button-dangky {
         text-align: center;
-        margin: 2em;
+        padding-right: 0;
+        margin: 10px 0;
         @include for-size(md) {
           margin: 0;
-         }
-       
+        }
+        @include for-size(xs) {
+          width: 100%;
+          padding: 0;
+        }
+
         input[type="submit"] {
           text-align: center;
           border: 0;
@@ -132,8 +143,6 @@
           padding: 14px 90px;
           background-color: rgba(0, 0, 0, 0.34);
           border: 3px solid rgba(255, 255, 255, 0.43);
-          -webkit-box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.71);
-          -moz-box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.71);
           box-shadow: 0 12px 32px 0 rgba(0, 0, 0, 0.71);
           outline: none;
           cursor: pointer;
@@ -144,13 +153,16 @@
             color: #ffffff;
             border-color: #00c6d7;
           }
+          @include for-size(xs) {
+            font-size: 15px;
+            padding: 10px 60px;
+          }
           @include for-size(phone-sm) {
             font-size: 15px;
             padding: 10px 50px;
-           }
+          }
         }
       }
     }
-    
   }
 }

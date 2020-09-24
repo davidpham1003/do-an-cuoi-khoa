@@ -1,9 +1,9 @@
-@import "mixin";
+@import "main";
 p.suatChieu__content {
   // Giờ Chiếu
   float: left;
   font-family: "SF Medium";
-  padding: 3px 10px;
+  padding: 3px $pad-mar2;
   display: block;
   text-align: center;
   background-color: #f6f6f680;
@@ -12,14 +12,14 @@ p.suatChieu__content {
   font-weight: 500;
   text-decoration: none;
   margin: 0 15px 15px 0;
-  color: black;
+  color: $color-fontL;
   cursor: pointer;
   @include for-size(phone-sm) {
-    padding: 3px 5px;
+    padding: 3px $pad-mar1;
     margin: 0 10px 15px 0;
   }
   span {
-    color: #108f3e;
+    color: $color-timeL;
   }
   span:first-child {
     font-weight: 550;
@@ -38,7 +38,8 @@ p.suatChieu__content {
     color: #fb4226;
   }
   span:last-child {
-    color: #747474;
+    font-weight: 550;
+    color: $color-fontL-o6;
     @include for-size(md) {
       font-size: 15px;
     }
@@ -53,12 +54,12 @@ p.suatChieu__content {
 p.suatChieu-dark {
   background-color: #e6e6e600;
   span:first-child {
-    color: #16db5e;
+    color: $color-timeD;
   }
   span:last-child {
     color: #afafaf;
   }
   &:hover span:first-child {
-    color: #e6fb26;
+    color: $color-fontD-o6;
   }
 }

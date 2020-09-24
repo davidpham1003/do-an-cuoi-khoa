@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-modal-youtube',
@@ -7,11 +7,16 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class ModalYoutubeComponent implements OnInit,OnChanges {
   @Input() trailer: string;
+  currentHeight:number
   isClose:boolean
   constructor() {}
+  @HostListener ('window:resize')
+  onResize(){
+    this.currentHeight = window.innerHeight
+  }
 
   ngOnInit(): void {
-    
+    this.currentHeight = window.innerHeight;
   }
   ngOnChanges(){
     console.log(this.trailer)

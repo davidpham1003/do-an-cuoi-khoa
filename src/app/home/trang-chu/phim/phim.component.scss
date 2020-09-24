@@ -1,20 +1,21 @@
-@import 'mixin';
+@import 'main';
 .dsPhim {
+  padding-top: $pad-mar8;
   .dsPhim__title {
+    padding-bottom: $pad-mar5;
     .active {
       border-bottom: 2px solid #fb422691;
-      color: #fb4226;
       font-weight: bold;
       font-size: 25px;
     }
     .disabled {
-      color: rgba(0, 0, 0, 0.521);
+      color: $color-headingL;
       cursor: pointer;
       transition: all 0.4s;
       border: none;
       font-size: 20px;
       &:hover {
-        color: rgb(0, 0, 0);
+        color: $color-fontL;
         font-size: 25px;
       }
     }
@@ -53,9 +54,9 @@
 .dsPhim-dark {
   .dsPhim__title {
     .disabled {
-      color: rgba(255, 255, 255, 0.6);
+      color: $color-headingD;
       &:hover {
-        color: #ffffff;
+        color: $color-fontD;
         font-size: 25px;
       }
     }

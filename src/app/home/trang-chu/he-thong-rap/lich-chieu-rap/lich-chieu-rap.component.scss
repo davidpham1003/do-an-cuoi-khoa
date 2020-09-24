@@ -1,9 +1,9 @@
-@import "mixin";
+@import "main";
 $height: 620px;
 .lich-chieu {
   @include for-size(sm) {
-    margin-top: 10px;
-    padding-top: 20px;
+    margin-top: $pad-mar2;
+    padding-top: $pad-mar4;
     border-top: 1px solid rgba(0, 0, 0, 0.692);
   }
 
@@ -22,21 +22,21 @@ $height: 620px;
       max-height: $height;
       overflow: auto;
       @include for-size(md) {
-        padding-right: 50px;
+        padding-right: $pad-mar8;
       }
       @include for-size(xs) {
         max-height: ($height/1.5);
       }
       @include for-size(sm) {
         width: 90%;
-        margin: 20px auto;
+        margin: $pad-mar4 auto;
       }
       @include for-size(phone-sm) {
         // max-height: 100px;
         width: 100%;
-        margin: 5px auto;
+        margin: $pad-mar1 auto;
         padding: 0;
-        padding-left: 15px;
+        padding-left: $pad-mar3;
       }
 
       li.lich-chieu__item {
@@ -51,7 +51,7 @@ $height: 620px;
           transition: all 0.5s;
         }
         @include for-size(ll) {
-          padding: 10px 0;
+          padding: $pad-mar2 0;
           margin: 0 auto;
         }
         @include for-size(sm) {
@@ -60,7 +60,7 @@ $height: 620px;
         }
         @include for-size(phone-sm) {
           transition: 0;
-          padding-left: 20px ;
+          padding-left: $pad-mar4 ;
         }
 
         // Item , logo cụm rạp
@@ -83,7 +83,7 @@ $height: 620px;
           }
           @include for-size(phone-sm) {
             align-self: auto;
-            padding-top: 10px;
+            padding-top: $pad-mar2;
             width: 60px;
             height: 70px;
           }
@@ -148,7 +148,7 @@ $height: 620px;
               font-size: 12px;
             }
             @include for-size(phone-sm) {
-              color: black;
+              color: $color-fontL;
             }
           }
         }
@@ -158,14 +158,14 @@ $height: 620px;
   .lich-chieu__phim {
     max-height: $height;
     overflow: auto;
-    padding-left: 50px;
+    padding-left: $pad-mar8;
   }
   .lich-chieu__phim {
     @include for-size(md) {
       margin: 0 auto;
       width: 90%;
       padding-left: 0px;
-      padding-right: 50px;
+      padding-right: $pad-mar8;
     }
     @include for-size(sm) {
       padding: 0;
@@ -187,13 +187,13 @@ $height: 620px;
   }
   .lich-chieu__content {
     .dsRap-diaChi {
-      color: #fff;
+      color: $color-fontD;
       @include for-size(md) {
-        color: white;
+        color: $color-fontD;
       }
     }
     span {
-      color: #fff;
+      color: $color-fontD;
       @include for-size(phone-sm) {
        color: black;
       }

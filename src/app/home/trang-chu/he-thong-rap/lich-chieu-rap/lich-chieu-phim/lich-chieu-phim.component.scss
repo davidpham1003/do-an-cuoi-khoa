@@ -1,17 +1,17 @@
-@import "mixin";
+@import "main";
 .lichPhim {
   padding-left: 0;
   cursor: context-menu;
   list-style: none;
   @include for-size(sm) {
-    margin-top: 10px;
+    margin-top: $pad-mar2;
     border-top: 1px solid rgba(0, 0, 0, 0.692);
     padding: 30px 40px 0 40px;
   }
   @include for-size(phone-sm) {
     border-top: #188f57 solid 1px;
-    margin-top: 20px;
-    margin-right: 5px;
+    margin-top: $pad-mar4;
+    margin-right: $pad-mar1;
     padding: 10px 5px 10px 20px;
   }
   .lich-phim__content {
@@ -44,14 +44,14 @@
       .lich-tenPhim {
         // Tiêu đề - Cyber
         font-size: 15px;
-        background-color: #fb4226;
+        background-color: $color-but-lo;
         border-radius: 4px;
         padding: 1px 8px;
         color: #fff;
         min-width: 33px;
         text-align: center;
         display: inline-block;
-        margin-bottom: 10px;
+        margin-bottom: $pad-mar2;
         @include for-size(phone-sm) {
           font-size: 12px;
           display: block;
@@ -65,7 +65,7 @@
         }
       }
       p {
-        color: rgba(0, 0, 0, 0.521);
+        color: $color-fontL-o6;
         @include for-size(phone-sm) {
           font-size: 12px;
         }
@@ -101,7 +101,7 @@
       background-image: linear-gradient(#3beb98, #188f57);
       width: 50px;
       @include for-size(phone-sm) {
-        margin-right: 15px !important;
+        margin-right: $pad-mar3 !important;
         font-size: 15px;
         padding: 4px;
       }
@@ -129,13 +129,13 @@
     cursor: pointer;
     .lich-phim__title {
       .tenPhim {
-        color: #e0e0e0;
+        color: $color-fontD;
         @include for-size(phone-sm) {
           color: rgb(58, 58, 58);
         }
       }
       p {
-        color: rgba(255, 255, 255, 0.6);
+        color:$color-fontD-o6;
         @include for-size(phone-sm) {
           color: rgb(0, 0, 0, 0.6);
         }
@@ -147,7 +147,7 @@
   padding: 2% 25%;
   font-size: 20px;
   text-shadow: 0px 0 4px rgba(0, 0, 0, 0.5);
-  margin: 10px auto;
+  margin: $pad-mar2 auto;
   @include for-size(phone-sm) {
     text-shadow: 0px 0 5px hsla(8, 96%, 57%, 0.5);
     color: #fb4226;
@@ -158,7 +158,7 @@
   }
   .lichPhim-dark {
     text-shadow: 0px 0 4px white;
-    color: white;
+    color: $color-fontD;
     @include for-size(phone-sm) {
       text-shadow: 0px 0 5px hsla(8, 96%, 57%, 0.5);
       color: #fb4226;

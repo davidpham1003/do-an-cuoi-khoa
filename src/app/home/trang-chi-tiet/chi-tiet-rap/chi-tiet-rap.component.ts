@@ -28,10 +28,12 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
   changeIndex(index) {
     // Active icon rạp khi click vào
     this.indexActive = index;
+    console.log(this.indexActive)
   }
   changeIndexCumRap(index) {
     // Active icon Cụm rạp khi click vào
     this.indexActiveCumRap = index;
+    console.log(this.indexActive)
   }
   changeNgayActive(value) {
     this.ngayActive = value;
@@ -75,7 +77,8 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
     this.ngayChieu = this.ngayChieu.filter(
       (item, index) => this.ngayChieu.indexOf(item) == index // Xóa phần tử những ngày chiếu lặp nhau
     );
-    this.setActive();
+    this.indexActiveCumRap = 0;
+    this.ngayActive = 0;
     this.setGioChieu(this.ngayChieu[0]); // Set lại giờ chiếu hiển thị là ngày chiếu đầu tiền trong mảng
   }
   setGioChieu(value) {
@@ -83,11 +86,6 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
       (item) => item.ngayChieuGioChieu.split('T')[0] == value // Lọc giờ chiếu theo ngày
     );
     console.log(this.gioChieu);
-  }
-  setActive() {
-    this.indexActive = 0;
-    this.indexActiveCumRap = 0;
-    this.ngayActive = 0;
   }
   datVe(value) {
     if (this.currentUser.taiKhoan) {

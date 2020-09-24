@@ -9,6 +9,7 @@ export class ModalWarningComponent implements OnInit, OnChanges {
   @Input() warning: string;
   thongBao: string = 'Không thể để trống ghế ở giữa!';
   constructor() {}
+  currentWidth:number
   reload() {
     if (this.warning == 'timer') {
       location.reload();
@@ -40,5 +41,6 @@ export class ModalWarningComponent implements OnInit, OnChanges {
     console.log(this.thongBao)
   }
   ngOnInit(): void {
+    this.currentWidth = window.innerWidth
   }
 }

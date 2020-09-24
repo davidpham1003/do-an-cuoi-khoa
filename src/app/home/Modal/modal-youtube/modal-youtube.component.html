@@ -1,6 +1,6 @@
 <div class="modal-youtube">
-    <div class="modal-content--config">
-        <div class="close-modal">
+    <div class="modal-content--config" [ngStyle]="{height : currentHeight < 500 ? '320px':'',width : currentHeight < 500 ? '450px':''}">
+        <div class="close-modal" [ngStyle]="{opacity : currentHeight < 500 ? '1':''}">
             <img src="../../../assets/img/close.png" alt="">
         </div>
         <iframe width="100%" height="100%" [src]="trailer|safe" frameborder="0"
