@@ -1,0 +1,36 @@
+$breakpoints: (
+  iphone: 375px,
+  phone-sm: 420px,
+  xs: 575px,
+  sm: 767px,
+  md: 991px,
+  lg: 1199px,
+  ll: 1500px,
+  xl: 1920px,
+);
+
+@mixin wh-circle($size) {
+  width: $size;
+  height: $size;
+}
+
+// col-bs4
+@mixin col-bs4($size) {
+  max-width: $size;
+  flex: 0 0 $size;
+}
+
+@mixin for-size($breakpoint) {
+  //Kiểm tra breakpoint truyền vào có tồn tại
+  //như bạn đã định nghĩa hay không.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Lấy giá trị pixel breakpoint đó
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    //Build media query
+    @media (max-width: $breakpoint-value) {
+      //Những gì bạn mong muốn sẽ được lồng vào @content
+      @content;
+    }
+  }
+}
