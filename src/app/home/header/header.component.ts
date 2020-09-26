@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
   logOut() {
     localStorage.removeItem('userInfo');
-    this.auth.dangXuat();
+    this.auth.dangXuat('taiKhoan');
     this.isLogin = false;
   }
 
@@ -61,6 +61,7 @@ export class HeaderComponent implements OnInit {
         this.currentUser = result;
       },
     });
+    // console.log(this.)
     this.user.avatarUser.subscribe({
       next: (data) => {
         this.url=data

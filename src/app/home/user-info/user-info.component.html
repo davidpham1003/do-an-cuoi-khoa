@@ -140,7 +140,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor='let veItem of thongTinDatVe | paginate: {
+                            <tr *ngFor='let veItem of thongTinDatVe.reverse() | paginate: {
                             id:"foo",
                             itemsPerPage: 5,
                             currentPage: page,

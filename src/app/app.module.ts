@@ -20,11 +20,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 registerLocaleData(en);
 const appRoutes :Routes=[
   {path:'',loadChildren:()=> HomeModule},
-  {path:'home',loadChildren:()=> HomeModule},
+  {path:'admin',loadChildren:()=> AdminModule},
 ]
 
 @NgModule({
@@ -36,6 +37,7 @@ const appRoutes :Routes=[
     NgxPageScrollCoreModule,
     NzButtonModule,
     SidebarModule,
+    SweetAlert2Module.forRoot(),
     NzDrawerModule,
     HttpClientModule,
     AppRoutingModule,

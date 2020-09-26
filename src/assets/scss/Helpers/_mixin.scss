@@ -1,3 +1,4 @@
+@import "variable";
 $breakpoints: (
   iphone: 375px,
   phone-sm: 420px,
@@ -8,6 +9,13 @@ $breakpoints: (
   ll: 1500px,
   xl: 1920px,
 );
+
+// Extend PlaceHolder Font Color blue light trang đặt vé
+%fontColor-blue {
+  color: $color-ve-blue;
+  font-weight: bold;
+  text-shadow: 0 0 10px $color-shadow-ve;
+}
 
 @mixin wh-circle($size) {
   width: $size;
@@ -20,6 +28,50 @@ $breakpoints: (
   flex: 0 0 $size;
 }
 
+//Hiển thị số dòng cần hiển thị + thêm dấu .. ở cuối dòng
+
+@mixin text-overflow($line) {
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+}
+
+// Căn Giữa khi position Absolute
+@mixin centerAbsolute($pos) {
+  position: absolute;
+  @if $pos == "both" {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $pos == "left" {
+    left: 50%;
+    transform: translateX(-50%);
+  } @else if $pos == "top" {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+//Position Fixed
+@mixin positionFixed($Y, $X, $positionY , $positionX ) {
+  position: fixed;
+  @if ($Y == 'top'){
+    top:$positionY;
+    @if ($X == 'left'){
+      left:$positionX;
+    }@else{
+      right: $positionX;
+    }
+  } @else{
+    bottom: $positionY;
+    @if ($X == 'left'){
+      left:$positionX;
+    }@else{
+      right: $positionX;
+    }
+  }
+}
 
 @mixin for-size($breakpoint) {
   //Kiểm tra breakpoint truyền vào có tồn tại

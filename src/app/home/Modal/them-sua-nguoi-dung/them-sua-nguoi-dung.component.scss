@@ -1,0 +1,158 @@
+@import "main";
+.modal-dialog {
+  margin-top: 100px;
+  max-width: 700px;
+  .modal-content--config {
+    background-color: #032429;
+    padding: $pad-mar6;
+    h4 {
+      color: #377d6a;
+      margin: $pad-mar4;
+      text-align: center;
+    }
+    .btn-close {
+      position: absolute;
+      top: 0px;
+      right: 10px;
+      font-size: 35px;
+      color: $color-close;
+      cursor: pointer;
+      &:hover {
+        color: $color-close-hover;
+      }
+    }
+  }
+}
+
+.item-addUser {
+  margin: 20px 0;
+  .error{
+    color: #ff6666;
+    font-weight: 550;
+    margin-top: $pad-mar1;
+    margin-left: $pad-mar1;
+    font-size: 85%;
+  }
+  .disabledInput{
+    pointer-events: none;
+    background-color: $color-disabled;
+    color: white;
+  }
+  .loaiNguoiDung {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    bottom: 8px;
+    padding: 5px 15px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0);
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px 0 0 3px;
+    height: 37px;
+    line-height: 30px;
+    background-color: #7ab893;
+  }
+  select {
+    border: none;
+    outline: none;
+    width: 194px;
+    border-radius: 0 3px 3px 0;
+    padding: 10px 5px 10px 5px;
+    margin-left: 95px;
+    background: #efefef;
+    font-weight: 600;
+    transition: all 0.3s;
+    color: $color-fontL-o6;
+    font-family: "Open Sans", sans;
+    option {
+      background: #efefef;
+      font-weight: 400;
+      font-size: 15px;
+      color: $color-fontL-o6;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+// span{
+//     margin-left: 3px;
+// }
+.balloon {
+  // As suggested by https://twitter.com/dbox/status/365888496486985728
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0 10px 45px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #377d6a;
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  text-indent: 60px; // Arbitrary.
+  transition: all 0.3s ease-in-out;
+  //   &::placeholder {
+  //     padding-left: 30px;
+  //   }
+
+  + label {
+    display: inline-block;
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    bottom: 8px;
+    padding: 5px 15px;
+    color: $color-fontL-o8;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0);
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+    background: rgba(122, 184, 147, 0);
+    height: 25px;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      top: 100%;
+      left: 50%;
+      margin-left: -3px;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+      border-top: 3px solid rgba(122, 184, 147, 0);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+.balloon:focus,
+.balloon:active {
+  color: #377d6a;
+  text-indent: 0;
+  background: #fff;
+  box-shadow: 0 0 5px 0px #7ab893;
+  padding-left: 15px;
+
+  + label {
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+    background: rgba(122, 184, 147, 1);
+    transform: translateY(-40px);
+
+    &:after {
+      border-top: 4px solid rgba(122, 184, 147, 1);
+    }
+  }
+}
+.btn-xacNhan {
+  margin: 0 auto;
+
+  button {
+    background-color: #377d6a;
+    color: #fff;
+  }
+}

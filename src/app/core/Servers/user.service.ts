@@ -29,4 +29,13 @@ export class UserService {
       taiKhoan: values,
     });
   }
+  layDanhSachNguoiDung():Observable<any>{
+    return this.api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05`)
+  }
+  xoaUser(values):Observable<any>{
+    return this.api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${values}`,  {responseType: 'text'})
+  }
+  themUser(values):Observable<any>{
+    return this.api.post(`QuanLyNguoiDung/ThemNguoiDung`,{...values,maNhom:'GP05'},{responseType: 'text'})
+  }
 }

@@ -35,9 +35,9 @@ export class ApiService {
       .pipe(catchError(this.handleError));
   }
 
-  delete<T>(path: string, options = {}): Observable<T> {
+  delete<T>(path: string, body = {}): Observable<T> {
     return this.http
-      .delete<T>(`${this.BASE_URL}/${path}`, options)
+      .delete<T>(`${this.BASE_URL}/${path}`,body)
       .pipe(catchError(this.handleError));
   }
 }

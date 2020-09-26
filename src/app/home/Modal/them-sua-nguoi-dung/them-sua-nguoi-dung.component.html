@@ -1,0 +1,103 @@
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+
+<div class="modal-dialog modal-dialog--config" role="document">
+    <div class="modal-content modal-content--config">
+        <div class="btn-close" data-dismiss="modal">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <h4>{{header}}</h4>
+        <form [formGroup]='formUser' (ngSubmit)="addUser(formUser.value)" class="row">
+            <div class="col-6 item-addUser">
+                <span>
+                    <input [ngClass]='{"disabledInput":!this.isThemNguoiDung}'  class="balloon" id="taiKhoan" type="text" placeholder="Tài khoản"
+                        formControlName='taiKhoan' /><label for="taiKhoan">Tài
+                        Khoản</label>
+                </span>
+                <div class=' error' *ngIf="formUser.get('taiKhoan').invalid &&
+                (formUser.get('taiKhoan').dirty || formUser.get('taiKhoan').touched)">
+                    <div *ngIf="formUser.get('taiKhoan').errors['required']">
+                        * Bạn chưa nhập tài khoản.
+                    </div>
+                    <div *ngIf="formUser.get('taiKhoan').errors['pattern']">
+                        * Tài khoản không được chứa khoảng trống.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="matKhau" type="password" placeholder="Mật Khẩu"
+                        formControlName='matKhau' /><label for="matKhau">Mật
+                        Khẩu</label>
+                </span>
+                <div class=' error' *ngIf="formUser.get('matKhau').invalid &&
+                (formUser.get('matKhau').dirty || formUser.get('matKhau').touched)">
+                    <div *ngIf="formUser.get('matKhau').errors['required']">
+                        * Bạn chưa nhập mật khẩu.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="hoTen" type="text" placeholder="Họ Tên" formControlName='hoTen' /><label
+                        for="hoTen">Họ
+                        Tên</label>
+                </span>
+                <div class=' error' *ngIf="formUser.get('hoTen').invalid &&
+                (formUser.get('hoTen').dirty || formUser.get('hoTen').touched)">
+                    <div *ngIf="formUser.get('hoTen').errors['required']">
+                        * Bạn chưa nhập họ tên.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="email" type="text" placeholder="Email" formControlName='email' /><label
+                        for="email">Email</label>
+                </span>
+                <div class=' error' *ngIf="formUser.get('email').invalid &&
+                (formUser.get('email').dirty || formUser.get('email').touched)">
+                    <div *ngIf="formUser.get('email').errors['required']">
+                        * Bạn chưa nhập email.
+                    </div>
+                    <div *ngIf="formUser.get('email').errors['pattern']">
+                        * Emal không đúng định dạng.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="sdt" type="text" placeholder="Số Điện Thoại"
+                        formControlName='soDt' /><label for="sdt">Số Điện
+                        Thoại</label>
+                </span>
+                <div class=' error' *ngIf="formUser.get('soDt').invalid &&
+                (formUser.get('soDt').dirty || formUser.get('soDt').touched)">
+                    <div *ngIf="formUser.get('soDt').errors['required']">
+                        * Bạn chưa nhập số điện thoại.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <label class="loaiNguoiDung" for="loaiNguoiDung">Người Dùng</label>
+                <select class="" name="loaiNguoiDung" id="loaiNguoiDung" formControlName='maLoaiNguoiDung'>
+
+                    <option value="KhachHang">Khách Hàng</option>
+                    <option value="QuanTri">Quản Trị</option>
+                </select>
+                <div class=' error' *ngIf="formUser.get('maLoaiNguoiDung').invalid &&
+                (formUser.get('maLoaiNguoiDung').dirty || formUser.get('maLoaiNguoiDung').touched)">
+                    <div *ngIf="formUser.get('maLoaiNguoiDung').errors['required']">
+                        * Bạn chưa chọn loại người dùng.
+                    </div>
+                </div>
+            </div>
+            <div class="btn-xacNhan">
+                <button mat-raised-button type="submit">{{button}}</button>
+            </div>
+        </form>
+
+    </div>
+</div>

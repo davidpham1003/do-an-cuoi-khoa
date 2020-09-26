@@ -46,7 +46,14 @@ import { SidebarModule } from 'ng-sidebar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import {SignupGuard} from '../core/guards/signup.guard';
-import { UserInfoComponent } from './user-info/user-info.component'
+import { UserInfoComponent } from './user-info/user-info.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
+import { ThemSuaNguoiDungComponent } from './Modal/them-sua-nguoi-dung/them-sua-nguoi-dung.component'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 const route: Routes = [
   {
@@ -95,14 +102,20 @@ const route: Routes = [
     ModalWarningComponent,
     SpinnerComponent,
     UserInfoComponent,
+    ThemSuaNguoiDungComponent,
   ],
   imports: [
     CommonModule,
     NgxPaginationModule,
     ModalModule,
+    SweetAlert2Module,
     NzButtonModule,
     NzDrawerModule,
     SidebarModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule,
     SlickCarouselModule,
     NgxPageScrollModule,
     CountdownModule,
@@ -124,5 +137,7 @@ const route: Routes = [
     PipeModule,
     RouterModule.forChild(route),
   ],
+  exports:[ThemSuaNguoiDungComponent]
 })
+
 export class HomeModule {}

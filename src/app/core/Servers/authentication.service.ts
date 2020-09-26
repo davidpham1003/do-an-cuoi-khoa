@@ -8,10 +8,20 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private currentUserSubject = new BehaviorSubject({} as object)
+  private currentUserSubject = new BehaviorSubject({})
+  private currentAdminSubject = new BehaviorSubject(null)
+  currentAdmin = this.currentAdminSubject.asObservable();
   currentUser = this.currentUserSubject.asObservable();
   constructor(private api: ApiService,
     private user : UserService) {}
+  
+  initCurrentAdmin(){
+    const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))
+    if(adminInfo){
+      this.currentAdminSubject.next(adminInfo)
+    }
+  }
+  
   initCurrentUser() {
     const user = localStorage.getItem('userInfo');
     if (user) {
@@ -23,19 +33,24 @@ export class AuthenticationService {
       tap((result) => {
         // next để cập nhật giá trị mới
         this.currentUserSubject.next(result);
+        this.currentAdminSubject.next(result);
         const avatar = JSON.parse(localStorage.getItem(result.taiKhoan))
         if(avatar){
           this.user.updateAvatarUser(avatar)
         }else{
           this.user.updateAvatarUser(null)
         }  
-        console.log(avatar)
       })
     );
   }
-  dangXuat(){
-    this.currentUserSubject.next({})
-    this.user.updateAvatarUser(null)
+  dangXuat(value){
+    if(value == 'taiKhoan'){
+      this.currentUserSubject.next(null);
+      this.user.updateAvatarUser(null);
+    }
+    if(value == 'admin'){
+      this.currentAdminSubject.next(null);
+    }
   }
   dangKy(values: any): Observable<any> {
     return this.api.post('QuanLyNguoiDung/DangKy', {

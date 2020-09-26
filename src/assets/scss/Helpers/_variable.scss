@@ -1,11 +1,11 @@
-// Max Width 
-$width-xl : 1460px;
-$width-ll : 1160px;
-$width-lg : 960px;
-$width-md : 760px;
-$width-sm : 560px;
-$width-xs : 460px;
-$width-phone : 360px;
+// Max Width
+$width-xl: 1460px;
+$width-ll: 1160px;
+$width-lg: 960px;
+$width-md: 760px;
+$width-sm: 560px;
+$width-xs: 460px;           
+$width-phone: 360px;
 
 // Padding - Margin
 $pad-mar1: 5px;
@@ -18,28 +18,31 @@ $pad-mar7: 40px;
 $pad-mar8: 50px;
 
 //Font-size
-$font-size1:12px;
-$font-size2:15px;
-$font-size3:18px;
-$font-size4:20px;
-$font-size5:25px;
-$font-size6:30px;
-$font-size7:40px;
+$font-size1: 12px;
+$font-size2: 15px;
+$font-size3: 18px;
+$font-size4: 20px;
+$font-size5: 25px;
+$font-size6: 30px;
+$font-size7: 40px;
 
 //Color Light
-$color-fontD:#fff; //Main Font Color Dark Theme 
-$color-fontD-o8:#ffffffcc; // Font Color Dark Theme with opacity 0.8
-$color-fontD-o6:hsla(0, 0%, 100%, 0.6);//0.6
-$color-fontL:#000; //Main Font Color Light Theme 
-$color-fontL-o8:rgb(0, 0, 0,0.8); // Font Color Light Theme with opacity 0.8
-$color-fontL-o6:rgb(0, 0, 0,0.6); //0.6
-$color-headingA:#fb4226; // Font Color Heading Active
-$color-headingD:rgb(255, 255, 255,0.6); // Font Color Heading Disble Dark
-$color-headingL:rgba(0, 0, 0, 0.6);// Font Color Heading Disble Light
-$color-but-lo:#fb4226; // Background Color Button and Logo(cyber)
-$color-font-but-lo:#fff;// Font Color Button and Logo(cyber)
-$color-timeD:#16db5e;// Font Color Time Dark
-$color-timeL:#108f3e;// Font Color Time Light
-
-
-
+$color-fontD: #fff; //Main Font Color Dark Theme
+$color-fontD-o8: #ffffffcc; // Font Color Dark Theme with opacity 0.8
+$color-fontD-o6: hsla(0, 0%, 100%, 0.6); //0.6
+$color-fontL: #000; //Main Font Color Light Theme
+$color-fontL-o8: rgb(0, 0, 0, 0.8); // Font Color Light Theme with opacity 0.8
+$color-fontL-o6: rgb(0, 0, 0, 0.6); //0.6
+$color-headingA: #fb4226; // Font Color Heading Active
+$color-headingD: rgb(255, 255, 255, 0.6); // Font Color Heading Disble Dark
+$color-headingL: rgba(0, 0, 0, 0.6); // Font Color Heading Disble Light
+$color-but-lo: #fb4226; // Background Color Button and Logo(cyber)
+$color-font-but-lo: #fff; // Font Color Button and Logo(cyber)
+$color-timeD: #16db5e; // Font Color Time Dark
+$color-timeL: #108f3e; // Font Color Time Light
+$color-ve-blue:#5cd4e4;
+$color-shadow-ve:#a4dbd68a;
+$color-admin-login:#349e38;
+$color-close:rgba(217, 38, 38, 0.8);
+$color-close-hover:rgba(217, 38, 38);
+$color-disabled:#afafaf;

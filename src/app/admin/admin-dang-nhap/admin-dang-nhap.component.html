@@ -1,0 +1,37 @@
+<div class="login-page">
+    <div class="form">
+        <div class="login-heading">
+            <i class="fas fa-user-lock"></i>
+            <p>Đăng Nhập</p>
+        </div>
+        <div *ngIf=errors class="text-danger mt-1  p-1 text-center">
+            * {{errors}}
+        </div>
+        <form [formGroup]='formAdminDn' class="login-form" (ngSubmit)="dangNhap(formAdminDn.value)" method="SUBMIT">
+            <div class="tai-khoan form-adminDn-Item">
+                <input type="text" placeholder="Tài khoản" formControlName='taiKhoan' />
+                <div class="text-danger mt-1 small p-1 text-left" *ngIf="(formAdminDn.get('taiKhoan').invalid
+                     && (formAdminDn.get('taiKhoan').touched 
+                     || formAdminDn.get('taiKhoan').dirty))">
+                    <div *ngIf="formAdminDn.get('taiKhoan').errors['required']">
+                        * Tài khoản không được bỏ trống
+                    </div>
+                </div>
+            </div>
+            <div class="mat-khau form-adminDn-Item">
+                <input type="password" placeholder="Mật khẩu" formControlName='matKhau' />
+                <div class="text-danger mt-1 small p-1 text-left" *ngIf="(formAdminDn.get('matKhau').invalid
+                 && (formAdminDn.get('matKhau').touched 
+                 || formAdminDn.get('matKhau').dirty))">
+                    <div *ngIf="formAdminDn.get('matKhau').errors['required']">
+                        * Mật khẩu không được bỏ trống
+                    </div>
+                </div>
+            </div>
+
+            <button>Đăng nhập</button>
+
+            <p class="message">Bạn quên mật khẩu?? <a> Bấm vào đây..</a></p>
+        </form>
+    </div>
+</div>

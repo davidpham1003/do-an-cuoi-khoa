@@ -27,7 +27,7 @@
   margin: 0 !important;
 }
 .trang-datVe {
-  color: white;
+  color:$color-fontD;
   padding: 8% 0;
   width: $width-xl;
   @include for-size(ll) {
@@ -79,9 +79,12 @@
     }
   }
   .info-title {
-    font-size: 18px;
+    font-size: $font-size5;
     @include for-size(lg) {
-      font-size: 15px;
+      font-size: $font-size4;
+    }
+    @include for-size(md) {
+      font-size: $font-size4;
     }
   }
   .ve__info-phim,
@@ -89,14 +92,14 @@
   .ve__giaVe,
   .danhSach-combo {
     @include bgc;
-    padding: 10px 30px;
-    margin: 15px 0;
+    padding: $pad-mar2 $pad-mar6;
+    margin: $pad-mar3 0;
     @include for-size(lg) {
-      padding: 10px;
+      padding: $pad-mar2;
     }
     img {
       position: relative;
-      margin-right: 20px;
+      margin-right: $pad-mar4;
       width: 70px;
       height: 100px;
       @include for-size(lg) {
@@ -121,30 +124,28 @@
       top: 10px;
     }
     @include for-size(md) {
-      padding: 10px 15px;
+      padding: $pad-mar2 $pad-mar3;
     }
   }
   .button-ve {
-    background-color: #afafaf;
+    background-color:$color-disabled;
     background-image: none;
     pointer-events: none;
-    padding: 10px;
+    padding: $pad-mar2;
     border-radius: 3px;
     width: 12%;
-    color: #fff;
+    color: $color-font-but-lo;
     width: 100%;
     cursor: pointer;
     font-weight: 500;
     @include for-size(sm) {
-      position: fixed;
-      bottom: 0;
-      left: 0;
+      @include positionFixed(bottom,left,0,0);
       width: 100%;
-      font-size: 30px;
+      font-size: $font-size6;
       z-index: 10;
     }
     @include for-size(xs) {
-      font-size: 40px;
+      font-size: $font-size7;
     }
     &.active {
       background-image: linear-gradient(
@@ -161,17 +162,18 @@
     }
   }
   .ve__giaVe {
+    line-height: 25px;
     @include for-size(md) {
       background: none;
       box-shadow: none;
       padding: 0 0;
     }
     @include for-size(sm) {
-      @include bgc;
-      padding: 10px 30px;
+      @include bgc; // Hàm Mixin ở dòng 3 
+      padding: $pad-mar2 $pad-mar6;
     }
     @include for-size(xs) {
-      padding: 10px 5px;
+      padding: $pad-mar2 $pad-mar1;
     }
     @include for-size(xs) {
       // background: none;
@@ -180,36 +182,31 @@
     @include for-size(phone-sm) {
       background: none;
       box-shadow: none;
-      padding: 10px 0;
+      padding: $pad-mar2 0;
     }
-
-
-    line-height: 25px;
     .tongTien {
-      padding: 0 5px;
-      padding-top: 15px;
+      padding: 0 $pad-mar1;
+      padding-top: $pad-mar3;
       p:last-child {
-        font-size: 18px;
-        color: #5cd4e4;
-        font-weight: bold;
-        text-shadow: 0 0 10px #a4dbd68a;
+        font-size: $font-size3;
+        @extend %fontColor-blue;
       }
     }
     .bap-nuoc {
       // Loại bỏ padding của col
-      padding: 0 5px;
+      padding: 0 $pad-mar1;
     }
     .giaVe__left {
       width: 80%;
       @include for-size(lg) {
-        font-size: 15px;
+        font-size: $font-size2;
       }
     }
     .giaVe-bap,
     .giaVe__time {
       @include for-size(md) {
         @include bgc;
-        padding: 10px;
+        padding: $pad-mar2;
       }
       @include for-size(sm) {
         background: none;
@@ -231,7 +228,7 @@
       @include for-size(md) {
         text-align: left;
         border: none;
-        margin-top: 15px;
+        margin-top: $pad-mar3;
       }
       @include for-size(sm) {
         text-align: right;
@@ -241,7 +238,7 @@
       }
       @include for-size(phone-sm) {
         border: none;
-        margin-top: 15px;
+        margin-top: $pad-mar3;
         text-align: left;
         display: flex !important;
         border-radius: 5px;
@@ -249,12 +246,10 @@
 
       .count-down {
         padding-top: calc(25px + 0.75rem);
-        font-size: 25px;
-        color: #5cd4e4;
-        font-weight: bold;
-        text-shadow: 0 0 10px #a4dbd68a;
+        font-size: $font-size5;
+        @extend %fontColor-blue;
         @include for-size(lg) {
-          padding-top: 15px;
+          padding-top: $pad-mar3;
         }
         @include for-size(md) {
           text-align: right;
@@ -274,40 +269,36 @@
   }
   .ve__info-phim {
     @include for-size(sm) {
-      flex: 0 0 48%;
-      max-width: 48%;
+      @include col-bs4(48%)
     }
     @include for-size(phone-sm) {
-      flex: 0 0 100%;
-      max-width: 100%;
+      @include col-bs4(100%)
     }
     .ve_info {
       .ngayChieu {
         .suatChieu__2D {
           text-align: center;
-          font-size: 20px;
+          font-size: $font-size4;
           font-weight: bold;
-          color: rgb(255, 255, 255);
+          color: $color-font-but-lo;
           margin: 0;
           background-image: linear-gradient(#3beb98, #188f57);
           width: 50px;
-          margin: 10px 0;
+          margin: $pad-mar2 0;
         }
         .ngayGio {
           align-self: center;
-          font-size: 18px;
-          color: #5cd4e4;
-          font-weight: bold;
-          text-shadow: 0 0 10px #a4dbd68a;
+          font-size: $font-size3;
+          @extend %fontColor-blue;
           @include for-size(lg) {
-            font-size: 15px;
+            font-size: $font-size3;
           }
           span {
-            font-size: 15px;
+            font-size: $font-size2;
             text-shadow: none;
-            color: rgba(255, 255, 255, 0.7);
+            color: $color-fontD-o8;
             @include for-size(lg) {
-              font-size: 12px;
+              font-size: $font-size1;
             }
           }
         }
@@ -316,24 +307,20 @@
   }
   .ve__info-rap {
     @include for-size(sm) {
-      flex: 0 0 48%;
-      max-width: 48%;
+      @include col-bs4(48%)
     }
     @include for-size(phone-sm) {
-      flex: 0 0 100%;
-      max-width: 100%;
+      @include col-bs4(100%)
     }
     img {
-      width: 80px;
-      height: 80px;
+      @include wh-circle(80px);
       border-radius: 50%;
       @include for-size(md) {
         display: none;
       }
       @include for-size(sm) {
         display: block;
-        width: 60px;
-        height: 60px;
+        @include wh-circle(60px);
       }
       @include for-size(xs) {
         display: none;
@@ -345,16 +332,16 @@
     .veRap-info {
       width: 100%;
       .ghe-da-dat {
-        margin-top: 5px;
-        // @include for-size(phone-sm) {
-        //   display: flex !important;
-        // }
+        margin-top: $pad-mar1;
+        font-size: $font-size3;
+        @include for-size(md) {
+          font-size: $font-size2;
+        }
         .veRap-info__rap,
         span {
-          font-size: 18px;
-          color: #5cd4e4;
-          font-weight: bold;
-          text-shadow: 0 0 10px #a4dbd68a;
+          font-size: $font-size3;
+          @extend %fontColor-blue;
+          
         }
         .gheDat {
           width: 45%;
@@ -368,24 +355,21 @@
   }
 }
 .small {
-  color: rgba(255, 255, 255, 0.7);
+  color: $color-fontD-o8;
+  @include text-overflow(2)
 }
 .btn-combo {
-  position: fixed;
-  width: 150px;
-  height: 150px;
+  transition: all 0.5s;
+  z-index: 10;
+  cursor: pointer;
+  @include positionFixed(bottom,right,100px,25px);
+  @include wh-circle(150px);
   @include for-size(lg) {
     @include wh-circle(120px);
   }
   @include for-size(sm) {
     @include wh-circle(100px);
   }
-  bottom: 100px;
-  right: 25px;
-  transition: all 0.5s;
-  z-index: 10;
-  cursor: pointer;
-  
   img {
     width: 100%;
     position: relative;
@@ -396,9 +380,6 @@
 }
 
 .background-drop {
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: rgb(8, 8, 8, 0.5);
   width: 100%;
   height: 100%;
@@ -415,9 +396,7 @@
   width: 0;
   background-color: #fff;
   height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
+  @include positionFixed(top,right,0,0);
   z-index: 10;
   overflow-x: hidden;
   // width: 450px;
@@ -438,7 +417,7 @@ table {
   }
   .button-close {
     text-align: right;
-    font-size: 25px;
+    font-size: $font-size5;
     color: hsla(347, 70%, 48%, 0.7);
     cursor: pointer;
     &:hover {
@@ -450,13 +429,13 @@ table {
     color: rgb(110, 110, 110);
     text-align: center;
     border-bottom: 1px solid #cecece;
-    padding-bottom: 15px;
+    padding-bottom: $pad-mar3;
   }
   .combo-body {
-    margin: 15px auto;
+    margin: $pad-mar3 auto;
   }
   .combo-text {
-    font-size: 18px;
+    font-size: $font-size3;
     line-height: 30px;
     p:first-child {
       color: black;
@@ -473,11 +452,11 @@ table {
     margin-left: auto;
   }
   .combo-footer {
-    margin-top: 15px;
-    font-size: 18px;
+    margin-top: $pad-mar3;
+    font-size: $font-size3;
     text-align: right;
     span:last-child {
-      margin-left: 50px;
+      margin-left: $pad-mar8;
       width: 100px;
     }
   }
@@ -491,7 +470,7 @@ table {
     line-height: 30px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 20px;
+    font-size: $font-size4;
     background-color: #397d90;
     color: #fff;
   }
@@ -519,10 +498,11 @@ table {
   transform: translateY(-100%);
 }
 .btn-back{
-  position: fixed;
-  bottom: 180px;
-  left: 10px;
-  color: rgb(255, 255, 255,0.8);
+  @include positionFixed(bottom,left,180px,10px);
+  // position: fixed;
+  // bottom: 180px;
+  // left: 10px;
+  color:$color-fontD-o8;
   font-size: 50px;
   transition: .5s all;
   &:hover{

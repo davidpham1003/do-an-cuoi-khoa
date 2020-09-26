@@ -42,5 +42,6 @@ export class ModalWarningComponent implements OnInit, OnChanges {
   }
   ngOnInit(): void {
     this.currentWidth = window.innerWidth
+    console.log(this.warning)
   }
 }
