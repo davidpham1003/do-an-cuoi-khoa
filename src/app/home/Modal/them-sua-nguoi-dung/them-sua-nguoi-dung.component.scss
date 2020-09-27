@@ -26,14 +26,14 @@
 
 .item-addUser {
   margin: 20px 0;
-  .error{
+  .error {
     color: #ff6666;
     font-weight: 550;
     margin-top: $pad-mar1;
     margin-left: $pad-mar1;
     font-size: 85%;
   }
-  .disabledInput{
+  .disabledInput {
     pointer-events: none;
     background-color: $color-disabled;
     color: white;
@@ -96,7 +96,12 @@
   //   &::placeholder {
   //     padding-left: 30px;
   //   }
-
+  &.fixInput {
+    padding-left: 55px;
+    &:focus{
+      padding-left: 25px;
+    }
+  }
   + label {
     display: inline-block;
     position: absolute;

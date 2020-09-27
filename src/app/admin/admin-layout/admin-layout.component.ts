@@ -10,7 +10,11 @@ import { AuthenticationService } from 'src/app/core/Servers/authentication.servi
 export class AdminLayoutComponent implements OnInit {
   isShowController: boolean = true;
   currentAdmin:any = {}
+  dieuKien:string = 'film';
   constructor(private router: Router,private auth:AuthenticationService) {}
+  setdieuKien(value){
+    this.dieuKien = value;
+  }
 
   showController() {
     this.isShowController = !this.isShowController;
@@ -23,6 +27,7 @@ export class AdminLayoutComponent implements OnInit {
     this.auth.dangXuat('admin');
   }
   ngOnInit(): void {
+
     this.auth.initCurrentAdmin()
     this.auth.currentAdmin.subscribe({
       next:(data)=>{

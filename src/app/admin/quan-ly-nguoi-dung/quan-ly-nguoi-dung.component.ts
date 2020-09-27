@@ -31,9 +31,11 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
   objectSuaUser:any
   danhSachNguoiDung: any;
   errors: string;
+  constructor(private user: UserService) {}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.danhSachNguoiDung.filter = filterValue.trim().toLowerCase();
+    console.log((event.target as HTMLInputElement).value)
   }
   themNguoiDung(){
     this.objectSuaUser = null
@@ -80,7 +82,7 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
     // ... do something
   }
 
-  constructor(private user: UserService) {}
+  
   capNhatDsNguoiDung(){
     this.user.layDanhSachNguoiDung().subscribe({
       next: (data) => {
@@ -96,7 +98,7 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.capNhatDsNguoiDung()
-   
+
   }
   ngAfterViewInit() {}
 }

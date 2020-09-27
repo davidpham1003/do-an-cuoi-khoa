@@ -1,4 +1,9 @@
 @import "main";
+
+
+.mat-spinner {
+  margin: 0 auto;
+}
 table {
   width: 100%;
   padding: $pad-mar8;
@@ -23,36 +28,17 @@ table {
     opacity: 1;
   }
 }
-.action{
-    i{
-        font-size: $font-size3;
-        cursor: pointer;
-    }
-    i:first-child:hover{
-            color: rgb(189, 21, 29);;
-    }
-    i:last-child:hover{
-        color:rgb(63 81 181);
-}
-}
-
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.action {
+  i {
+    font-size: $font-size3;
+    cursor: pointer;
+  }
+  i:first-child:hover {
+    color: rgb(189, 21, 29);
+  }
+  i:last-child:hover {
+    color: rgb(63 81 181);
+  }
 }
 
-.example-full-width {
-  width: 100%;
-}
 
-td {
-  padding-right: 8px;
-}
-
-.btn-xacNhan{
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}

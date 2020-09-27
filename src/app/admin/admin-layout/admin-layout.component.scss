@@ -1,4 +1,7 @@
 @import "main";
+// *{
+//   background-color: black;
+// }
 $width-controller: 300px;
 %border-bottom {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -95,6 +98,15 @@ $width-controller: 300px;
     transition: all 0.5s;
     &:hover {
       background-color: $color-admin-login;
+      h5,i{
+        color:$color-fontD;
+      } 
+    }
+    &.active{
+      background-color: $color-admin-login;
+      h5,i{
+        color:$color-fontD;
+      } 
     }
     h5,
     i {
@@ -130,6 +142,7 @@ $width-controller: 300px;
 .dashboard-content{
   transition: all .5s;
   padding: $pad-mar8;
+  // overflow-x: auto;
   &.show{
     padding-left: $width-controller + $pad-mar8;
   }

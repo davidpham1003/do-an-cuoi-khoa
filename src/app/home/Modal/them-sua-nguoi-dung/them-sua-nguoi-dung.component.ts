@@ -20,7 +20,7 @@ export class ThemSuaNguoiDungComponent implements OnInit, OnChanges {
   sweetAlert(text: string, value:string,method:string) {
     if (method == 'success') {
       Swal.fire({
-        title: `${text} người dùng`,
+        title: `${text}`,
         text: `${text} ${value} thành công`,
         icon: 'success',
       });
@@ -32,11 +32,13 @@ export class ThemSuaNguoiDungComponent implements OnInit, OnChanges {
       });
     }
   }
+  
   constructor(private user: UserService, private auth: AuthenticationService) {
     this.formUser = new FormGroup({
       taiKhoan: new FormControl({ value: '' }, [
         Validators.required,
         Validators.pattern(/^\S*$/),
+        
       ]),
       matKhau: new FormControl(null, Validators.required),
       hoTen: new FormControl(null, Validators.required),
@@ -69,7 +71,7 @@ export class ThemSuaNguoiDungComponent implements OnInit, OnChanges {
     } else {
       this.user.themUser(value).subscribe({
         next: () => {
-          this.sweetAlert('Thêm', value.taiKhoan,'success');
+          this.sweetAlert('Thêm Người Dùng', value.taiKhoan,'success');
           this.formUser.setValue({
             taiKhoan: '',
             matKhau: '',

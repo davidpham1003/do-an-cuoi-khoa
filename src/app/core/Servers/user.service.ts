@@ -32,10 +32,10 @@ export class UserService {
   layDanhSachNguoiDung():Observable<any>{
     return this.api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05`)
   }
-  xoaUser(values):Observable<any>{
+  xoaUser(values:any):Observable<any>{
     return this.api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${values}`,  {responseType: 'text'})
   }
-  themUser(values):Observable<any>{
+  themUser(values:any):Observable<any>{
     return this.api.post(`QuanLyNguoiDung/ThemNguoiDung`,{...values,maNhom:'GP05'},{responseType: 'text'})
   }
 }

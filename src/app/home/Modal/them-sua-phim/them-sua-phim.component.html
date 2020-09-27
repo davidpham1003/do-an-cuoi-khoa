@@ -1,0 +1,130 @@
+<div class="modal-dialog modal-dialog--config" role="document">
+    <div class="modal-content modal-content--config">
+        <div #close class="btn-close" data-dismiss="modal">
+            <i class="fas fa-times"></i>
+        </div>
+        <h4>{{header}}</h4>
+        <form [formGroup]='formFilm' (ngSubmit)="addFilm(formFilm.value)" class="row">
+            <div class="col-6 item-addUser">
+                <span>
+                    <input [ngClass]='{"disabledInput":!isThemPhim}' class="balloon" id="maPhim" type="text"
+                        placeholder="Mã phim" formControlName='maPhim' /><label for="maPhim">Mã phim</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('maPhim').invalid &&
+                (formFilm.get('maPhim').dirty || formFilm.get('maPhim').touched)">
+                    <div *ngIf="formFilm.get('maPhim').errors['required']">
+                        * Bạn chưa nhập mã phim.
+                    </div>
+                    <div *ngIf="formFilm.get('maPhim').errors['pattern']">
+                        * Mã phim không được chứa khoảng trống và ký tự.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input #tenPhim (change)=(setTenPhim(tenPhim.value)) class="balloon" id="tenPhim" type="text"
+                        placeholder="Tên phim" formControlName='tenPhim' /><label for="tenPhim">Tên phim</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('tenPhim').invalid &&
+                (formFilm.get('tenPhim').dirty || formFilm.get('tenPhim').touched)">
+                    <div *ngIf="formFilm.get('tenPhim').errors['required']">
+                        * Bạn chưa nhập tên phim.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="biDanh" type="text" placeholder="Bí danh"
+                        formControlName='biDanh' /><label for="biDanh">Bí danh</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('biDanh').invalid &&
+                (formFilm.get('biDanh').dirty || formFilm.get('biDanh').touched)">
+                    <div *ngIf="formFilm.get('biDanh').errors['required']">
+                        * Bạn chưa nhập bí danh.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="trailer" type="text" placeholder="Trailer"
+                        formControlName='trailer' /><label for="trailer">Trailer</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('trailer').invalid &&
+                (formFilm.get('trailer').dirty || formFilm.get('trailer').touched)">
+                    <div *ngIf="formFilm.get('trailer').errors['required']">
+                        * Bạn chưa nhập trailer.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input (change)="onSelectFile($event)" class="balloon fileInput" [ngClass]="{'hide':objectSuaFilm}"
+                        accept="image/png, image/jpg" id="hinhAnh" type="file" />
+                    <label for="hinhAnh"> Hình ảnh <img 
+                            [src]="HinhAnh ? HinhAnh : 'assets/img/avatar-phim.jpg'"  alt=""> </label>
+
+                    <input type="hidden" name="category_banner" formControlName='hinhAnh' />
+                    <!-- <label class="inputShowFile" for="hinhAnh"><span>{{HinhAnh}}</span></label> -->
+                </span>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon fixInput" id="ngayKhoiChieu" type="date" placeholder="Ngày khởi chiếu"
+                        formControlName='ngayKhoiChieu' /><label for="ngayKhoiChieu">Ngày khởi chiếu </label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('ngayKhoiChieu').invalid &&
+                (formFilm.get('ngayKhoiChieu').dirty || formFilm.get('ngayKhoiChieu').touched)">
+                    <div *ngIf="formFilm.get('ngayKhoiChieu').errors['required']">
+                        * Bạn chưa nhập ngày khởi chiếu.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon" id="danhGia" type="number" placeholder="Đánh giá" formControlName='danhGia'
+                        max="10" /><label for="danhGia">Đánh giá</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('danhGia').invalid &&
+                (formFilm.get('danhGia').dirty || formFilm.get('danhGia').touched)">
+                    <div *ngIf="formFilm.get('danhGia').errors['required']">
+                        * Bạn chưa nhập hình đánh giá phim.
+                    </div>
+                    <div *ngIf="formFilm.get('danhGia').errors['pattern']">
+                        * Đánh giá Phim.
+                    </div>
+                    <div *ngIf="formFilm.get('danhGia').errors['max']">
+                        * Đánh giá chỉ từ 1 đến 10.
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="balloon disabledInput" id="maNhom" type="text" value='GP05'
+                        formControlName='maNhom' /><label for="maNhom">Mã nhóm</label>
+                </span>
+            </div>
+            <div class="col-12 item-addUser">
+                <span>
+                    <textarea class="balloon" id="moTa" type="text" placeholder="Mô tả"
+                        formControlName='moTa'></textarea><label for="moTa">Mô tả</label>
+                </span>
+                <div class=' error' *ngIf="formFilm.get('moTa').invalid &&
+                (formFilm.get('moTa').dirty || formFilm.get('moTa').touched)">
+                    <div *ngIf="formFilm.get('moTa').errors['required']">
+                        * Bạn chưa nhập mô tả phim.
+                    </div>
+                </div>
+            </div>
+            <div class="btn-xacNhan">
+                <button mat-raised-button type="submit">{{button}}</button>
+            </div>
+        </form>
+
+    </div>
+</div>
