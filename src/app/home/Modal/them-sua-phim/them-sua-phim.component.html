@@ -23,7 +23,7 @@
 
             <div class="col-6 item-addUser">
                 <span>
-                    <input #tenPhim (change)=(setTenPhim(tenPhim.value)) class="balloon" id="tenPhim" type="text"
+                    <input #tenPhim  class="balloon" id="tenPhim" type="text"
                         placeholder="Tên phim" formControlName='tenPhim' /><label for="tenPhim">Tên phim</label>
                 </span>
                 <div class=' error' *ngIf="formFilm.get('tenPhim').invalid &&

@@ -26,17 +26,18 @@ export class QuanLyPhimComponent implements OnInit {
     'ngayKhoiChieu',
     'danhGia',
   ];
-  objectSuaFilm:any;
+  objectSuaFilm: any;
 
   danhSachPhim: any;
 
   constructor(private cinema: CinemaService, private movies: MoviesService) {}
 
-  sweetAlertXoa(maPhim,tenPhim){
+  sweetAlertXoa(maPhim, tenPhim) {
     Swal.fire({
       title: 'Xóa Phim?',
       text: `Bạn chắc chắn muốn xóa ${tenPhim}`,
       icon: 'warning',
+      reverseButtons:true,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -50,10 +51,11 @@ export class QuanLyPhimComponent implements OnInit {
               ` ${tenPhim} đã được xóa khỏi danh sách`,
               'success'
             );
-            this.capNhatDsPhim()
+            this.capNhatDsPhim();
           },
           error: (err) => {
             Swal.fire('Xóa Không Thành Công', ` ${err.error} `, 'error');
+            console.log(err)
           },
         });
       }
@@ -63,16 +65,18 @@ export class QuanLyPhimComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.danhSachPhim.filter = filterValue.trim().toLowerCase();
   }
-  themPhim(){
-    this.objectSuaFilm = null
+  themPhim() {
+    this.objectSuaFilm = null;
   }
-  xoaPhim(maPhim:number,tenPhim:string){
-    this.sweetAlertXoa(maPhim,tenPhim);
+  xoaPhim(maPhim: number, tenPhim: string) {
+    this.sweetAlertXoa(maPhim, tenPhim);
     this.capNhatDsPhim();
   }
-  capNhatPhim(maPhim){
-    this.objectSuaFilm = this.danhSachPhim.data.find(filmItem => maPhim == filmItem.maPhim)
-    console.log(this.objectSuaFilm)
+  capNhatPhim(maPhim) {
+    this.objectSuaFilm = this.danhSachPhim.data.find(
+      (filmItem) => maPhim == filmItem.maPhim
+    );
+    console.log(this.objectSuaFilm);
   }
 
   capNhatDsPhim() {

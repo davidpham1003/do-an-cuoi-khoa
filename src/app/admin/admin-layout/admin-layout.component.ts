@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/core/Servers/authentication.servi
 export class AdminLayoutComponent implements OnInit {
   isShowController: boolean = true;
   currentAdmin:any = {}
-  dieuKien:string = 'film';
+  dieuKien:string = 'user';
   constructor(private router: Router,private auth:AuthenticationService) {}
   setdieuKien(value){
     this.dieuKien = value;

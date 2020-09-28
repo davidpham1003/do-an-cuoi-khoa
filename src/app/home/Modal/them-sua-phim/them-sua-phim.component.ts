@@ -69,20 +69,20 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     };
     console.log(this.HinhAnh);
     if (event.target.files && event.target.files[0]) {
-      var frm = new FormData();
-      if (this.objectSuaFilm) {
-        frm.append('File', this.fileInput, this.fileInput.name);
-        frm.append('tenphim', this.objectSuaFilm.tenPhim);
-        frm.append('manhom', 'GP05');
-        this.movies.uploadHinh(frm).subscribe({
-          next: (data) => {
-            console.log('data', data);
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
-      }
+      // var frm = new FormData();
+      // if (this.objectSuaFilm) {
+      //   frm.append('File', this.fileInput, this.fileInput.name);
+      //   frm.append('tenphim', this.objectSuaFilm.tenPhim);
+      //   frm.append('manhom', 'GP05');
+      //   this.movies.uploadHinh(frm).subscribe({
+      //     next: (data) => {
+      //       console.log('data', data);
+      //     },
+      //     error: (err) => {
+      //       console.log(err);
+      //     },
+      //   });
+      // }
     }
   }
   resetForm() {
@@ -104,6 +104,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
             title: `Thêm Phim`,
             text: `Tiếp tục thêm phim.`,
             icon: 'question',
+            reverseButtons:true,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -142,7 +143,12 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       return;
     }
     if (this.objectSuaFilm) {
-      this.movies.suaPhim(phimThem).subscribe({
+      const frm = new FormData();
+      for (let key in phimThem) {
+        frm.append(key, phimThem[key]);
+      }
+      frm.append('hinhAnh', this.fileInput, this.fileInput.name);
+      this.api.post('QuanLyPhim/CapNhatPhimUpload',frm,{ responseType: 'text' }).subscribe({
         next: () => {
           this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
           // this.update.capNhatDsPhim()
@@ -156,8 +162,8 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       });
     } else {
       const frm = new FormData();
-      for (let key in values) {
-        frm.append(key, values[key]);
+      for (let key in phimThem) {
+        frm.append(key, phimThem[key]);
       }
       frm.append('hinhAnh', this.fileInput, this.fileInput.name);
       this.api

@@ -20,13 +20,13 @@ export class MoviesService {
   xoaPhim(maPhim):Observable<any>{
     return this.api.delete(`QuanLyPhim/XoaPhim?MaPhim=${maPhim}`,{responseType:'text'})
   }
-  suaPhim(values:any):Observable<any>{
-    return this.api.post('QuanLyPhim/CapNhatPhim',values,{responseType:'text'})
+  capNhatPhimUpload(values:any):Observable<any>{
+    return this.api.post('QuanLyPhim/CapNhatPhimUpload',values,{responseType:'text'})
   }
   uploadHinh(values):Observable<any>{
     return this.api.post('QuanLyPhim/UploadHinhAnhPhim',values,{responseType: 'text'})
   }
   themHinhPhim(values):Observable<any>{
-    return this.api.post('api/QuanLyPhim/ThemPhimUploadHinh',values)
+    return this.api.post('QuanLyPhim/ThemPhimUploadHinh',values,{responseType: 'text'})
   }
 }
