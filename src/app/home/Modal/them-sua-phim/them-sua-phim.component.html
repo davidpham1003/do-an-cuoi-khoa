@@ -63,7 +63,7 @@
             <div class="col-6 item-addUser">
                 <span>
                     <input (change)="onSelectFile($event)" class="balloon fileInput" [ngClass]="{'hide':objectSuaFilm}"
-                        accept="image/png, image/jpg" id="hinhAnh" type="file" />
+                        accept="image/*" id="hinhAnh" type="file" />
                     <label for="hinhAnh"> Hình ảnh <img 
                             [src]="HinhAnh ? HinhAnh : 'assets/img/avatar-phim.jpg'"  alt=""> </label>
 

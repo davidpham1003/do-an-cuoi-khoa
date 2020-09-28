@@ -64,6 +64,7 @@ export class QuanLyPhimComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.danhSachPhim.filter = filterValue.trim().toLowerCase();
+    console.log(event.target)
   }
   themPhim() {
     this.objectSuaFilm = null;

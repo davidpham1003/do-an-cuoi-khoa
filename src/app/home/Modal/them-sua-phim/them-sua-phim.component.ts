@@ -59,16 +59,24 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     this.dsPhim.emit();
   }
   onSelectFile(event) {
-    this.fileInput = event.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(this.fileInput); // read file as data url
-    reader.onload = (event) => {
-      // // called once readAsDataURL is completed
-      // console.log(this.url);
-      this.HinhAnh = event.target.result;
-    };
-    console.log(this.HinhAnh);
+    // this.fileInput = event.target.files[0];
+    // var reader = new FileReader();
+    // reader.readAsDataURL(this.fileInput); // read file as data url
+    // reader.onload = (event) => {
+    //   // // called once readAsDataURL is completed
+    //   // console.log(this.url);
+    //   this.HinhAnh = event.target.result;
+    // };
+    // console.log(this.HinhAnh);
     if (event.target.files && event.target.files[0]) {
+      this.fileInput = event.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(this.fileInput);
+      reader.onload = (event) => {
+        // // called once readAsDataURL is completed
+        // console.log(this.url);
+        this.HinhAnh = event.target.result;
+      };
       // var frm = new FormData();
       // if (this.objectSuaFilm) {
       //   frm.append('File', this.fileInput, this.fileInput.name);
@@ -104,7 +112,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
             title: `Thêm Phim`,
             text: `Tiếp tục thêm phim.`,
             icon: 'question',
-            reverseButtons:true,
+            reverseButtons: true,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -128,6 +136,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
   }
 
   addFilm(values) {
+    console.log(this.fileInput);
     this.formFilm.markAllAsTouched();
     const phimThem = {
       ...values,
@@ -142,30 +151,60 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     if (this.formFilm.invalid) {
       return;
     }
+    const frm = new FormData();
+    // for (let key in phimThem) {
+    //   frm.append(key, phimThem[key]);
+    // }
+    // if(this.fileInput){
+    //   frm.append('hinhAnh', this.fileInput, this.fileInput.name);
+    // }
     if (this.objectSuaFilm) {
       const frm = new FormData();
-      for (let key in phimThem) {
-        frm.append(key, phimThem[key]);
+     
+      // frm.append('tenPhim','')
+      console.log(this.fileInput);
+      if (this.fileInput) {
+        phimThem.hinhAnh = null;
+        for (let key in phimThem) {
+          frm.append(key, phimThem[key]);
+        }
+        frm.append('hinhAnh', this.fileInput, this.fileInput.name);
+        this.api
+          .post('QuanLyPhim/CapNhatPhimUpload', frm, { responseType: 'text' })
+          .subscribe({
+            next: () => {
+              this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
+              // this.update.capNhatDsPhim()
+              this.btnClose.nativeElement.click();
+              this.resetForm();
+              this.updateDsPhim();
+              this.fileInput = null;
+            },
+            error: (err) => {
+              this.sweetAlert('Sửa Phim', err.error, 'error');
+            },
+          });
+      } else {
+        this.movies.suaPhim(phimThem).subscribe({
+          next: () => {
+            this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
+            // this.update.capNhatDsPhim()
+            this.btnClose.nativeElement.click();
+            this.resetForm();
+            this.updateDsPhim();
+            this.fileInput = null;
+          },
+          error: (err) => {
+            this.sweetAlert('Sửa Phim', err.error, 'error');
+          },
+        });
       }
-      frm.append('hinhAnh', this.fileInput, this.fileInput.name);
-      this.api.post('QuanLyPhim/CapNhatPhimUpload',frm,{ responseType: 'text' }).subscribe({
-        next: () => {
-          this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
-          // this.update.capNhatDsPhim()
-          this.btnClose.nativeElement.click();
-          this.resetForm();
-          this.updateDsPhim();
-        },
-        error: (err) => {
-          this.sweetAlert('Sửa Phim', err.error, 'error');
-        },
-      });
     } else {
-      const frm = new FormData();
       for (let key in phimThem) {
         frm.append(key, phimThem[key]);
       }
       frm.append('hinhAnh', this.fileInput, this.fileInput.name);
+      console.log(this.fileInput);
       this.api
         .post('/QuanLyPhim/ThemPhimUploadHinh', frm, { responseType: 'text' })
         .subscribe({
@@ -207,5 +246,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     console.log(this.isThemPhim);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.fileInput);
+  }
 }

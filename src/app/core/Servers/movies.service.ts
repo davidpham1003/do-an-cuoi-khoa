@@ -20,6 +20,9 @@ export class MoviesService {
   xoaPhim(maPhim):Observable<any>{
     return this.api.delete(`QuanLyPhim/XoaPhim?MaPhim=${maPhim}`,{responseType:'text'})
   }
+  suaPhim(values:any):Observable<any>{
+    return this.api.post('QuanLyPhim/CapNhatPhim',values,{responseType:'text'})
+  }
   capNhatPhimUpload(values:any):Observable<any>{
     return this.api.post('QuanLyPhim/CapNhatPhimUpload',values,{responseType:'text'})
   }
