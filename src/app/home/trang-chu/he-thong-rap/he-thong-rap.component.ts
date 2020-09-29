@@ -1,10 +1,24 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild, ElementRef, Input, HostListener, OnDestroy } from '@angular/core';
 import { SubscriptionLike } from 'rxjs';
 import { CinemaService } from '../../../core/Servers/cinema.service';
 
 @Component({
   selector: 'app-he-thong-rap',
-
+  // animations: [
+  //   trigger(
+  //     'enterAnimation', [
+  //       transition(':enter', [
+  //         style({transform: 'translateX(100%)', opacity: 0}),
+  //         animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+  //       ]),
+  //       transition(':leave', [
+  //         style({transform: 'translateX(0)', opacity: 1}),
+  //         animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+  //       ])
+  //     ]
+  //   )
+  // ],
   templateUrl: './he-thong-rap.component.html',
   styleUrls: ['./he-thong-rap.component.scss'],
 })
@@ -13,8 +27,6 @@ export class HeThongRapComponent implements OnInit,OnDestroy {
   subscription: SubscriptionLike;
   dsRap: [] = [];
   maRap: string = '';
-  isLogo: boolean;
-  isShowRap: boolean = false;
   public currentWindowWidth: number;
   @HostListener('window:resize')
   onResize() {
@@ -25,10 +37,7 @@ export class HeThongRapComponent implements OnInit,OnDestroy {
     this.indexActive = index;
   }
   constructor(private cinemaService: CinemaService) {}
-  // showRap(value){
-  //   if(value )
-  //   this.isShowRap =!this.isShowRap
-  // }
+
   layMaRap(value) {
     this.maRap = value;
     // console.log(this.maRap)

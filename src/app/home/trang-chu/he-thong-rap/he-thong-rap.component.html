@@ -3,7 +3,7 @@
         <h3 class="active"> CỤM RẠP </h3>
     </div>
     <div class="rap__content">
-        <div class="rap__logo row" [ngClass]='{"show-logo":isLogo}'>
+        <div class="rap__logo row" >
             <div #logoRap class="col-md-2 col-sm-4 rap__item " *ngFor="let rapItem of dsRap;let index = index"
                 [attr.data-id]="index" [ngClass]="{'active':index==indexActive}"
                 (click)="layMaRap(rapItem.maHeThongRap);changeIndex(index)">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="rap__lich-chieu" *ngIf="currentWindowWidth > 420">
+        <div class="rap__lich-chieu"  *ngIf="currentWindowWidth > 420" [ngStyle]='' >
             <app-lich-chieu-rap *ngIf="maRap" [maRap]=maRap [isTheme]=isTheme></app-lich-chieu-rap>
         </div>
     </div>

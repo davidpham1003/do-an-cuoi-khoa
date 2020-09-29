@@ -1,14 +1,5 @@
 @import 'mixin';
-.showModal{
-  opacity: 1;
-  visibility: visible;
-  transition:all .1s;
-}
-.hideModal{
-  opacity: 0;
-  visibility: hidden;
-  transition: all .1s;
-}
+
 
 // .owl-carousel .owl-nav .owl-next{
 //     background-image: url('../../../../../assets/img/prev-next.png');

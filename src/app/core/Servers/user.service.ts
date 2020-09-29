@@ -32,6 +32,9 @@ export class UserService {
   layDanhSachNguoiDung():Observable<any>{
     return this.api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05`)
   }
+  timKiemNguoiDung(ten:string):Observable<any>{
+    return this.api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP05&tuKhoa=${ten}`)
+  }
   xoaUser(values:any):Observable<any>{
     return this.api.delete(`QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${values}`,  {responseType: 'text'})
   }

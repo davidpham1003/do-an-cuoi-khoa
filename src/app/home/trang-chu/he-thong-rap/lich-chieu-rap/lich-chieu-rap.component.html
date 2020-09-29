@@ -1,12 +1,10 @@
-<div class="row lich-chieu" [ngClass]="{'lich-chieu-dark' : isTheme}">
+<div class="row lich-chieu" [ngClass]="{'lich-chieu-dark' : isTheme,'show':thongTinRap}">
     <div class="col-lg-5 col-md-6 lich-chieu__content">
         <ul class="lich-chieu__rap">
             <li *ngFor="let thongTinRap of thongTinRap,let index = index"
                 class="lich-chieu__item py-2 border-bottom" [ngClass]="{'active':index==indexActive}"
                 (click)="layMaCupRap(thongTinRap.maCumRap);changeIndex(index)"
                 >
-                <!-- <mat-expansion-panel hideToggle>
-                    <mat-expansion-panel-header> -->
                         <div class="d-flex" (click)="showPhim()" data-toggle="collapse" [attr.data-target]="'#'+thongTinRap.maCumRap">
                             <img src="../../../../../assets/img/rap-demo.jpg" alt="">
                             <div class="item__title ml-2">
@@ -19,13 +17,11 @@
                                 <p class="dsRap-diaChi small my-0">{{thongTinRap.diaChi}}</p>
                             </div>
                         </div>
-                    <!-- </mat-expansion-panel-header> -->
                     <div *ngIf="currentWindowWidth <= 420"
                         class="lich-chieu__phim-item collapse" [id]="thongTinRap.maCumRap">
                         <app-lich-chieu-phim   [isTheme]=isTheme [maRap]=maRap [maCumRap]=thongTinRap.maCumRap>
                         </app-lich-chieu-phim>
                     </div>
-                <!-- </mat-expansion-panel> -->
             </li>
         </ul>
         <div class="line"></div>

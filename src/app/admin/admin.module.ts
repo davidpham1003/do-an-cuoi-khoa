@@ -16,6 +16,7 @@ import {AdminGuard} from '../core/guards/admin.guard';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { HomeModule } from '../home/home.module';
 const route: Routes = [
   { path: 'admin', component: AdminDangNhapComponent },
@@ -31,6 +32,7 @@ const route: Routes = [
   ],
   imports: [
     HomeModule,
+    NgxPaginationModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatButtonModule,

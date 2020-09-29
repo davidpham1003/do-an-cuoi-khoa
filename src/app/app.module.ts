@@ -11,7 +11,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import {PipeModule} from './pipe/pipe.module'
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule,PreloadAllModules  } from '@angular/router';
 import { SidebarModule } from 'ng-sidebar';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { FormsModule } from '@angular/forms';
@@ -46,7 +46,7 @@ const appRoutes :Routes=[
     BrowserAnimationsModule,
     SlickCarouselModule,
     PipeModule,
-    RouterModule.forChild(appRoutes),
+    RouterModule.forRoot(appRoutes),
     FormsModule
   ],
   providers: [

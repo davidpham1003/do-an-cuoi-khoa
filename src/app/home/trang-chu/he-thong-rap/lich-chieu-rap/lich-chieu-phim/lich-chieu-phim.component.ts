@@ -44,14 +44,18 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
     this.cinemaService.layLichChieuTheoRap(this.maRap).subscribe({
       next: (result) => {
         let dsRap: any[] = result[0].lstCumRap;
-        let a = dsRap.filter((item) => item.maCumRap === this.maCumRap);
-        if (a.length > 0) {
-          this.lichChieuPhim = a[0].danhSachPhim;
-          this.phimChieu = true;
-        } else {
-          this.phimChieu = false;
-        }
-        console.log(a)
+
+        setTimeout(()=>{
+          let a = dsRap.filter((item) => item.maCumRap === this.maCumRap);
+          if (a.length > 0) {
+            this.lichChieuPhim = a[0].danhSachPhim;
+            this.phimChieu = true;
+          } else {
+            this.phimChieu = false;
+          }
+        },100)
+       
+        console.log(this.maCumRap)
         // console.log('a',a[0].maCumRap)
 
         // dsRap.forEach((dsRapItem) => {

@@ -27,6 +27,7 @@ export class QuanLyPhimComponent implements OnInit {
     'danhGia',
   ];
   objectSuaFilm: any;
+  objectThemLichChieu:any;
 
   danhSachPhim: any;
 
@@ -66,6 +67,10 @@ export class QuanLyPhimComponent implements OnInit {
     this.danhSachPhim.filter = filterValue.trim().toLowerCase();
     console.log(event.target)
   }
+  xoaInput(value){
+    value = '';
+    this.capNhatDsPhim()
+  }
   themPhim() {
     this.objectSuaFilm = null;
   }
@@ -74,9 +79,11 @@ export class QuanLyPhimComponent implements OnInit {
     this.capNhatDsPhim();
   }
   capNhatPhim(maPhim) {
-    this.objectSuaFilm = this.danhSachPhim.data.find(
+    let objectPhim = this.danhSachPhim.data.find(
       (filmItem) => maPhim == filmItem.maPhim
     );
+    this.objectSuaFilm = objectPhim;
+    this.objectThemLichChieu = objectPhim;
     console.log(this.objectSuaFilm);
   }
 

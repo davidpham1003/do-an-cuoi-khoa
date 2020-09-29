@@ -14,4 +14,7 @@ export class GheService {
   datVe(value:any):Observable<any>{
     return this.api.post('QuanLyDatVe/DatVe' ,value, {responseType: 'text'})
   }
+  taoLichChieu(value:any):Observable<any>{
+    return this.api.post('QuanLyDatVe/TaoLichChieu',value,{responseType: 'text'})
+  }
 }

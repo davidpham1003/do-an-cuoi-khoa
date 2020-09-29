@@ -1,0 +1,99 @@
+<div class="modal-dialog modal-dialog--config" role="document">
+    <div class="modal-content modal-content--config">
+        <div #close class="btn-close" data-dismiss="modal">
+            <i class="fas fa-times"></i>
+        </div>
+        <h4>Tạo Lịch Chiếu</h4>
+        <form [formGroup]='formLichChieu' (ngSubmit)="addLichChieu(formLichChieu.value)" class="row">
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class=" disabledInput balloon" type="text" placeholder="Mã phim"
+                        formControlName='maPhim' /><label for="maPhim">Mã phim</label>
+                </span>
+            </div>
+
+            <div class="col-6 item-addUser">
+                <span>
+                    <input class="disabledInput balloon" type="text" placeholder="Tên phim"
+                        [value]="objectThemLichChieu ? objectThemLichChieu.tenPhim : ''" /><label for="tenPhim">Tên
+                        phim</label>
+                </span>
+
+            </div>
+
+
+
+            <div class="col-12 item-addUser">
+                <label class="heThongRap selectInput" for="heThongRap">Rạp</label>
+                <select (change)='layMaHeThongRap($event)' class="" name="heThongRap" id="heThongRap">
+                    <option *ngFor='let rapItem of heThongRap' [value]="rapItem.maHeThongRap">{{rapItem.tenHeThongRap}}
+                    </option>
+                </select>
+
+            </div>
+
+            <div class="col-12 item-addUser">
+                <label class="cumRap selectInput" for="cumRap">Cụm Rạp</label>
+                <select (change)=layMaRap($event) class="" name="cumRap" id="cumRap">
+                    <option *ngFor='let cumRapItem of cumRapChieu' [value]="cumRapItem.maCumRap">
+                        {{cumRapItem.tenCumRap}}</option>
+                </select>
+
+            </div>
+
+            <div class="col-12 item-addUser">
+                <label class="maRap selectInput" for="maRap">Mã Rạp</label>
+                <select class="" name="maRap" id="maRap" formControlName='maRap'>
+                        <option *ngFor='let maRapItem of maRapTheoCum' [value]='maRapItem.maRap'>{{maRapItem.maRap}}
+                        </option>
+                </select>
+                <div class=' error' *ngIf="formLichChieu.get('maRap').invalid &&
+                (formLichChieu.get('maRap').dirty || formLichChieu.get('maRap').touched)">
+                    <div
+                        *ngIf="formLichChieu.get('maRap').errors['required'] || formLichChieu.get('maRap').value['maRap']">
+                        * Bạn chưa chọn mã rạp.
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-12 item-addUser">
+                <span>
+                    <input class="balloon fixInput" id="ngayChieuGioChieu" type="date" placeholder="Ngày  chiếu"
+                        formControlName='ngayChieuGioChieu' /><label for="ngayChieuGioChieu">Ngày chiếu </label>
+                </span>
+                <div class=' error' *ngIf="formLichChieu.get('ngayChieuGioChieu').invalid &&
+                (formLichChieu.get('ngayChieuGioChieu').dirty || formLichChieu.get('ngayChieuGioChieu').touched)">
+                    <div *ngIf="formLichChieu.get('ngayChieuGioChieu').errors['required']">
+                        * Bạn chưa ngày giờ chiếu.
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-12 item-addUser">
+                <span>
+                    <input class="balloon fixInput" id="ngayChieuGioChieu" type="text" placeholder="Ngày  chiếu"
+                        formControlName='ngayChieuGioChieu' /><label for="ngayChieuGioChieu">Ngày chiếu </label>
+                </span>
+                <div class=' error' *ngIf="formLichChieu.get('ngayChieuGioChieu').invalid &&
+                (formLichChieu.get('ngayChieuGioChieu').dirty || formLichChieu.get('ngayChieuGioChieu').touched)">
+                    <div *ngIf="formLichChieu.get('ngayChieuGioChieu').errors['required']">
+                        * Bạn chưa chọn ngày giờ chiếu.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 item-addUser">
+                <label class="cumRap selectInput" for="giaVe">Giá Vé</label>
+                <select class="" name="giaVe" id="giaVe" formControlName='giaVe'>
+                    <option value="75000">75.000 VNĐ</option>
+                    <option value="85000">85.000 VNĐ</option>
+                </select>
+
+            </div>
+
+
+            <div class="btn-xacNhan">
+                <button mat-raised-button type="submit">Tạo Lịch Chiếu</button>
+            </div>
+        </form>
+
+    </div>

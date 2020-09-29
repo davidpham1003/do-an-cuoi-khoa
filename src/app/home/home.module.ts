@@ -55,6 +55,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ThemSuaNguoiDungComponent } from './Modal/them-sua-nguoi-dung/them-sua-nguoi-dung.component'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ThemSuaPhimComponent } from './Modal/them-sua-phim/them-sua-phim.component';
+import { ThemSuaLichChieuComponent } from './Modal/them-sua-lich-chieu/them-sua-lich-chieu.component';
 
 const route: Routes = [
   {
@@ -105,6 +106,7 @@ const route: Routes = [
     UserInfoComponent,
     ThemSuaNguoiDungComponent,
     ThemSuaPhimComponent,
+    ThemSuaLichChieuComponent,
   ],
   imports: [
     CommonModule,
@@ -139,7 +141,7 @@ const route: Routes = [
     PipeModule,
     RouterModule.forChild(route),
   ],
-  exports:[ThemSuaNguoiDungComponent,SpinnerComponent,ThemSuaPhimComponent]
+  exports:[ThemSuaNguoiDungComponent,SpinnerComponent,ThemSuaPhimComponent,ThemSuaLichChieuComponent]
 })
 
 export class HomeModule {}

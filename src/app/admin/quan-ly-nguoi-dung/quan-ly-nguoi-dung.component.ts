@@ -28,18 +28,34 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
     'SoDt',
     'maLoaiNguoiDung',
   ];
-  objectSuaUser:any
+  objectSuaUser:any;
+  objectThemLichChieu:any;
   danhSachNguoiDung: any;
   errors: string;
   constructor(private user: UserService) {}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.danhSachNguoiDung.filter = filterValue.trim().toLowerCase();
+    // Dòng comment dùng filter của angular material
+    // this.danhSachNguoiDung.filter = filterValue.trim().toLowerCase();
+    this.user.timKiemNguoiDung(filterValue).subscribe({
+      next:(data)=>{
+        if(filterValue.trim() != ''){
+          this.danhSachNguoiDung.data = data
+        }else{
+          this.capNhatDsNguoiDung()
+        }       
+      }
+    })
     console.log((event.target as HTMLInputElement).value)
+  }
+  xoaInput(value){
+    value = '';
+    this.capNhatDsNguoiDung()
   }
   themNguoiDung(){
     this.objectSuaUser = null
   }
+  
   xoaNguoiDung(value) {
     Swal.fire({
       title: 'Xóa Người Dùng?',
