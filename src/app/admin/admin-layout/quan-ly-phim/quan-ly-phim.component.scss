@@ -2,11 +2,11 @@
 @import "../../quan-ly-nguoi-dung/quan-ly-nguoi-dung.component.scss";
 .quanLy-Phim {
   opacity: 0;
-  transition: all .3s;
+  transition: all 0.3s;
   //   overflow-x: auto;
   // //   max-width: 100%;
 }
-.show{
+.show {
   opacity: 1;
 }
 .mat-form-field {
@@ -18,7 +18,11 @@
   margin-right: $pad-mar3;
   //   margin-bottom: $pad-mar3;
 }
-
+.table-content {
+  max-width: 100%;
+  overflow-x: scroll;
+}
+// th, td { min-width: 200px; }
 .remove-input {
   position: absolute;
   top: 50%;
@@ -31,7 +35,11 @@
   }
 }
 table {
-  width: 100%;
+  max-width: 98%;
+  @include for-size(lg){
+    max-width: 960px;
+  }
+  margin: 0 auto;
   padding: $pad-mar8;
   text-align: center;
   overflow: hidden;
@@ -44,8 +52,8 @@ table {
     margin: 0 auto;
   }
   td {
-    padding: 10px 5px;
-    align-self: center;
+    max-width: 150px;
+
     span {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -54,7 +62,6 @@ table {
       -webkit-box-orient: vertical;
     }
   }
-
 
   img {
     width: 80px;
@@ -91,7 +98,6 @@ table {
 }
 
 ::ng-deep .ngx-pagination {
-  text-align: right ;
-  margin-right: 50px ;
+  text-align: right;
+  margin-right: 50px;
 }
-

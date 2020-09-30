@@ -19,7 +19,7 @@ $height: 620px;
       border-top: #188f57 solid 1px;
     }
     .lich-chieu__rap {
-      max-height: $height;
+      height: $height;
       overflow: auto;
       @include for-size(md) {
         padding-right: $pad-mar8;

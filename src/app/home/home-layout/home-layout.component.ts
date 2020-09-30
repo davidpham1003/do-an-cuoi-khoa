@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
 import { UserService } from 'src/app/core/Servers/user.service';
 
@@ -9,9 +9,17 @@ import { UserService } from 'src/app/core/Servers/user.service';
 })
 export class HomeLayoutComponent implements OnInit {
   isTheme:boolean = true
+  // isToTop:boolean;
+  // @HostListener("window:scroll", [])
+  // onWindowScroll() {
+  //   const offset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  //   this.isToTop = offset > 300 ? true : false
+  //   console.log(offset, this.isToTop)
+  // }
   changeTheme(value) {
     this.isTheme = value;
   }
+
   constructor(private auth:AuthenticationService,private user : UserService) { }
 
   ngOnInit(): void {

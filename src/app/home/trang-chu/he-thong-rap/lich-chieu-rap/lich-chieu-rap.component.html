@@ -1,12 +1,12 @@
 <div class="row lich-chieu" [ngClass]="{'lich-chieu-dark' : isTheme,'show':thongTinRap}">
     <div class="col-lg-5 col-md-6 lich-chieu__content">
-        <ul class="lich-chieu__rap">
+        <ul  class="lich-chieu__rap">
             <li *ngFor="let thongTinRap of thongTinRap,let index = index"
                 class="lich-chieu__item py-2 border-bottom" [ngClass]="{'active':index==indexActive}"
                 (click)="layMaCupRap(thongTinRap.maCumRap);changeIndex(index)"
-                >
+                 >
                         <div class="d-flex" (click)="showPhim()" data-toggle="collapse" [attr.data-target]="'#'+thongTinRap.maCumRap">
-                            <img src="../../../../../assets/img/rap-demo.jpg" alt="">
+                            <img src="assets/img/rap-demo.jpg" alt="">
                             <div class="item__title ml-2">
                                 <span class="tenRap" [ngClass]="{'BHD':maRap=='BHDStar',
                         'CGV':maRap=='CGV','CineStar':maRap=='CineStar','Galaxy':maRap=='Galaxy',

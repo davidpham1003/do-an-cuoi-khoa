@@ -1,11 +1,39 @@
-@import '../them-sua-nguoi-dung/them-sua-nguoi-dung.component.scss';
+// @import '../them-sua-nguoi-dung/them-sua-nguoi-dung.component.scss';
 @import '../them-sua-phim/them-sua-phim.component.scss';
+// @import 'main';
+.modal-content--config{
+    @include for-size(md){
+        max-width: 870px;
+        margin: 0 auto;
+    }
+    
+}
+
 .item-addUser{
     label{
         width: 100px;
+        &.selectInput{
+            @include for-size(phone-sm){
+                width: 80px;
+            }
+        }
     }
     select{
         width: 608px;
         margin-left: 100px;
+        @include for-size(md){
+            width: 580px;
+            margin-left: 95px;
+            padding-left: 10px;
+        }
+        @include for-size(sm){
+            width: 100%;
+            padding-left: 105px;
+            margin-left: 0;
+        }
+        @include for-size(phone-sm){
+            padding-left: 85px;
+        }
     }
+
 }

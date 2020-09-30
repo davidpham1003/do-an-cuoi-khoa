@@ -45,7 +45,7 @@ export class AuthenticationService {
   }
   dangXuat(value){
     if(value == 'taiKhoan'){
-      this.currentUserSubject.next(null);
+      this.currentUserSubject.next({});
       this.user.updateAvatarUser(null);
     }
     if(value == 'admin'){

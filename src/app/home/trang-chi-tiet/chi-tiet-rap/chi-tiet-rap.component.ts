@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, Input, OnChanges, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
@@ -6,6 +7,14 @@ import { AuthenticationService } from 'src/app/core/Servers/authentication.servi
   selector: 'app-chi-tiet-rap',
   templateUrl: './chi-tiet-rap.component.html',
   styleUrls: ['./chi-tiet-rap.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: '0' }),
+        animate('.5s ease-out', style({ opacity: '1' })),
+      ]),
+    ]),
+  ],
 })
 export class ChiTietRapComponent implements OnInit, OnChanges {
   @Input() isTheme;

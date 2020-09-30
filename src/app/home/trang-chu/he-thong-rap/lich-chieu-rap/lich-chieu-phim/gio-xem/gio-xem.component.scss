@@ -35,7 +35,7 @@ p.suatChieu__content {
     }
   }
   &:hover span:first-child {
-    color: #fb4226;
+    color: $color-but-lo;
   }
   span:last-child {
     font-weight: 550;
@@ -59,7 +59,5 @@ p.suatChieu-dark {
   span:last-child {
     color: #afafaf;
   }
-  &:hover span:first-child {
-    color: $color-fontD-o6;
-  }
+
 }

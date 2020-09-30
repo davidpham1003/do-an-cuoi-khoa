@@ -5,7 +5,7 @@
                 <img class="item-phim__thumbnail" [src]="phim.hinhAnh">
             </div>
             <div *ngIf='phim.danhGia' class="item-phim__bom-tan" [ngClass]="{'bom-tan':phim.danhGia >= 9}">
-                <img src="../../../../../../assets/img/item-phim-bomtan.png" alt="">
+                <img src="assets/img/item-phim-bomtan.png" alt="">
             </div>
             <div class="item-phim__rate">
                 <p>{{(phim.danhGia)/2}}</p>
@@ -23,7 +23,7 @@
         </div>
         <div class="item-phim__hover">
             <div class="hover__bg">
-                <img (click)="getTrailer(phim.trailer)" src="../../../../../../assets/img/icon-play.png" alt="">
+                <img (click)="getTrailer(phim.trailer)" src="assets/img/icon-play.png" alt="">
             </div>
             <div class="hover__button">
                 <button routerLink="/chitiet/{{phim.maPhim}}" class="btn w-100 my-2">

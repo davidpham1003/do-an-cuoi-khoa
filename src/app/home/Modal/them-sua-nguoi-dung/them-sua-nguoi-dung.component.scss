@@ -5,6 +5,10 @@
   .modal-content--config {
     background-color: #032429;
     padding: $pad-mar6;
+    @include for-size(sm){
+      // width: 90%;
+      margin: 0 auto;
+    }
     h4 {
       color: #377d6a;
       margin: $pad-mar4;
@@ -26,6 +30,9 @@
 
 .item-addUser {
   margin: 20px 0;
+  &.fileInput{
+    margin-bottom: 50px;
+  }
   .error {
     color: #ff6666;
     font-weight: 550;
@@ -55,6 +62,7 @@
     line-height: 30px;
     background-color: #7ab893;
   }
+  
   select {
     border: none;
     outline: none;
@@ -67,6 +75,12 @@
     transition: all 0.3s;
     color: $color-fontL-o6;
     font-family: "Open Sans", sans;
+    @include for-size(md){
+      width: 100%;
+      margin-left: 0;
+      padding-left: 105px;
+      border-radius: 3px;
+    }
     option {
       background: #efefef;
       font-weight: 400;
@@ -98,6 +112,7 @@
   //   }
   &.fixInput {
     padding-left: 55px;
+      padding-left: 0;
     &:focus{
       padding-left: 25px;
     }

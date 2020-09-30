@@ -1,19 +1,34 @@
 @import "main";
-.quanLy-nguoiDung{
+.quanLy-nguoiDung {
   opacity: 0;
-  transition: all .3s;
+  transition: all 0.3s;
 }
-.show{
+.show {
   opacity: 1;
 }
 
 .mat-spinner {
   margin: 0 auto;
 }
-table {
-  width: 100%;
-  padding: $pad-mar8;
+.table-content {
+  overflow-x: auto;
+  table {
+    width: 98%;
+    padding: $pad-mar8;
+    margin: 0 auto;
+    th {
+      padding: 10px 20px;
+      white-space: nowrap;
+      margin: 0 auto;
+    }
+    td {
+      // max-width: 150px;
+      padding: 10px 24px;
+      align-self: center;
+    }
+  }
 }
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -46,5 +61,3 @@ table {
     color: rgb(63 81 181);
   }
 }
-
-

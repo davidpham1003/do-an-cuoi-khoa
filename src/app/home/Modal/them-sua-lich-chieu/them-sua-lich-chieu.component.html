@@ -5,14 +5,14 @@
         </div>
         <h4>Tạo Lịch Chiếu</h4>
         <form [formGroup]='formLichChieu' (ngSubmit)="addLichChieu(formLichChieu.value)" class="row">
-            <div class="col-6 item-addUser">
+            <div class="col-sm-6 col-12 item-addUser">
                 <span>
                     <input class=" disabledInput balloon" type="text" placeholder="Mã phim"
                         formControlName='maPhim' /><label for="maPhim">Mã phim</label>
                 </span>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-sm-6 col-12 item-addUser">
                 <span>
                     <input class="disabledInput balloon" type="text" placeholder="Tên phim"
                         [value]="objectThemLichChieu ? objectThemLichChieu.tenPhim : ''" /><label for="tenPhim">Tên
@@ -70,7 +70,7 @@
 
             <div class="col-12 item-addUser">
                 <span>
-                    <input class="balloon fixInput" id="ngayChieuGioChieu" type="text" placeholder="Ngày  chiếu"
+                    <input class="balloon " id="ngayChieuGioChieu" type="text" placeholder="Ngày  chiếu"
                         formControlName='ngayChieuGioChieu' /><label for="ngayChieuGioChieu">Ngày chiếu </label>
                 </span>
                 <div class=' error' *ngIf="formLichChieu.get('ngayChieuGioChieu').invalid &&

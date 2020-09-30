@@ -1,10 +1,6 @@
-<p data-toggle="modal" data-target="#warning-dangNhap"
+<p data-toggle="modal" data-target="#warning"
 (click)="datVe(gioXem.maLichChieu)" [ngClass]='{"suatChieu-dark":isTheme}' class="suatChieu__content"
     *ngFor="let gioXem of mangGioXem.slice(0,10)">
     <span> {{gioXem.ngayChieuGioChieu | formatTime:'1'}} </span>
     <span> ~ {{gioXem.ngayChieuGioChieu | formatDate:'1'}}</span>
 </p>
-<div *ngIf="!currentUser.taiKhoan"  data-backdrop="static" data-keyboard="false" class="modal fade" id="warning-dangNhap" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-    aria-hidden="true">
-    <app-modal-warning [warning]="'muaVe'"></app-modal-warning>
-</div>

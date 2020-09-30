@@ -1,11 +1,12 @@
+<app-spinner-background></app-spinner-background>
 <div class="dang-ky d-flex">
     <div class="dangky__content">
         <div class="dangky_header">
-            <img routerLink='/' src="../../../assets/img/logo.png" alt="">
+            <img routerLink='/' src="assets/img/logo.png" alt="">
             <p class="title">Mang cả hế giới phim đến với bạn.</p>
         </div>
         <div class="dangky__body">
-            <div *ngIf="errors.error" class="text-danger  small py-2">
+            <div *ngIf="errors.error" class="text-danger  py-2">
                 * {{errors.error}}
             </div>
             <form class="form-dk" [formGroup]="formDangKy" (ngSubmit)="DangKy(formDangKy.value)" method="SUBMIT">
@@ -26,7 +27,8 @@
                         </div>
                     </div>
                     <div class="form-item col-lg-12 col-sm-6 col-12">
-                        <input placeholder="Mật Khẩu" formControlName='matKhau' type="password" name="text">
+                        <input #pass placeholder="Mật Khẩu" formControlName='matKhau' type="password" [type]="isShowPass ? 'text' : 'password'" name="text">
+                        <label [ngClass]='{"showPass":isShowPass}' (click)="isShowPass = !isShowPass" for=""><i class="far fa-eye"></i></label>
                         <i class="icon-form fas fa-unlock-alt"></i>
                         <div *ngIf="formDangKy.get('matKhau').invalid && (formDangKy.get('matKhau').dirty || formDangKy.get('matKhau').touched)"
                             class="text-danger mt-1 small p-1 text-left">

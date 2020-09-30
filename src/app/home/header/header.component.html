@@ -1,11 +1,11 @@
 <div class="header" [ngClass]="{'dark-header':isTheme,'noneHide':isTogggle}" >
     <nav class="navbar navbar--config navbar-expand-md">
         <a *ngIf='isTheme;else logo2' class="navbar-brand " routerLink='/'>
-            <img src="../../../assets/img/logo.png" alt="">
+            <img src="assets/img/logo.png" alt="">
         </a>
         <ng-template #logo2>
             <a class="navbar-brand " routerLink='/'>
-                <img src="../../../assets/img/logo2.png" alt="">
+                <img src="assets/img/logo2.png" alt="">
             </a>
         </ng-template>
         <button (click)="toggle()" class="navbar-toggler navbar-toggler--config" [ngClass]="{'hide':isTogggle}" type="button" data-toggle="collapse"
@@ -33,10 +33,10 @@
             <ng-template #hello>
                 <div #helloUser class="helloUser d-flex">
                     <div class="UserName-img ">
-                        <img (click)='UserInfo()' [src]=" url ? url : '../../../assets/img/avatar.png' " alt="">
+                        <img (click)='UserInfo()' [src]=" url ? url : 'assets/img/avatar.png' " alt="">
                         <div class="UserInfo" [ngClass]='{"activeUserInfo":isInfo}'>
                             <div class="arrow-up">
-                                <img src="../../../assets/img/togglle.png" alt="">
+                                <img src="assets/img/togglle.png" alt="">
                             </div>
                             <div class="UserInfo__content">
                                 <div class="inFo">

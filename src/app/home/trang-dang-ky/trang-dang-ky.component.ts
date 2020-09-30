@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-trang-dang-ky',
@@ -12,27 +13,35 @@ export class TrangDangKyComponent implements OnInit {
   public formDangKy: FormGroup;
   loading: boolean = false;
   errors: any = {};
+  isShowPass: boolean = false;
   checkDirtyForm() {
     return this.formDangKy.dirty;
   }
   DangKy(val) {
     this.formDangKy.markAllAsTouched();
-    console.log(this.formDangKy.dirty)
+    console.log(this.formDangKy.dirty);
     if (this.formDangKy.invalid) {
       return;
     }
     this.loading = true;
     this.errors = [];
     this.auth.dangKy(val).subscribe({
+      next: () => {
+        this.loading = true;
+        Swal.fire('', 'Đăng ký thành công', 'success').then((result) => {
+          if(result.isConfirmed){
+            this.router.navigate(['/']);
+          }
+        });
+       
+    
+      },
       error: (err) => {
         this.errors = err;
         this.loading = false;
-        console.log(this.errors)
+        console.log(this.errors);
       },
-      complete: () => {
-        this.loading = false;
-        this.router.navigate(['/']);
-      },
+      complete: () => {},
     });
     console.log(val);
   }

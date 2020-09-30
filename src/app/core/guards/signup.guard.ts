@@ -22,8 +22,8 @@ export class SignupGuard implements CanDeactivate<TrangDangKyComponent> {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      const isDirty = component.checkDirtyForm();
-      if (isDirty) {
+      const isDirty = component.loading;
+      if (!isDirty) {
         return window.confirm('Bạn có muốn thoát đăng ký ?');
       }
       return true;

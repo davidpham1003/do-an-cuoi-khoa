@@ -5,7 +5,7 @@
 </div>
 <ng-template #dsPhim>
     <ul class="lichPhim" [ngClass]="{'lichPhim-dark':isTheme}">
-        <li *ngFor="let lichPhimItem of lichChieuPhim;let index = index" class="lich-phim__item"> 
+        <li *ngFor="let lichPhimItem of lichChieuPhim;let index = index" class="lich-phim__item" > 
                     <div data-toggle="collapse" data-target="#demo" [attr.data-target]="'#a'+index" (click)="layMaPhim(lichPhimItem.maPhim);showGio()" class="lich-phim__content d-flex ">
                         <img [src]="lichPhimItem.hinhAnh" alt="">
                         <div class="lich-phim__title mx-3 mt-2">

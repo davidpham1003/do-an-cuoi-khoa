@@ -86,9 +86,11 @@ $width-controller: 300px;
     padding: $pad-mar2 0;
   }
   .line-header {
+    @extend %border-bottom;
     img {
       height: 73px;
       padding: $pad-mar2;
+
     }
   }
   .controller-item {

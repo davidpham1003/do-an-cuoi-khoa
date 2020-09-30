@@ -1,1 +1,31 @@
 @import '../modal-youtube/modal-youtube.component.scss';
+@import 'main';
+img{
+    width: 100%;
+}
+.modal-content--config{
+    width: 60%;
+    height: 40%;
+    top:30%;
+    @include for-size(lg){
+        top: 40%;
+        padding: $pad-mar3;
+        width: 90%;
+    }
+    .close-modal{
+        @include for-size(lg){
+            top: -3%;
+            right: -2%;
+        }
+        @include for-size(sm){
+            top: 0%;
+            right: 0%;
+        }
+        @include for-size(phone-sm){
+            top: 0;
+        right: 1%;
+        }
+        
+    }
+}
+

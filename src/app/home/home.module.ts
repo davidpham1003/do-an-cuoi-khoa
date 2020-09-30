@@ -46,6 +46,7 @@ import { SidebarModule } from 'ng-sidebar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import {SignupGuard} from '../core/guards/signup.guard';
+import {MuaVeGuard} from '../core/guards/mua-ve.guard'
 import { UserInfoComponent } from './user-info/user-info.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -56,6 +57,8 @@ import { ThemSuaNguoiDungComponent } from './Modal/them-sua-nguoi-dung/them-sua-
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ThemSuaPhimComponent } from './Modal/them-sua-phim/them-sua-phim.component';
 import { ThemSuaLichChieuComponent } from './Modal/them-sua-lich-chieu/them-sua-lich-chieu.component';
+import { SpinnerBackgroundComponent } from './spinner/spinner-background/spinner-background.component';
+import { ToTopComponent } from './to-top/to-top.component';
 
 const route: Routes = [
   {
@@ -65,7 +68,7 @@ const route: Routes = [
       { path: '', component: TrangChuComponent },
       { path: 'chitiet/:maPhim', component: TrangChiTietComponent },
       { path: 'dangky', component: TrangDangKyComponent,canDeactivate: [SignupGuard] },
-      { path: 'datve/:maLichChieu', component: TrangDatVeComponent },
+      { path: 'datve/:maLichChieu', component: TrangDatVeComponent,canDeactivate: [MuaVeGuard]  },
       { path: 'thongTin', component: UserInfoComponent },
     ],
   },
@@ -107,6 +110,8 @@ const route: Routes = [
     ThemSuaNguoiDungComponent,
     ThemSuaPhimComponent,
     ThemSuaLichChieuComponent,
+    SpinnerBackgroundComponent,
+    ToTopComponent,
   ],
   imports: [
     CommonModule,

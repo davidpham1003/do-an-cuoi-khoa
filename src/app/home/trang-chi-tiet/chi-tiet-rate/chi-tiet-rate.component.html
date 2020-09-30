@@ -2,7 +2,7 @@
     <div data-toggle="modal" data-target="#warning-dangNhap" class="danhGia_header">
         <!-- data-toggle="modal" data-target="#modelId" -->
         <div class="danhGia-header__content d-flex">
-            <img src="../../../../assets/img/avatar.png" alt="">
+            <img src="assets/img/avatar.png" alt="">
             <p>Cảm nghĩ của bạn về phim...</p>
             <div class="star ml-auto">
                 <div class="rating-star">
@@ -27,7 +27,7 @@
             </div>
             <div class=" danhGia-body__content d-flex ">
                 <ng-template #noAvatar>
-                    <img [src]=" url ? url : '../../../../assets/img/avatar.png'" alt="" style="border: none;">
+                    <img [src]=" url ? url : 'assets/img/avatar.png'" alt="" style="border: none;">
                 </ng-template>
                 <img *ngIf="comment.img;else noAvatar" [src]=comment.img alt="">
                 <p>{{comment.binhLuan}}</p>

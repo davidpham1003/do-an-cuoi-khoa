@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
 
@@ -8,10 +8,19 @@ import { AuthenticationService } from 'src/app/core/Servers/authentication.servi
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit {
-  isShowController: boolean = true;
+
+  isShowController: boolean;
   currentAdmin:any = {}
   dieuKien:string = 'user';
+  public currentWindowWidth:number;
   constructor(private router: Router,private auth:AuthenticationService) {}
+  @HostListener('window:resize')
+  onResize(){
+    this.currentWindowWidth = window.innerWidth
+     this.isShowController = this.currentWindowWidth > 991 ? true : false
+    console.log(this.isShowController,this.currentWindowWidth)
+   
+  }
   setdieuKien(value){
     this.dieuKien = value;
   }
@@ -20,14 +29,15 @@ export class AdminLayoutComponent implements OnInit {
     this.isShowController = !this.isShowController;
   }
   addClassShow(){
-    return (this.isShowController ? "show" : "hide")
+    return ((this.isShowController ) ? "show" : "hide")
   }
   logOut(){
     localStorage.removeItem('adminInfo')
     this.auth.dangXuat('admin');
   }
   ngOnInit(): void {
-
+    this.currentWindowWidth = window.innerWidth
+    this.isShowController = this.currentWindowWidth > 991 ? true : false
     this.auth.initCurrentAdmin()
     this.auth.currentAdmin.subscribe({
       next:(data)=>{

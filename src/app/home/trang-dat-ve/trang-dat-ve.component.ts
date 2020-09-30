@@ -21,10 +21,9 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
   danhSachGhe: any[];
   thongTinPhim: any;
-  gheDangChon: any[] = [];
+  gheDangChon: any[] =[] ;
   tienVe: number = 0;
   tienCombo: number = 0;
-  isPopup: boolean;
   isCombo: boolean = false;
   isAnimate: boolean;
   isWarning: boolean;
@@ -86,6 +85,13 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
       }
     }
   }
+  onTimerFinished(event){
+    if(event['action'] == 'done'){
+      this.openModal.nativeElement.click()
+    }
+
+  }
+
   datCombo(id: string, value: boolean) {
     this.mangCombo.forEach((combo) => {
       if (combo.id === id) {
@@ -111,9 +117,6 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   }
   closeCombo() {
     this.isCombo = false;
-  }
-  getPopup(value) {
-    this.isPopup = value;
   }
   datGhe(ghe) {
     if (ghe.daDat) {
@@ -181,8 +184,6 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     });
   }
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.isPopup = true;
-    }, 2000);
+   
   }
 }

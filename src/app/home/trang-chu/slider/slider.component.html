@@ -3,7 +3,7 @@
   <div class="carousel-inner carousel-inner--content">
     <div *ngFor="let slider of mangSlider;let index = index" class="carousel-item" [ngClass]="{'active':!index}">
       <div class="carousel-item__blur">
-        <img (click)="getTrailer(slider.trailer)" src="../../../../assets/img/icon-play.png" class="carousel__iconplay">
+        <img (click)="getTrailer(slider.trailer)" src="assets/img/icon-play.png" class="carousel__iconplay">
         <img [src]="slider.img_blur" class=" carousel__background-item">
       </div>
       <img class="d-block w-100" [src]="slider.img" alt="First slide">

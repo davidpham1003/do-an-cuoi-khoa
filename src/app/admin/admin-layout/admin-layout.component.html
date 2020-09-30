@@ -1,53 +1,55 @@
-
 <div class="dashboard">
     <div class="header" [ngClass]=(addClassShow())>
         <div class="btn-menu " (click)='showController()'>
-            <span><img src="../../../assets/img/bg-button-menu.jpg" alt=""></span>
-            <span><img src="../../../assets/img/bg-button-menu.jpg" alt=""></span>
-            <span><img src="../../../assets/img/bg-button-menu.jpg" alt=""></span>
+            <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
+            <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
+            <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
         </div>
         <h4>Dashboard</h4>
 
     </div>
-        <div class="dashboard-controller" [ngClass]=(addClassShow())>
-            <div class="line-header">
-                <img src="../../../assets/img/logo2.png" alt="">
+    <div class="dashboard-controller" [ngClass]=(addClassShow())>
+        <div class="line-header">
+            <img src="assets/img/logo2.png" alt="">
+        </div>
+        <div class="controller-header ">
+            <div (click)="setdieuKien('user')" class="controller-item" [ngClass]="{'active':dieuKien=='user'}">
+                <i class="fas fa-users"></i>
+                <h5> Quản lý người dùng</h5>
             </div>
-            <div class="controller-header ">
-                <div (click)="setdieuKien('user')" class="controller-item" [ngClass]="{'active':dieuKien=='user'}">
-                    <i class="fas fa-users"></i>
-                    <h5 > Quản lý người dùng</h5>
-                </div>
-                <div (click)="setdieuKien('film')"  class="controller-item" [ngClass]="{'active':dieuKien=='film'}">
-                    <i class="fas fa-film"></i>
-                    <h5>Quản lý Phim</h5>
-                </div>
-                <div class="controller-item">
-                    <i class="fab fa-facebook-square"></i>
-                    <h5>Facebook</h5>
-                </div>
-                <div class="controller-item">
-                    <i class="fab fa-twitter-square"></i>
-                    <h5>Twitter</h5>
-                </div>
-                <div class="controller-item">
-                    <i class="fab fa-github-square"></i>
-                    <h5>Github</h5>
-                </div>
+            <div (click)="setdieuKien('film')" class="controller-item" [ngClass]="{'active':dieuKien=='film'}">
+                <i class="fas fa-film"></i>
+                <h5>Quản lý Phim</h5>
             </div>
-            <div class="controller-footer">
+            <div class="controller-item">
+                <i class="fab fa-facebook-square"></i>
+                <h5>Facebook</h5>
+            </div>
+            <div class="controller-item">
+                <i class="fab fa-twitter-square"></i>
+                <h5>Twitter</h5>
+            </div>
+            <div class="controller-item">
+                <i class="fab fa-github-square"></i>
+                <h5>Github</h5>
+            </div>
+        </div>
+        <div class="controller-footer">
+            <a href="">
                 <div class="controller-item">
+
                     <i class="far fa-arrow-alt-circle-left"></i>
-                    <h5 routerLink='/'>Quay lại trang phim</h5>
+                    <h5 routerLink='/'> Quay lại trang phim</h5>
                 </div>
-                <div (click)='logOut()' class="controller-item">
-                    <i class="fas fa-power-off"></i>
-                    <h5>Đăng Xuất</h5>
-                </div>
+            </a>
+            <div (click)='logOut()' class="controller-item">
+                <i class="fas fa-power-off"></i>
+                <h5>Đăng Xuất </h5>
             </div>
         </div>
-        <div class="dashboard-content" [ngClass]=(addClassShow())>
-            <app-quan-ly-nguoi-dung *ngIf="dieuKien=='user'"></app-quan-ly-nguoi-dung>
-            <app-quan-ly-phim *ngIf="dieuKien=='film'"></app-quan-ly-phim>
-        </div>
+    </div>
+    <div class="dashboard-content" [ngClass]=(addClassShow())>
+        <app-quan-ly-nguoi-dung *ngIf="dieuKien=='user'"></app-quan-ly-nguoi-dung>
+        <app-quan-ly-phim *ngIf="dieuKien=='film'"></app-quan-ly-phim>
+    </div>
 </div>

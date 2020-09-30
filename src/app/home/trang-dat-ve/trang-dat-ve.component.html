@@ -1,3 +1,4 @@
+<app-spinner-background ></app-spinner-background>
 <div id="dat-ve">
     <div class="trang-datVe mx-auto">
         <div class="d-md-flex d-sm-block">
@@ -21,7 +22,7 @@
                     <div class="ve__info-phim d-flex  col-md-12  "  *ngIf="isThanhToan"> 
                         <img [src]="thongTinPhim.hinhAnh" alt="">
                         <div class="img-border">
-                            <img src="../../../assets/img/border.png" alt="">
+                            <img src="assets/img/border.png" alt="">
                         </div>
                         <div class="ve_info">
                             <p class="info-title">{{thongTinPhim.tenPhim}}</p>
@@ -35,7 +36,7 @@
                         </div>
                     </div>
                     <div class="ve__info-rap d-flex  ml-auto col-md-12" [ngClass]="{'rapBuoc1':!isThanhToan}">
-                        <img src="../../../assets/img/rap-demo.jpg" alt="">
+                        <img src="assets/img/rap-demo.jpg" alt="">
                         <div class="veRap-info">
                             <p class="info-title">{{thongTinPhim.tenCumRap}}</p>
                             <p class="small">{{thongTinPhim.diaChi}}</p>
@@ -93,7 +94,7 @@
                     </ng-template>
 
                     <img  *ngIf="isThanhToan" class="btn-combo" [ngClass]="{'show-combo':isCombo}" (click)="combo()"
-                        src="../../../assets/img/comboIcon.png" alt="">
+                        src="assets/img/comboIcon.png" alt="">
                 </div>
             </div>
         </div>
@@ -150,4 +151,4 @@
     </table>
 </div>
 
-<!-- <app-popup-combo (Popup)="getPopup($event)" *ngIf="isPopup" ></app-popup-combo> -->
+<app-popup-combo [content]='"combo"'   ></app-popup-combo>

@@ -5,7 +5,7 @@
         </div>
         <h4>{{header}}</h4>
         <form [formGroup]='formFilm' (ngSubmit)="addFilm(formFilm.value)" class="row">
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input [ngClass]='{"disabledInput":!isThemPhim}' class="balloon" id="maPhim" type="text"
                         placeholder="Mã phim" formControlName='maPhim' /><label for="maPhim">Mã phim</label>
@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input #tenPhim  class="balloon" id="tenPhim" type="text"
                         placeholder="Tên phim" formControlName='tenPhim' /><label for="tenPhim">Tên phim</label>
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="biDanh" type="text" placeholder="Bí danh"
                         formControlName='biDanh' /><label for="biDanh">Bí danh</label>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="trailer" type="text" placeholder="Trailer"
                         formControlName='trailer' /><label for="trailer">Trailer</label>
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser fileInput">
                 <span>
                     <input (change)="onSelectFile($event)" class="balloon fileInput" [ngClass]="{'hide':objectSuaFilm}"
                         accept="image/*" id="hinhAnh" type="file" />
@@ -72,7 +72,7 @@
                 </span>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon fixInput" id="ngayKhoiChieu" type="date" placeholder="Ngày khởi chiếu"
                         formControlName='ngayKhoiChieu' /><label for="ngayKhoiChieu">Ngày khởi chiếu </label>
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="danhGia" type="number" placeholder="Đánh giá" formControlName='danhGia'
                         max="10" /><label for="danhGia">Đánh giá</label>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon disabledInput" id="maNhom" type="text" value='GP05'
                         formControlName='maNhom' /><label for="maNhom">Mã nhóm</label>

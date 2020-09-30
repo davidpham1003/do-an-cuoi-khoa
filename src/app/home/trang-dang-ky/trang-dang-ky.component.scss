@@ -87,6 +87,20 @@
         margin-bottom: 20px;
         input[type="text"],
         input[type="password"] {
+          + label {
+            &.showPass{
+              opacity: 1;
+            }
+            position: absolute;
+            z-index: 500;
+            top: 20px;
+            right: 20%;
+            opacity: 0.5;
+            cursor: pointer;
+            &:hover, &:active{
+              opacity: 1;
+            }
+          }
           width: 100%;
           padding: 15px 66px 15px 19px;
           text-align: left;
@@ -114,11 +128,18 @@
             background-color: rgba(255, 255, 255, 0);
             padding: 18px 20px;
           }
+          @include for-size(phone-sm) {
+            
+            background-color: #00c6d7;
+          }
         }
         &.form-item--SDT {
           padding-right: 0;
           @include for-size(md) {
             padding-right: 5px;
+          }
+          @include for-size(phone-sm) {
+            padding-right: 0px;
           }
         }
       }

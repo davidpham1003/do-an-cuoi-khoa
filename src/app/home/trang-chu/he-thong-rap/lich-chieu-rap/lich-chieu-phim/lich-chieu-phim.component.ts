@@ -45,7 +45,7 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
       next: (result) => {
         let dsRap: any[] = result[0].lstCumRap;
 
-        setTimeout(()=>{
+
           let a = dsRap.filter((item) => item.maCumRap === this.maCumRap);
           if (a.length > 0) {
             this.lichChieuPhim = a[0].danhSachPhim;
@@ -53,7 +53,7 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
           } else {
             this.phimChieu = false;
           }
-        },100)
+
        
         console.log(this.maCumRap)
         // console.log('a',a[0].maCumRap)

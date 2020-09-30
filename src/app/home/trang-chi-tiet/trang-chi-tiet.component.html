@@ -1,10 +1,11 @@
+<app-spinner-background ></app-spinner-background>
 <div *ngIf="chiTietPhim.ngayKhoiChieu" class="detail" [ngClass]='{"dark-detail":isTheme}'>
     <div class="detail-header">
         <div class="styleGradient"></div>
-        <img class="img-header" src="../../../assets/img/bg-detail.jpg" alt="">
+        <img class="img-header" src="assets/img/bg-detail.jpg" alt="">
         <div *ngIf="currentWidth <= 767  " class="img-header-sm" [ngStyle]="{'background-image': 'url(' + chiTietPhim.hinhAnh + ')'}">
             <div (click)="getTrailer()" class="play-icon">
-                <img src="../../../assets/img/icon-play.png" alt="">
+                <img src="assets/img/icon-play.png" alt="">
             </div>
             <div class="header-title">
                 <p class="khoiChieu">{{chiTietPhim.ngayKhoiChieu | formatDate:'1'}}-2020</p>
@@ -23,13 +24,13 @@
                         <img [src]=chiTietPhim.hinhAnh alt="">
                     </div>
                     <div class="img-border">
-                        <img src="../../../assets/img/border.png" alt="">
+                        <img src="assets/img/border.png" alt="">
                     </div>
                     <div class="img-hover">
-                        <img src="../../../assets/img/bghover.png" alt="">
+                        <img src="assets/img/bghover.png" alt="">
                     </div>
                     <div (click)="getTrailer()" class="play-icon">
-                        <img src="../../../assets/img/icon-play.png" alt="">
+                        <img src="assets/img/icon-play.png" alt="">
                     </div>
                 </div>
 

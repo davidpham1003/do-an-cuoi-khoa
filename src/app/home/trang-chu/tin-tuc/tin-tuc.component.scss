@@ -18,45 +18,52 @@
     }
     .tin-tuc__item {
       padding: $pad-mar3 0;
-      @include for-size(sm) {   
-        padding: $pad-mar2;     
+      @include for-size(sm) {
+        padding: $pad-mar2;
       }
-      @include for-size(xs) {   
-        padding: 5px;     
+      @include for-size(xs) {
+        padding: 5px;
       }
       .tin-tuc__img {
         img {
+          border: 2px solid transparent;
           border-radius: 5px;
-          @include for-size(xs) {     
-            border: 2px solid #ffffff;
+          @include for-size(xs) {
+            border: 2px solid $color-fontL-o8;
           }
         }
       }
+      transition: all 0.5s;
       position: relative;
+      &:hover {
+        .tin-tuc__title a {
+          color: $color-but-lo;
+        }
+        .tin-tuc__img img {
+          border: 2px solid $color-fontL-o8;
+          border-radius: 5px;
+        }
+      }
       .tin-tuc__title {
         a {
           text-decoration: none;
           color: black;
-          transition: all 0.5s;
           display: block;
-          &:hover {
-            color: rgb(0, 102, 255);
-          }
           font-size: 25px;
           max-width: 100%;
-          text-overflow:' ' ellipsis;
+          text-overflow: " " ellipsis;
           overflow: hidden;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           display: -webkit-box;
-          @include for-size(sm) {   
+          @include for-size(sm) {
             font-size: 20px;
             line-height: 30px;
-            height: 65px;      
+            height: 65px;
           }
-          @include for-size(xs) {   
-            padding: 5px;   
-            font-size: 25px;  
+          @include for-size(xs) {
+            padding: 5px;
+            font-size: 25px;
           }
         }
       }
@@ -72,17 +79,19 @@
           @include for-size(sm) {
             font-size: 18px;
           }
-          @include for-size(xs) {     
-            font-size: 25px;  
+          @include for-size(xs) {
+            font-size: 25px;
           }
         }
       }
     }
     .tin-tuc__item3 {
       padding-bottom: $pad-mar2;
+      @include for-size(phone-sm) {
+        margin: $pad-mar2 0;
+      }
       .tin-tuc__img {
         width: 70%;
-
       }
       .tin-tuc__title {
         width: 100%;
@@ -92,7 +101,7 @@
         a {
           font-size: 1rem;
           @include for-size(md) {
-            text-overflow:' ' ellipsis;
+            text-overflow: " " ellipsis;
             -webkit-line-clamp: 3;
             overflow: hidden;
             line-height: 1.5;
@@ -105,9 +114,15 @@
             height: 36px;
             -webkit-line-clamp: 2;
           }
-          @include for-size(xs) {    
-            font-size: 20px;  
+          @include for-size(xs) {
+            height: 100%;
+            font-size: 20px;
+            -webkit-line-clamp: 3;
+          }
+          @include for-size(phone-sm) {
+            font-size: $font-size2;
             height: 135px;
+            -webkit-line-clamp: 3;
           }
         }
       }
@@ -121,6 +136,12 @@
   .tin-tuc__content {
     color: $color-fontD;
     .tin-tuc__item {
+      &:hover {
+        .tin-tuc__img img {
+          border: 2px solid $color-fontD-o8;
+          border-radius: 5px;
+        }
+      }
       .tin-tuc__title {
         a {
           color: $color-fontD;
@@ -128,8 +149,8 @@
       }
       .tin-tuc__img {
         img {
-          @include for-size(xs) {     
-            // border: 2px solid #ffffff;
+          @include for-size(xs) {
+            border: 2px solid $color-fontD-o8;
           }
         }
       }

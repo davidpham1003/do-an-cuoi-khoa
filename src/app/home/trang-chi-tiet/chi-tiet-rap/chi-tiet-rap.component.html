@@ -19,10 +19,10 @@
                         <li *ngFor="let thongTinRap of cumRamChieu,let index = index, let last = last"
                             (click)="changeLichChieu(thongTinRap.maCumRap);changeIndexCumRap(index)"
                             class="lich-chieu__item py-2"
-                            [ngClass]="{'active':index === indexActiveCumRap}">
+                            [ngClass]="{'active':index === indexActiveCumRap}" @fadeIn>
 
                             <div class="d-flex">
-                                <img src="../../../../../assets/img/rap-demo.jpg" alt="">
+                                <img src="assets/img/rap-demo.jpg" alt="">
                                 <div class="item__title ml-2">
                                     <span class="tenRap" [ngClass]="{'BHD':maRap=='BHDStar',
                         'CGV':maRap=='CGV','CineStar':maRap=='CineStar','Galaxy':maRap=='Galaxy',
@@ -42,14 +42,14 @@
                             <div class="lich-phim__ngayXem d-flex">
                                 <div (click)="changeTime(ngayChieuItem);changeNgayActive(index)"
                                     *ngFor="let ngayChieuItem of ngayChieu; let index = index" class="ngay-xem-item "
-                                    [ngClass]='{"active": index === ngayActive}'>
+                                    [ngClass]='{"active": index === ngayActive}' @fadeIn>
                                     <p>{{(ngayChieuItem | formatDate :'1').split('-')[0]}}</p>
                                     <p>{{(ngayChieuItem | formatDate :'1').split('-')[1]}}</p>
                                 </div>
 
                             </div>
                             <div class="lich-chieu__border mb-4"></div>
-                            <div class="lich-phim__content d-flex ">
+                            <div class="lich-phim__content d-flex " >
                                 <img [src]="chiTietPhim.hinhAnh" alt="">
                                 <div class="lich-phim__title mx-3 mt-2">
                                     <span class="lich-tenPhim mr-2"> Cyber </span>

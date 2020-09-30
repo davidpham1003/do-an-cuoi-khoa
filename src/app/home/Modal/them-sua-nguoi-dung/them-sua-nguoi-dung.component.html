@@ -5,12 +5,12 @@
 <div  class="modal-dialog modal-dialog--config" role="document">
     <div class="modal-content modal-content--config">
         <div #btnClose class="btn-close" data-dismiss="modal">
-            <i class="fas fa-times"></i>
+            <i  class="fas fa-times"></i>
         </div>
 
         <h4>{{header}}</h4>
         <form [formGroup]='formUser' (ngSubmit)="addUser(formUser.value)" class="row">
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input [ngClass]='{"disabledInput":!this.isThemNguoiDung}'  class="balloon" id="taiKhoan" type="text" placeholder="Tài khoản"
                         formControlName='taiKhoan' /><label for="taiKhoan">Tài
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="matKhau" type="password" placeholder="Mật Khẩu"
                         formControlName='matKhau' /><label for="matKhau">Mật
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="hoTen" type="text" placeholder="Họ Tên" formControlName='hoTen' /><label
                         for="hoTen">Họ
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="email" type="text" placeholder="Email" formControlName='email' /><label
                         for="email">Email</label>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <span>
                     <input class="balloon" id="sdt" type="text" placeholder="Số Điện Thoại"
                         formControlName='soDt' /><label for="sdt">Số Điện
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 item-addUser">
+            <div class="col-md-6 col-12 item-addUser">
                 <label class="loaiNguoiDung selectInput" for="loaiNguoiDung">Người Dùng</label>
                 <select class="" name="loaiNguoiDung" id="loaiNguoiDung" formControlName='maLoaiNguoiDung'>
 

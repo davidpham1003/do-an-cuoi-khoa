@@ -1,5 +1,6 @@
 <div [ngClass]='{"dark":isTheme}'>
-    <app-header (ChangeTheme) = "changeTheme($event)" ></app-header>
+    <app-header id="header" (ChangeTheme) = "changeTheme($event)" ></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
+    <app-to-top></app-to-top>
 </div>

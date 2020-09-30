@@ -7,21 +7,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PopupComboComponent implements OnInit {
   @Output() Popup = new EventEmitter()
+  @Input() content:string;
   isPopup:boolean;
   closePopup(){
     this.isPopup = false
     this.Popup.emit( this.isPopup) 
-    console.log(this.isPopup)
   }
   popup(){
     this.isPopup = true
     console.log(this.isPopup)
-    this.Popup.emit( this.isPopup) 
   }
 
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isPopup = true;
+    }, 2500);
   }
 
 }

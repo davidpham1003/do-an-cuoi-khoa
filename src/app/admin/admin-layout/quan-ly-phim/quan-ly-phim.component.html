@@ -1,6 +1,7 @@
-<div class="quanLy-Phim" [ngClass]='{"show":danhSachPhim}'>
+<div class="quanLy-Phim" [ngClass]='{"show":danhSachPhim }'>
     <div class="add-film">
-        <button (click)=themPhim() data-toggle="modal" data-target="#addFilm" mat-raised-button color="primary" #button>Thêm Phim</button>
+        <button (click)=themPhim() data-toggle="modal" data-target="#addFilm" mat-raised-button color="primary"
+            #button>Thêm Phim</button>
     </div>
     <mat-form-field class="filter">
         <mat-label><i class="fas fa-search"></i> Tìm Kiếm </mat-label>
@@ -8,61 +9,66 @@
         <div class="remove-input" (click)='xoaInput(looking.value)'><i class="fas fa-times"></i>
         </div>
     </mat-form-field>
+    <div class="table-content">
+        <table mat-table matSort [dataSource]="danhSachPhim" class="mat-elevation-z8">
+            <ng-container matColumnDef="action">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef> Hành Động </th>
+                <td class="action" mat-cell *matCellDef="let element">
+                    <i (click)='xoaPhim(element.maPhim,element.tenPhim)' title='Xóa phim'
+                        class="fas fa-trash-alt mx-2"></i>
+                    <i (click)='capNhatPhim(element.maPhim)' title='Cập nhật phim' data-toggle="modal"
+                        data-target="#addFilm" title='Sửa người dùng' class="fas fa-edit mx-2"></i>
+                    <i (click)='capNhatPhim(element.maPhim)' title='Tạo lịch chiếu' data-toggle="modal"
+                        data-target="#addLichChieu" class="fas fa-plus-circle mx-2"></i>
+                </td>
+            </ng-container>
 
-    <table mat-table matSort [dataSource]="danhSachPhim" class="mat-elevation-z8">
-        <ng-container matColumnDef="action">
-            <th mat-header-cell mat-sort-header *matHeaderCellDef> Hành Động </th>
-            <td class="action" mat-cell *matCellDef="let element">
-                <i (click)='xoaPhim(element.maPhim,element.tenPhim)' title='Xóa phim' class="fas fa-trash-alt mx-2"></i>
-                <i (click)='capNhatPhim(element.maPhim)' title='Cập nhật phim' data-toggle="modal" data-target="#addFilm" title='Sửa người dùng' class="fas fa-edit mx-2"></i>
-                <i (click)='capNhatPhim(element.maPhim)' title='Tạo lịch chiếu' data-toggle="modal" data-target="#addLichChieu"  class="fas fa-plus-circle mx-2"></i>
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="maPhim">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Mã phim </th>
-            <td mat-cell *matCellDef="let element"> {{element.maPhim}} </td>
-        </ng-container>
-        <ng-container matColumnDef="tenPhim">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Tên phim </th>
-            <td mat-cell *matCellDef="let element" [title]="element.tenPhim"> <span>{{element.tenPhim}}</span> </td>
-        </ng-container>
-        <ng-container matColumnDef="biDanh">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Bí danh </th>
-            <td mat-cell *matCellDef="let element" [title]="element.biDanh"><span>{{element.biDanh}}</span> </td>
-        </ng-container>
-        <ng-container matColumnDef="trailer">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> <span>Trailer</span> </th>
-            <td mat-cell *matCellDef="let element"> {{element.trailer}} </td>
-        </ng-container>
-        <ng-container matColumnDef="hinhAnh">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Hình ảnh </th>
-            <td mat-cell *matCellDef="let element"> <img [src]="element.hinhAnh" alt=""> </td>
-        </ng-container>
-        <ng-container matColumnDef="maNhom">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Mã nhóm </th>
-            <td mat-cell *matCellDef="let element"> {{element.maNhom}} </td>
-        </ng-container>
-        <ng-container matColumnDef="moTa">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header>Mô tả </th>
-            <td mat-cell *matCellDef="let element" [title]="element.moTa"><span>{{element.moTa}} </span> </td>
-        </ng-container>
-        <ng-container matColumnDef="ngayKhoiChieu">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Ngày khởi chiếu </th>
-            <td mat-cell *matCellDef="let element"> {{element.ngayKhoiChieu}} </td>
-        </ng-container>
-        <ng-container matColumnDef="danhGia">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Đánh giá </th>
-            <td mat-cell *matCellDef="let element"> {{element.danhGia}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <ng-container matColumnDef="maPhim">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Mã phim </th>
+                <td mat-cell *matCellDef="let element"><span>{{element.maPhim}}</span>  </td>
+            </ng-container>
+            <ng-container matColumnDef="tenPhim">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Tên phim </th>
+                <td mat-cell *matCellDef="let element" [title]="element.tenPhim"> <span>{{element.tenPhim}}</span> </td>
+            </ng-container>
+            <ng-container matColumnDef="biDanh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Bí danh </th>
+                <td mat-cell *matCellDef="let element" [title]="element.biDanh"><span>{{element.biDanh}}</span> </td>
+            </ng-container>
+            <ng-container matColumnDef="trailer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> <span>Trailer</span> </th>
+                <td mat-cell *matCellDef="let element"> <span>{{element.trailer}}</span> </td>
+            </ng-container>
+            <ng-container matColumnDef="hinhAnh">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Hình ảnh </th>
+                <td mat-cell *matCellDef="let element"> <img [src]="element.hinhAnh" alt=""> </td>
+            </ng-container>
+            <ng-container matColumnDef="maNhom">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Mã nhóm </th>
+                <td mat-cell *matCellDef="let element"> <span>{{element.maNhom}}</span>  </td>
+            </ng-container>
+            <ng-container matColumnDef="moTa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header>Mô tả </th>
+                <td mat-cell *matCellDef="let element" [title]="element.moTa"><span>{{element.moTa}} </span> </td>
+            </ng-container>
+            <ng-container matColumnDef="ngayKhoiChieu">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Ngày khởi chiếu </th>
+                <td mat-cell *matCellDef="let element"><span>{{element.ngayKhoiChieu}} </span> </td>
+            </ng-container>
+            <ng-container matColumnDef="danhGia">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header> Đánh giá </th>
+                <td mat-cell *matCellDef="let element"><span>{{element.danhGia}}</span>  </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
     <mat-paginator [pageSizeOptions]="[3,4,5, 10, 20]" [pageSize]="3" [length] showFirstLastButtons></mat-paginator>
     <div class="modal fade" id="addFilm" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <app-them-sua-phim [objectSuaFilm]=objectSuaFilm (dsPhim)=capNhatDsPhim()></app-them-sua-phim>
     </div>
-    <div class="modal fade" id="addLichChieu" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="addLichChieu" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
         <app-them-sua-lich-chieu [objectThemLichChieu]=objectThemLichChieu></app-them-sua-lich-chieu>
         <!-- <app-them-sua-nguoi-dung [objectSuaUser]=objectSuaUser (updateUser)=capNhatDsNguoiDung()></app-them-sua-nguoi-dung> -->
     </div>
