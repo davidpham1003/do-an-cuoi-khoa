@@ -1,21 +1,25 @@
-@import 'mixin';
+@import 'main';
 .danhGia {
   justify-content: center;
   img {
-    width: 10px;
+    @include wh-circle(10px)
   }
 }
 .danhGiaDetail{
   // justify-content: center;
   img {
-    width: 25px;
+    @include wh-circle(25px);
     @include for-size(xs) {
-      width: 15px;
+      @include wh-circle(15px);
     }
   }
 }
 .danhGiaDetail2{
   img{
-    width: 50px;
+    @include wh-circle(50px);
+    @include for-size(md) {
+      @include wh-circle(40px)
+    }
   }
+ 
 }

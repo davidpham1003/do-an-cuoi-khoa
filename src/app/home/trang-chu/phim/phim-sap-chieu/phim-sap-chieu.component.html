@@ -1,6 +1,6 @@
-<div class="phim-sc mx-auto">
+<div class="phim-sc mx-auto" [ngClass]="{'dark-phimDc':isTheme}">
   <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
-    <div ngxSlickItem *ngFor="let phimItem of phimSC.reverse()" class="slide">
+    <div ngxSlickItem *ngFor="let phimItem of phimSC" class="slide">
       <app-phim-item (transTrailer)="getTrailer($event)" [phim]="phimItem" [isTheme]=isTheme></app-phim-item>
     </div>
   </ngx-slick-carousel>

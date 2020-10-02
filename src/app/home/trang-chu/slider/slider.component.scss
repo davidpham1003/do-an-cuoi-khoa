@@ -29,9 +29,13 @@
     cursor: pointer;
     top: 45%;
     left: 50%;
+    transform: translate(-45%,-50%);
     z-index: 1;
     opacity: .5;
     transition: all 1s ;
+    @include for-size(xs) {
+        @include wh-circle(60px);
+      }
 }
 .carousel-item__blur{
     opacity: 0;

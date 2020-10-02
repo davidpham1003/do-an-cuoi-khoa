@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 export class QuanLyPhimComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('looking') looking:ElementRef;
   displayedColumns: string[] = [
     'action',
     'maPhim',
@@ -67,8 +68,8 @@ export class QuanLyPhimComponent implements OnInit {
     this.danhSachPhim.filter = filterValue.trim().toLowerCase();
     console.log(event.target)
   }
-  xoaInput(value){
-    value = '';
+  xoaInput(){
+    this.looking.nativeElement.value =''
     this.capNhatDsPhim()
   }
   themPhim() {

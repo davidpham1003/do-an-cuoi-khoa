@@ -17,40 +17,43 @@
   .rap__content {
     .rap__logo {
       display: flex;
+      flex-wrap: wrap;
+      @include for-size(md) {
+        width: 100%;
+      }
+      @include for-size(phone-sm) {
+        // padding: 10px 0;
+      }
       .rap__item {
-        padding-right:  $pad-mar8;
-        padding-left:  $pad-mar8;
+        // padding-right:  $pad-mar8;
+        // padding-left:  $pad-mar8;
+        opacity: .5;
+        &.active{
+          opacity: 1;
+        }
         img {
-
           @include wh-circle(100px);
           @include for-size(md) {
             @include wh-circle(80px);
-
           }
           @include for-size(xs) {
             @include wh-circle(70px);
-
+          }
+          @include for-size(phone-sm) {
+            margin: 0;
           }
         }
         @include for-size(lg) {
           padding: $pad-mar2 $pad-mar6;
         }
         @include for-size(xs) {
-          padding-bottom: 0;
+          width: fit-content;
+          padding: $pad-mar2 $pad-mar4;
         }
         @include for-size(phone-sm) {
-          padding-bottom: $pad-mar2;
-          & .bg-item {
-            width: 100%;
-            .img-logo {
-              position: relative;
-              img {
-                transform: translateX(-10px);
-                width: 50%;
-                height: 100%;
-              }
-            }
-          }
+          background-color: transparent;
+          border-bottom: none;
+          // padding: 10px 0;
         }
       }
     }
@@ -61,8 +64,10 @@
         }
         .lich-chieu__content {
           border: none;
+      
           .lich-chieu__rap {
             padding-right: 15px;
+            height: 100%;
             .lich-chieu__item{
               img{
                 @include for-size(phone-sm) {
@@ -94,6 +99,9 @@
     font-size: 21px;
     text-align: center;
     cursor: pointer;
+    @include for-size(phone-sm){
+      padding: 0 $pad-mar6;
+    }
   }
   .active {
     color: #fb4226;

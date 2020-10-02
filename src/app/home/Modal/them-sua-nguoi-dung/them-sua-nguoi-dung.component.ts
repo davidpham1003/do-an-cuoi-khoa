@@ -25,6 +25,7 @@ export class ThemSuaNguoiDungComponent implements OnInit, OnChanges {
   @Input() methodUser: string;
   @Input() objectSuaUser: any;
   @Output() updateUser = new EventEmitter();
+  isShowPass:boolean = false;
   isThemNguoiDung: boolean;
   button: string = '';
   header: string;

@@ -10,8 +10,8 @@ export class MoviesService {
 
   constructor(private http: HttpClient,private api:ApiService  ) {}
   layDanhSachPhim(): Observable<Movies[]>{
-    return this.http.get<Movies[]>(
-      'http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP05'
+    return this.api.get<Movies[]>(
+      '/QuanLyPhim/LayDanhSachPhim?maNhom=GP05'
       )
   }
   themPhim(values:any):Observable<any>{

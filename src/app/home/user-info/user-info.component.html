@@ -4,7 +4,7 @@
             <div class="user-avatar">
                 <div class="avatar">
                     <label for="fileInput">
-                        <img [src]="url ? url : 'assets/img/avatar.png'" alt="">
+                        <img [src]="url ? url.img : 'assets/img/avatar.png'" alt="">
                         <i class="fas fa-upload"></i>
                         <div class="bgc-label"></div>
                     </label>
@@ -19,7 +19,7 @@
             </div>
             <div class="user-info-method">
                 <p (click)="changeMethod('thongTin')" class="method-item" [ngClass]="{'active':method =='thongTin'}">
-                    Thông Tin Tài Khoản</p>
+                    Thông Tin Tài Khoản</p>     
                 <p (click)="changeMethod('matKhau')" class="method-item" [ngClass]="{'active':method =='matKhau'}">Đổi
                     Mật Khẩu</p>
                 <p (click)="changeMethod('lichSuVe')" class="method-item" [ngClass]="{'active':method =='lichSuVe'}">
@@ -75,7 +75,8 @@
                 <div class="pass-content">
                     <div class="info-item">
                         <label for="">Mật Khẩu Cũ</label>
-                        <input type="password" formControlName='matKhau'>
+                        <input class="inputPass"  [type]="isShowPassCu ? 'text' : 'password'" formControlName='matKhau'>
+                        <label [ngClass]='{"showPass":isShowPassCu}' (click)="isShowPassCu = !isShowPassCu" for=""><i class="far fa-eye"></i></label>
                         <div *ngIf="formUpdatePass.get('matKhau').invalid && (formUpdatePass.get('matKhau').touched || formUpdatePass.get('matKhau').dirty )"
                             class="text-danger mt-1 small p-1 text-left">
                             <div *ngIf="formUpdatePass.get('matKhau').errors['required']">
@@ -91,7 +92,8 @@
                     </div>
                     <div class="info-item">
                         <label for="">Mật Khẩu Mới</label>
-                        <input type="password" formControlName='matKhauMoi'>
+                        <input class="inputPass" [type]="isShowPassMoi ? 'text' : 'password'" formControlName='matKhauMoi'>
+                        <label [ngClass]='{"showPass":isShowPassMoi}' (click)="isShowPassMoi = !isShowPassMoi" for=""><i class="far fa-eye"></i></label>
                         <div *ngIf="formUpdatePass.get('matKhauMoi').invalid && (formUpdatePass.get('matKhauMoi').touched || formUpdatePass.get('matKhauMoi').dirty )"
                             class="text-danger mt-1 small p-1 text-left">
                             <div *ngIf="formUpdatePass.get('matKhauMoi').errors['required']">
@@ -107,7 +109,8 @@
                     </div>
                     <div class="info-item">
                         <label for="">Xác Mật Khẩu Mới</label>
-                        <input type="password" formControlName='xacNhanMk'>
+                        <input class="inputPass" [type]="isShowPassConfirm ? 'text' : 'password'" formControlName='xacNhanMk'>
+                        <label [ngClass]='{"showPass":isShowPassConfirm}' (click)="isShowPassConfirm = !isShowPassConfirm" for=""><i class="far fa-eye"></i></label>
                         <div *ngIf="formUpdatePass.get('xacNhanMk').invalid && (formUpdatePass.get('xacNhanMk').touched || formUpdatePass.get('xacNhanMk').dirty )"
                             class="text-danger mt-1 small p-1 text-left">
                             <div *ngIf="formUpdatePass.get('xacNhanMk').errors['required']">

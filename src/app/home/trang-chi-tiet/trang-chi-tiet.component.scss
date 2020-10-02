@@ -52,16 +52,18 @@
       }
       .detail-header__title {
         p {
-          font-size: 35px;
+          font-size: $font-size5;
           font-weight: 500;
           color:$color-fontL;
+          @include for-size(phone-sm){
+            font-size: $font-size4;
+          }
         }
         .Cyber {
           font-size: $font-size2;
           background-color: $color-but-lo;
           border-radius: 4px;
           padding: $pad-mar1 8px;
-          min-width: 33px;
           text-align: center;
           display: inline-block;
           margin-right: 8px;
@@ -92,6 +94,9 @@
       .header-detail-img {
         position: relative;
         overflow: hidden;
+        @include for-size(md) {
+          overflow: initial;
+        }
         .img-phim img {
           width: 214px;
           height: 316px;
@@ -144,10 +149,16 @@
           bottom: -100%;
           left: -100%;
           transition: all 0.2s;
+          @include for-size(md){
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+          }
         }
         &:hover .img-hover {
           bottom: 0%;
           left: 0;
+          opacity: 1;
         }
         .img-border {
           top: 0;
@@ -176,7 +187,6 @@
           border-radius: 4px;
           padding: $pad-mar1 8px;
           color: $color-font-but-lo;
-          min-width: 33px;
           text-align: center;
           display: inline-block;
           margin-right: 8px;
@@ -194,7 +204,10 @@
       }
     }
     .header-circleStar {
-      @include for-size(xs) {
+      @include for-size(md) {
+        width: 200px;
+      }
+      @include for-size(sm) {
         display: none;
       }
       align-self: center;

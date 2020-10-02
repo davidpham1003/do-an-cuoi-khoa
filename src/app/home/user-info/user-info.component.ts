@@ -5,6 +5,7 @@ import { AuthenticationService } from 'src/app/core/Servers/authentication.servi
 import { UserService } from '../../core/Servers/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-info',
@@ -30,19 +31,23 @@ export class UserInfoComponent implements OnInit {
   isTheme: any;
   method: string = 'thongTin';
   currentUser: any = {};
+  isShowPassCu:boolean = false;
+  isShowPassMoi:boolean = false;
+  isShowPassConfirm:boolean = false;
   public formUpdate: FormGroup;
   public formUpdatePass: FormGroup;
-  url: any = '';
+  url: any;
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => {
         // // called once readAsDataURL is completed
-        // console.log(this.url);
+
         this.url = event.target.result
-        localStorage.setItem(this.currentUser.taiKhoan, JSON.stringify(this.url));
-        this.user.updateAvatarUser(this.url);
+        const imgUser = {taiKhoan : this.currentUser.taiKhoan, img:this.url}
+        localStorage.setItem(this.currentUser.taiKhoan, JSON.stringify(imgUser));
+        this.user.updateAvatarUser(imgUser);
       };
     }
   }
@@ -98,10 +103,14 @@ export class UserInfoComponent implements OnInit {
       };
       this.auth.capNhat(userUpdate).subscribe({
         next: (data) => {
-          // console.log('success', data);
+          Swal.fire('','Cập nhật mật khẩu thành công','success')
+          this.formUpdatePass.reset()
         },
+        error:(err)=>{
+          Swal.fire('',`${err.error}`,'warning')
+        }
       });
-      // console.log(userUpdate);
+      
     }
   }
   capNhat(value) {
@@ -118,20 +127,23 @@ export class UserInfoComponent implements OnInit {
     };
     this.auth.capNhat(userUpdate).subscribe({
       next: (data) => {
-        // console.log('success', data);
+        Swal.fire('','Cập nhật mật khẩu thành công','success')
       },
+      error:(err)=>{
+        Swal.fire('',`${err.error}`,'warning')
+      }
     });
 
-    // console.log(value);
+
   }
   ngOnInit(): void {
     this.user.avatarUser.subscribe({
       next: (data) => {
         this.url = data;
-        // console.log(data);
+
       },
     });
-    // console.log(img)
+
     this.dateTheme.shareIsTheme.subscribe((data) => {
       this.isTheme = data;
     });
@@ -150,7 +162,7 @@ export class UserInfoComponent implements OnInit {
                 hoTen: this.currentUser.hoTen,
                 soDt: this.currentUser.soDT,
               });
-              // console.log(this.thongTinDatVe.length);
+
             },
           });
         }

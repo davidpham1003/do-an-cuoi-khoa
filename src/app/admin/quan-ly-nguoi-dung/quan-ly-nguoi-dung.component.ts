@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('looking') looking : ElementRef;
   displayedColumns: string[] = [
     'action',
     'taiKhoan',
@@ -48,8 +49,8 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
     })
     console.log((event.target as HTMLInputElement).value)
   }
-  xoaInput(value){
-    value = '';
+  xoaInput(){
+   this.looking.nativeElement.value = ''
     this.capNhatDsNguoiDung()
   }
   themNguoiDung(){

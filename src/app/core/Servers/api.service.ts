@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  BASE_URL = 'http://movie0706.cybersoft.edu.vn/api';
+  BASE_URL = 'https://movie0706.cybersoft.edu.vn/api';
 
   handleError(error: any) {
     // Sử lý những error thông dụng như 500, 404, 401, 400,...

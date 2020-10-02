@@ -412,6 +412,9 @@
 
 table {
   transform: translateY(40%);
+  &.table-phone{
+    transform: translateY(25%);
+  }
   .combo-content {
     color: black;
   }

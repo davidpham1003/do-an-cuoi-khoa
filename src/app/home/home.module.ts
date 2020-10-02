@@ -59,6 +59,7 @@ import { ThemSuaPhimComponent } from './Modal/them-sua-phim/them-sua-phim.compon
 import { ThemSuaLichChieuComponent } from './Modal/them-sua-lich-chieu/them-sua-lich-chieu.component';
 import { SpinnerBackgroundComponent } from './spinner/spinner-background/spinner-background.component';
 import { ToTopComponent } from './to-top/to-top.component';
+import { ThaTimComponent } from './spinner/tha-tim/tha-tim.component';
 
 const route: Routes = [
   {
@@ -112,6 +113,7 @@ const route: Routes = [
     ThemSuaLichChieuComponent,
     SpinnerBackgroundComponent,
     ToTopComponent,
+    ThaTimComponent,
   ],
   imports: [
     CommonModule,

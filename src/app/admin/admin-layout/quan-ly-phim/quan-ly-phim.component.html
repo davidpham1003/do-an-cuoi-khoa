@@ -5,9 +5,9 @@
     </div>
     <mat-form-field class="filter">
         <mat-label><i class="fas fa-search"></i> Tìm Kiếm </mat-label>
-        <input id='looking' matInput (keyup)="applyFilter($event)" #looking>
-        <div class="remove-input" (click)='xoaInput(looking.value)'><i class="fas fa-times"></i>
-        </div>
+        <input name="looking" id='looking' matInput (keyup)="applyFilter($event)" #looking>
+        <label for="looking" class="remove-input" (click)='xoaInput()'><i class="fas fa-times"></i>
+        </label>
     </mat-form-field>
     <div class="table-content">
         <table mat-table matSort [dataSource]="danhSachPhim" class="mat-elevation-z8">

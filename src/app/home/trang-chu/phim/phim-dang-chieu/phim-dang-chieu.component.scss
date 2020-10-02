@@ -1,5 +1,12 @@
-@import 'mixin';
-
+@import 'main';
+::ng-deep .slick-prev:before, ::ng-deep .slick-next:before {
+    color: $color-fontL-o8;
+}
+.dark-phimDc{
+    &::ng-deep .slick-prev:before, ::ng-deep .slick-next:before {
+        color: $color-fontD-o8;
+    }
+}
 
 // .owl-carousel .owl-nav .owl-next{
 //     background-image: url('../../../../../assets/img/prev-next.png');

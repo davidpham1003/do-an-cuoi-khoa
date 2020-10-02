@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-popup-combo',
   templateUrl: './popup-combo.component.html',
   styleUrls: ['./popup-combo.component.scss']
 })
-export class PopupComboComponent implements OnInit {
+export class PopupComboComponent implements OnInit,AfterViewInit {
   @Output() Popup = new EventEmitter()
   @Input() content:string;
   isPopup:boolean;
@@ -21,6 +21,9 @@ export class PopupComboComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit(){
     setTimeout(() => {
       this.isPopup = true;
     }, 2500);

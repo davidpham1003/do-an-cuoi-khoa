@@ -11,7 +11,7 @@
         </div>
         <ng-template  #PSC>
             <div [@simpleFadeAnimation]="'in'" class="content_SC" >
-                <app-phim-sap-chieu [isTheme]=isTheme [phimSC]=dsPhim></app-phim-sap-chieu>
+                <app-phim-sap-chieu [isTheme]=isTheme [phimSC]=dsPhim.reverse()></app-phim-sap-chieu>
             </div>
         </ng-template>
     </div>

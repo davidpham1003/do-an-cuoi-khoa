@@ -27,7 +27,7 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
   @HostListener('window:resize')
   onResize() {
     this.currentWindowWidth = window.innerWidth;
-    // console.log(this.currentWindowWidth);
+
   }
   showGio() {
     this.isShowGio = !this.isShowGio;
@@ -37,7 +37,7 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
   }
   ngOnInit(): void {
     this.currentWindowWidth = window.innerWidth;
-    // console.log(this.maRap)
+
   }
   ngOnChanges(): void {
 
@@ -55,8 +55,7 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
           }
 
        
-        console.log(this.maCumRap)
-        // console.log('a',a[0].maCumRap)
+
 
         // dsRap.forEach((dsRapItem) => {
         //   if (dsRapItem.maCumRap === this.maCumRap) {
@@ -67,11 +66,10 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
         //     this.lichChieuPhim = []
         //   }
         // });;
-        // console.log(a);
-        // console.log(result);
+
       },
       error: (err) => {
-        // console.log(err);
+
       },
     });
   }

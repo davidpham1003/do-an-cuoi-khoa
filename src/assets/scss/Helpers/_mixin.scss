@@ -1,5 +1,6 @@
 @import "variable";
 $breakpoints: (
+  iphone-5:320px,
   iphone: 375px,
   phone-sm: 420px,
   xs: 575px,
@@ -35,6 +36,16 @@ $breakpoints: (
   -webkit-box-orient: vertical;
   overflow: hidden;
   display: -webkit-box;
+  text-overflow: ellipsis
+}
+
+//Hiện thị số dòng.
+@mixin line-clamp($number-line){
+	display: -webkit-box;
+    -webkit-line-clamp: $number-line;
+	-webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 // Căn Giữa khi position Absolute

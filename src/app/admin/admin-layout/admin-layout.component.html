@@ -1,11 +1,16 @@
 <div class="dashboard">
-    <div class="header" [ngClass]=(addClassShow())>
+    <div class="header d-flex" [ngClass]=(addClassShow())>
         <div class="btn-menu " (click)='showController()'>
             <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
             <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
             <span><img src="assets/img/bg-button-menu.jpg" alt=""></span>
         </div>
         <h4>Dashboard</h4>
+        <div  class="avatar-admin ">
+            <img [src]="avatar ? avatar.img : 'assets/img/avatar.png' " alt="">
+            <p>{{ currentAdmin.taiKhoan}}</p>
+            
+        </div>
 
     </div>
     <div class="dashboard-controller" [ngClass]=(addClassShow())>
@@ -46,6 +51,7 @@
                 <i class="fas fa-power-off"></i>
                 <h5>Đăng Xuất </h5>
             </div>
+          
         </div>
     </div>
     <div class="dashboard-content" [ngClass]=(addClassShow())>

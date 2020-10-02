@@ -58,40 +58,10 @@ export class PhimDangChieuComponent implements OnInit, AfterViewInit {
   closeModal() {
     this.trailer = '';
   }
-  // customOptions: OwlOptions = {
-  //   loop: true,
-  //   mouseDrag: true,
-  //   touchDrag: true,
-  //   pullDrag: false,
-  //   dots: false,
-  //   navSpeed: 2000,
-  //   // autoplay:true,
-  //   autoplaySpeed: 2000,
-  //   autoplayTimeout: 5000,
-  //   autoplayHoverPause: true,
-  //   navText: [
-  //     "<img src='../../../../../../assets/img/prev-nav.png'/>",
-  //     "<img src='../../../../../../assets/img/next-nav.png'/>",
-  //   ],
-  //   responsive: {
-  //     0: {
-  //       items: 1,
-  //     },
-  //     400: {
-  //       items: 2,
-  //     },
-  //     740: {
-  //       items: 3,
-  //     },
-  //     940: {
-  //       items: 4,
-  //     },
-  //   },
-  //   nav: false,
-  // };
-
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
   ngAfterViewInit(): void {}
 }

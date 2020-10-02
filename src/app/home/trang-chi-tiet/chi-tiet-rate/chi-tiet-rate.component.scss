@@ -35,6 +35,9 @@
       @include for-size(xs) {
         font-size: $font-size2;
       }
+      @include for-size(iphone) {
+        font-size: 14px;
+      }
     }
     .star {
       text-align: right;
@@ -52,6 +55,9 @@
         }
         @include for-size(phone-sm) {
           font-size: $font-size2;
+        }
+        @include for-size(iphone) {
+          font-size: 14px;
         }
       }
     }
@@ -75,9 +81,23 @@
   }
 
   .body__content {
+    position: relative;
     width: 45%;
     @include for-size(md) {
       width: 100%;
+      margin-bottom: $pad-mar7;
+    }
+    .tha-tim {
+      position: absolute;
+      bottom: -75px;
+      right: 5px;
+      span{
+        font-size: $font-size4;
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translateY(-50%);
+      }
     }
     .body__title {
       padding: $pad-mar3 $pad-mar2;
@@ -98,11 +118,11 @@
     }
   }
   .danhGia-body__content {
-    pointer-events: none;
     background-color: #fff;
     border: rgba(0, 0, 0, 0.2) solid 1px;
     border-radius: 5px;
     padding: 8px $pad-mar3;
+
     @include for-size(xs) {
       padding: $pad-mar1 $pad-mar2;
     }
@@ -121,6 +141,8 @@
       align-self: center;
       color: rgba(0, 0, 0);
       font-weight: 450;
+      pointer-events: none;
+      // width: 70%;
     }
     .star {
       align-self: center;
@@ -247,6 +269,12 @@ textarea {
 }
 .dark-danhGia {
   .danhGia_body {
+    .tha-tim {
+      span{
+        color: white;
+        
+      }
+    }
     .body__title {
       p {
         color: $color-fontD;

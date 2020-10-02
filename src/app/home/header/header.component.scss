@@ -3,6 +3,7 @@
   .UserName {
     align-self: center;
     font-weight: 550;
+    color: $color-fontL;
   }
   position: fixed;
   top: 0%;
@@ -12,6 +13,7 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   transition: 0.5s all;
   padding: 0 10%;
+  color: $color-fontL;
   &:hover {
     background-color: rgba(255, 255, 255);
   }
@@ -137,7 +139,7 @@ img {
   }
   .helloUser {
     padding: 0 15px;
-    color: $color-fontD;
+
     .UserName-img {
       position: relative;
       img {
@@ -155,7 +157,8 @@ img {
         color: #000;
         text-align: center;
         width: 250px;
-        display: none;
+        height: 0;
+        transition:all .5;
         .arrow-up {
           height: 16px;
           img {
@@ -196,7 +199,7 @@ img {
         }
       }
       .activeUserInfo {
-        display: block;
+        height: 100px;
       }
     }
     

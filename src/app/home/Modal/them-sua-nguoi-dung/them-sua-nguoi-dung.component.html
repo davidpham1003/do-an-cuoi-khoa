@@ -2,18 +2,18 @@
 
 <!-- Modal -->
 
-<div  class="modal-dialog modal-dialog--config" role="document">
+<div class="modal-dialog modal-dialog--config" role="document">
     <div class="modal-content modal-content--config">
         <div #btnClose class="btn-close" data-dismiss="modal">
-            <i  class="fas fa-times"></i>
+            <i class="fas fa-times"></i>
         </div>
 
         <h4>{{header}}</h4>
         <form [formGroup]='formUser' (ngSubmit)="addUser(formUser.value)" class="row">
             <div class="col-md-6 col-12 item-addUser">
                 <span>
-                    <input [ngClass]='{"disabledInput":!this.isThemNguoiDung}'  class="balloon" id="taiKhoan" type="text" placeholder="Tài khoản"
-                        formControlName='taiKhoan' /><label for="taiKhoan">Tài
+                    <input [ngClass]='{"disabledInput":!this.isThemNguoiDung}' class="balloon" id="taiKhoan" type="text"
+                        placeholder="Tài khoản" formControlName='taiKhoan' /><label for="taiKhoan">Tài
                         Khoản</label>
                 </span>
                 <div class=' error' *ngIf="formUser.get('taiKhoan').invalid &&
@@ -28,9 +28,11 @@
             </div>
             <div class="col-md-6 col-12 item-addUser">
                 <span>
-                    <input class="balloon" id="matKhau" type="password" placeholder="Mật Khẩu"
+                    <input class="balloon" id="matKhau" [type]="isShowPass ? 'text' : 'password'" placeholder="Mật Khẩu"
                         formControlName='matKhau' /><label for="matKhau">Mật
                         Khẩu</label>
+                    <label  (click)="isShowPass = !isShowPass" for=""><i
+                            class="far fa-eye" [ngClass]='{"showPass":isShowPass}'></i></label>
                 </span>
                 <div class=' error' *ngIf="formUser.get('matKhau').invalid &&
                 (formUser.get('matKhau').dirty || formUser.get('matKhau').touched)">

@@ -21,6 +21,9 @@
   color: rgb(99 100 105);
   font-size: 25px;
   font-weight: 550;
+  &.show-height{
+    top: 90px;
+  }
   .content-title {
     padding: 50px 0;
   }

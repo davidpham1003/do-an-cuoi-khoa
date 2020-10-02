@@ -7,7 +7,7 @@ import { ApiService } from './api.service';
 })
 export class UserService {
   constructor(private api: ApiService) {}
-  private avatarUserSubject = new BehaviorSubject({} as object);
+  private avatarUserSubject = new BehaviorSubject({});
   avatarUser = this.avatarUserSubject.asObservable();
   updateAvatarUser(value) {
     this.avatarUserSubject.next(value);

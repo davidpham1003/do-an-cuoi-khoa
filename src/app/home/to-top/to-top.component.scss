@@ -7,13 +7,20 @@
     text-align: center;
     border-radius: 4px;
     position: fixed;
-    bottom: 10%;
+    bottom: 15%;
     right: 30px;
     transition: background-color .3s, 
       opacity .5s, visibility .5s;
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
+    &.show-phone{
+      right: 10px;
+    }
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
   }
   #button  {
     font-weight: normal;
@@ -21,6 +28,7 @@
     font-size: 2em;
     line-height: 50px;
     color: #fff;
+ 
   }
   #button:hover {
     cursor: pointer;
@@ -29,10 +37,7 @@
   #button:active {
     background-color: #425ae0;
   }
-  #button.show {
-    opacity: 1;
-    visibility: visible;
-  }
+
   i{
       font-size: 30px;
   }

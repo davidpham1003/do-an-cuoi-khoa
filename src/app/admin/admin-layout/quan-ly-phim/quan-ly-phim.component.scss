@@ -35,9 +35,9 @@
   }
 }
 table {
-  max-width: 98%;
+  // max-width: 98%;
   @include for-size(lg){
-    max-width: 960px;
+    // max-width: 960px;
   }
   margin: 0 auto;
   padding: $pad-mar8;

@@ -205,6 +205,7 @@
       .info__content,
       .pass-content {
         .info-item {
+          position: relative;
           text-align: left;
           label {
             font-weight: 550;
@@ -328,4 +329,16 @@
       }
     }
   }
+}
+.inputPass{
+  + label{
+    position: absolute;
+    top: 30px;
+    right: 3%;
+    opacity: .5;
+    &.showPass{
+      opacity: 1;
+    }
+  }
+ 
 }

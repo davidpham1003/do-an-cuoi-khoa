@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChangeThemeService } from 'src/app/core/Servers/change-theme.service';
 import {MangSliderService} from '../../../core/Servers/mang-slider.service'
 
 @Component({
@@ -8,6 +9,7 @@ import {MangSliderService} from '../../../core/Servers/mang-slider.service'
 })
 export class SliderComponent implements OnInit {
   trailer:string 
+  isTheme:any;
   closeModal(){
     this.trailer=''
   }
@@ -16,12 +18,15 @@ export class SliderComponent implements OnInit {
 
   }
   mangSlider:any[];
-  constructor( public slider : MangSliderService ) {
+  constructor( public slider : MangSliderService,private changeTheme : ChangeThemeService ) {
    }
 
   ngOnInit(): void {
     this.mangSlider = this.slider.mangSlider 
-
+    this.changeTheme.shareIsTheme.subscribe(data=>{
+      this.isTheme = data
+      console.log(data)
+    })
   }
 
 }

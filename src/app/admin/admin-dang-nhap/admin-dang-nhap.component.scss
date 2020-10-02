@@ -47,7 +47,7 @@
   box-sizing: border-box;
   font-size: 14px;
   &:focus {
-    box-shadow: 0px 0px 0px 1px $color-timeL;
+    box-shadow: 0px 0px 0px 1px $color-admin-login;
   }
 }
 .form button {
@@ -68,7 +68,7 @@
 .form button:hover,
 .form button:active,
 .form button:focus {
-  background: $color-timeL;
+  background: $color-admin-login-hover;
 }
 .form .message {
   margin: 15px 0 0;
@@ -78,6 +78,11 @@
 .form .message a {
   color: $color-admin-login;
   text-decoration: none;
+  font-weight: 550;
+  &:hover{
+   color: $color-admin-login-hover;
+
+  }
 }
 .form .register-form {
   display: none;

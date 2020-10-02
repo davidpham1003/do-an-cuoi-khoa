@@ -1,5 +1,5 @@
 <div class="chiTiet_danhGia" [ngClass]='{"dark-danhGia":isTheme}'>
-    <div data-toggle="modal" data-target="#warning-dangNhap" class="danhGia_header">
+    <div data-toggle="modal" [attr.data-target]="currentUser.taiKhoan ? '#warning-comment' : '#warning-dangNhap'" class="danhGia_header">
         <!-- data-toggle="modal" data-target="#modelId" -->
         <div class="danhGia-header__content d-flex">
             <img src="assets/img/avatar.png" alt="">
@@ -27,11 +27,17 @@
             </div>
             <div class=" danhGia-body__content d-flex ">
                 <ng-template #noAvatar>
-                    <img [src]=" url ? url : 'assets/img/avatar.png'" alt="" style="border: none;">
+                    <img [src]=" comment.img ? comment.img : 'assets/img/avatar.png'" alt="" style="border: none;">
                 </ng-template>
                 <img *ngIf="comment.img;else noAvatar" [src]=comment.img alt="">
                 <p>{{comment.binhLuan}}</p>
+                
             </div>
+            <div data-toggle="modal" data-target="#warning-dangNhap"  class="tha-tim d-flex">
+                <app-tha-tim [isActive]=comment.trangThai  (click)='thaTim(comment.taiKhoan)'></app-tha-tim>
+                <span>{{comment.heart}}</span>
+            </div>
+         
         </div>
         <div class="show-more">
             <i *ngIf="mangComment.length > mangContent.length" (click)="showMore()"
@@ -45,7 +51,7 @@
 
 <!-- Modal -->
 <ng-template #danhGia>
-    <div data-backdrop="static" class="modal-danhGia modal fade" id="warning-dangNhap" tabindex="-1" role="dialog"
+    <div data-backdrop="static" class="modal-danhGia modal fade" id="warning-comment" tabindex="-1" role="dialog"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

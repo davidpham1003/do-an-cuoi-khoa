@@ -23,6 +23,5 @@ export class PhimItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    // console.log('phim',this.phim)
   }
 }

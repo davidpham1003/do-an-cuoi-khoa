@@ -42,36 +42,55 @@ export class ChiTietRateComponent implements OnInit {
     if (this.formComment.invalid || this.star == 0) {
       return;
     }
-    console.log(this.star);
+
     this.mangComment = [
       {
         binhLuan: value.binhLuan,
         danhGia: this.star,
         taiKhoan: this.currentUser.taiKhoan,
         trangThai: this.trangThai,
-        img: this.url,
+        img: this.url ? this.url.img : null,
+        heart:0,
       },
       ...this.mangComment,
     ];
-    this.mangContent = this.mangComment.slice(0,5*this.count)
+    this.mangContent = this.mangComment.slice(0, 5 * this.count);
     localStorage.setItem('comment', JSON.stringify(this.mangComment));
     $('input[name="rating"]').prop('checked', false); // Reset Rating khi Submit thành công
     this.star = 0; // Reset Đánh giá về 0
     this.formComment.reset(); // Reset Value Form
     this.closeModal.nativeElement.click();
   }
+  thaTim(value) {
+    this.mangContent.forEach((commentItem) => {
+      if (this.currentUser.taiKhoan) {
+        if (value == commentItem.taiKhoan) {
+          if (!commentItem.trangThai) {
+            commentItem.trangThai = true;
+            commentItem.heart += 1;
+          } else {
+            commentItem.trangThai = false;
+            commentItem.heart -= 1;
+          }
+        }
+      }else{
+        commentItem.trangThai = false;
+      }
+    });
+
+    localStorage.setItem('comment', JSON.stringify(this.mangContent));
+    console.log(value, this.mangContent);
+  }
   showMore() {
-    this.count ++
-    this.mangContent = this.mangComment.slice(0,5*this.count)
-  
+    this.count++;
+    this.mangContent = this.mangComment.slice(0, 5 * this.count);
   }
   hideee() {
-    this.count=1
-    this.mangContent = this.mangComment.slice(0,5*this.count)
+    this.count = 1;
+    this.mangContent = this.mangComment.slice(0, 5 * this.count);
   }
   setStar(value) {
     this.star = value;
-    console.log(this.star);
   }
   ngOnInit(): void {
     this.auth.currentUser.subscribe({
@@ -82,14 +101,24 @@ export class ChiTietRateComponent implements OnInit {
     this.user.avatarUser.subscribe({
       next: (data) => {
         this.url = data;
+
+        let comment_local = JSON.parse(localStorage.getItem('comment'));
+        if (comment_local) {
+          if (this.url) {
+            comment_local.forEach((commentItem) => {
+              if (commentItem.taiKhoan == this.url.taiKhoan) {
+                commentItem.img = this.url.img;
+              }
+            });
+            localStorage.setItem('comment', JSON.stringify(comment_local));
+          }
+          this.mangComment = comment_local;
+        } else {
+          this.mangComment = this.comment.mangComment;
+        }
       },
     });
-    let comment_local = JSON.parse(localStorage.getItem('comment'));
-    if (comment_local) {
-      this.mangComment = comment_local;
-    } else {
-      this.mangComment = this.comment.mangComment;
-    }
-    this.mangContent = this.mangComment.slice(0,5*this.count)
+
+    this.mangContent = this.mangComment.slice(0, 5 * this.count);
   }
 }

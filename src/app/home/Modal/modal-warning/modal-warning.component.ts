@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnChanges, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-warning',
@@ -10,6 +10,12 @@ export class ModalWarningComponent implements OnInit, OnChanges {
   thongBao: string = 'Không thể để trống ghế ở giữa!';
   constructor() {}
   currentWidth:number
+  currentHeight:number
+  @HostListener('window:resize')
+  onResize(){
+    this.currentWidth = window.innerWidth
+    this.currentHeight = window.innerHeight
+  }
   reload() {
     if (this.warning == 'timer') {
       location.reload();
@@ -37,11 +43,11 @@ export class ModalWarningComponent implements OnInit, OnChanges {
       default:
         break;
     }
-    console.log(this.warning)
-    console.log(this.thongBao)
+
   }
   ngOnInit(): void {
     this.currentWidth = window.innerWidth
-    console.log(this.warning)
+    this.currentHeight = window.innerHeight
+
   }
 }

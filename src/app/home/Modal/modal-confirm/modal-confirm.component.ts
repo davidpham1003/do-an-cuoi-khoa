@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { GheService } from 'src/app/core/Servers/ghe.service';
 
 @Component({
@@ -9,7 +9,12 @@ import { GheService } from 'src/app/core/Servers/ghe.service';
 export class ModalConfirmComponent implements OnInit {
   @Input() mangDatVe: any;
   isConfirm: boolean;
+  currentHeight:number;
   constructor(private ghe: GheService) {}
+  @HostListener('window:resize')
+  onResize(){
+    this.currentHeight = window.innerHeight
+  }
   datVe() {
     this.isConfirm = true;
     if (this.mangDatVe) {
@@ -23,5 +28,7 @@ export class ModalConfirmComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentHeight = window.innerHeight
+  }
 }

@@ -6,9 +6,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GheService } from '../../core/Servers/ghe.service';
 import { CountdownComponent } from 'ngx-countdown';
+import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
+import Swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -21,7 +23,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   @ViewChild('cd', { static: false }) private countdown: CountdownComponent;
   danhSachGhe: any[];
   thongTinPhim: any;
-  gheDangChon: any[] =[] ;
+  gheDangChon: any[] = [];
   tienVe: number = 0;
   tienCombo: number = 0;
   isCombo: boolean = false;
@@ -29,21 +31,24 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   isWarning: boolean;
   isDatVe: boolean;
   isThanhToan: boolean = false;
-  isConfirm:boolean;
+  isConfirm: boolean;
   mangDatVe: any = {};
   leftTime: number = 300;
   currentWidth: number;
- @HostListener ('window:resize')
- onResize(){
-   this.currentWidth = window.innerWidth
-   if(this.currentWidth > 420){
-    this.isThanhToan = true;
-    this.isConfirm = true;
-  }else{
-    this.isThanhToan = false;
-    this.isConfirm = false;
+  currentHeight:number;
+  currentUser: any;
+  @HostListener('window:resize')
+  onResize() {
+    this.currentWidth = window.innerWidth;
+    this.currentHeight = window.innerHeight;
+    if (this.currentWidth > 420) {
+      this.isThanhToan = true;
+      this.isConfirm = true;
+    } else {
+      this.isThanhToan = false;
+      this.isConfirm = false;
+    }
   }
- }
   mangCombo: any[] = [
     {
       id: 'combo1',
@@ -63,6 +68,8 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     },
   ];
   constructor(
+    public router:Router,
+    private auth: AuthenticationService,
     private ghe: GheService,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -85,11 +92,10 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
       }
     }
   }
-  onTimerFinished(event){
-    if(event['action'] == 'done'){
-      this.openModal.nativeElement.click()
+  onTimerFinished(event) {
+    if (event['action'] == 'done') {
+      this.openModal.nativeElement.click();
     }
-
   }
 
   datCombo(id: string, value: boolean) {
@@ -139,35 +145,49 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     // console.log(this.gheDangChon);
   }
   datVe() {
+    if (this.currentUser.taiKhoan) {
       this.isDatVe = true;
-      const user = JSON.parse(localStorage.getItem('userInfo'));
       this.mangDatVe = {
         maLichChieu: this.thongTinPhim.maLichChieu,
         danhSachVe: this.gheDangChon,
-        taiKhoanNguoiDung: user.taiKhoan,
+        taiKhoanNguoiDung: this.currentUser.taiKhoan,
       };
+    }else{
+      Swal.fire('Đăng Nhập?','Vui lòng đăng nhập để tiếp tục đặt ghế !','warning')
     }
-
-  datVeBuoc1(){
-    this.isConfirm = true
-    setTimeout(()=>{
-      this.isThanhToan = true
-    },1000)
   }
-  backBuoc1(){
-    this.isConfirm = false
-    this.isThanhToan = false
+    
+
+
+  datVeBuoc1() {
+    this.isConfirm = true;
+    setTimeout(() => {
+      this.isThanhToan = true;
+    }, 1000);
+  }
+  backBuoc1() {
+    this.isConfirm = false;
+    this.isThanhToan = false;
   }
 
   ngOnInit(): void {
-    this.currentWidth = window.innerWidth
-    if(this.currentWidth > 420){
+    this.currentHeight = window.innerHeight;
+    console.log(this.currentHeight)
+    this.currentWidth = window.innerWidth;
+    if (this.currentWidth > 420) {
       this.isThanhToan = true;
       this.isConfirm = true;
-    }else{
+    } else {
       this.isThanhToan = false;
       this.isConfirm = false;
     }
+    this.auth.currentUser.subscribe({
+      next: (data) => {
+        if (data) {
+          this.currentUser = data;
+        } 
+      },
+    });
     this.activatedRoute.params.subscribe({
       next: (params) => {
         this.ghe.layDanhSachGhe(params.maLichChieu).subscribe({
@@ -183,7 +203,5 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
       },
     });
   }
-  ngAfterViewInit() {
-   
-  }
+  ngAfterViewInit() {}
 }

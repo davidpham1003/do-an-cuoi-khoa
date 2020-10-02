@@ -7,15 +7,21 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class ToTopComponent implements OnInit {
   isToTop:boolean;
-  @HostListener("window:scroll", [])
+  currentWidth:number
+  @HostListener("window:scroll")
+  @HostListener("window:resize")
+  // onResize(){
+  //   this.currentWidth = window.innerWidth
+  // }
   onWindowScroll() {
     const offset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isToTop = offset > 300 ? true : false
-    console.log(offset, this.isToTop)
+    console.log(this.isToTop)
   }
   constructor() { }
 
   ngOnInit(): void {
+    this.currentWidth = window.innerWidth
   }
 
 }

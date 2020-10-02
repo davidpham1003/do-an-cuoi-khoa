@@ -11,7 +11,7 @@
     <mat-form-field>
         <mat-label><i class="fas fa-search"></i> Tìm Kiếm </mat-label>
         <input id='looking' matInput (keyup)="applyFilter($event)" #looking>
-        <div class="remove-input" (click)='xoaInput(looking.value)'><i class="fas fa-times"></i>
+        <div class="remove-input" (click)='xoaInput()'><i class="fas fa-times"></i>
         </div>
     </mat-form-field>
     <div class="table-content">

@@ -56,7 +56,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
   // setTenPhim(value) {
   //   this.tenPhim = value;
   // }
-  updateDsPhim() { 
+  updateDsPhim() {
     // đẩy giá trị qua component quan ly phim để cập nhật lại danh sách phim
     this.dsPhim.emit();
   }
@@ -66,10 +66,10 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     // reader.readAsDataURL(this.fileInput); // read file as data url
     // reader.onload = (event) => {
     //   // // called once readAsDataURL is completed
-    //   // console.log(this.url);
+
     //   this.HinhAnh = event.target.result;
     // };
-    // console.log(this.HinhAnh);
+
     if (event.target.files && event.target.files[0]) {
       // set file input
       this.fileInput = event.target.files[0];
@@ -87,10 +87,10 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       //   frm.append('manhom', 'GP05');
       //   this.movies.uploadHinh(frm).subscribe({
       //     next: (data) => {
-      //       console.log('data', data);
+
       //     },
       //     error: (err) => {
-      //       console.log(err);
+
       //     },
       //   });
       // }
@@ -157,16 +157,17 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         '/' +
         values.ngayKhoiChieu.split('-')[0],
     };
-    const frm = new FormData();// New formdata để append lên
+    const frm = new FormData(); // New formdata để append lên
     if (this.objectSuaFilm) {
       // Nếu Sửa phim -->
       const frm = new FormData();
       if (this.fileInput) {
+        phimThem.hinhAnh = this.fileInput;
         //Nếu file Input hình ảnh có giá trị --> append giá trị object phimThem bằng formdata
         for (let key in phimThem) {
           frm.append(key, phimThem[key]);
         }
-        frm.append('hinhAnh', this.fileInput, this.fileInput.name);// Append hình ảnh 
+        // frm.append('hinhAnh', this.fileInput, this.fileInput.name);// Append hình ảnh
         this.api // Gọi api để truyền dữ liêu form data lên
           .post('QuanLyPhim/CapNhatPhimUpload', frm, { responseType: 'text' })
           .subscribe({
@@ -183,7 +184,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
             },
           });
       } else {
-         //Nếu file Input hình ảnh không có giá trị --> truyền object phimThem lên serve để xử lý
+        //Nếu file Input hình ảnh không có giá trị --> truyền object phimThem lên serve để xử lý
         this.movies.suaPhim(phimThem).subscribe({
           next: () => {
             this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
@@ -199,28 +200,42 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         });
       }
     } else {
-      // Ngươc lại nếu click vào thêm phim -->>
-      for (let key in phimThem) {
-        frm.append(key, phimThem[key]);
-      }
-      frm.append('hinhAnh', this.fileInput, this.fileInput.name);
-      console.log(this.fileInput);
-      this.api
-        .post('/QuanLyPhim/ThemPhimUploadHinh', frm, { responseType: 'text' })
-        .subscribe({
-          next: () => {
+         // Ngươc lại nếu click vào thêm phim -->>
+      if (this.fileInput) {
+        phimThem.hinhAnh = this.fileInput;
+        //Nếu file Input hình ảnh có giá trị --> append giá trị object phimThem bằng formdata
+        for (let key in phimThem) {
+          frm.append(key, phimThem[key]);
+        }
+        this.api
+          .post('/QuanLyPhim/ThemPhimUploadHinh', frm, { responseType: 'text' })
+          .subscribe({
+            next: () => {
+              this.sweetAlert('Thêm Phim', values.tenPhim, 'success');
+              this.updateDsPhim();
+            },
+            error: (err) => {
+              this.sweetAlert('Thêm Phim', err.error, 'error');
+            },
+          });
+      }else{
+        phimThem.hinhAnh = 'empty.png'
+        this.movies.themPhim(phimThem).subscribe({
+          next:()=>{
             this.sweetAlert('Thêm Phim', values.tenPhim, 'success');
             this.updateDsPhim();
           },
-          error: (err) => {
-            this.sweetAlert('Thêm Phim', err.error, 'error');
-          },
-        });
+          error:(err)=>{
+             this.sweetAlert('Thêm Phim', err.error, 'error');
+          }
+        })
+      }
     }
   }
 
   ngOnChanges() {
-    if (this.objectSuaFilm) { // Set value modal nếu click sửa phim
+    if (this.objectSuaFilm) {
+      // Set value modal nếu click sửa phim
       this.HinhAnh = this.objectSuaFilm.hinhAnh;
       this.formFilm.setValue({
         maPhim: this.objectSuaFilm.maPhim,
@@ -236,17 +251,14 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       this.isThemPhim = false;
       this.button = 'Cập Nhật';
       this.header = 'Cập Nhật Phim';
-      console.log(this.isThemPhim);
-    } else { //reset value modal khi click thêm phim
+    } else {
+      //reset value modal khi click thêm phim
       this.resetForm();
       this.isThemPhim = true;
       this.button = 'Thêm Phim'; //
       this.header = 'Thêm Phim';
     }
-    console.log(this.isThemPhim);
   }
 
-  ngOnInit(): void {
-    console.log(this.fileInput);
-  }
+  ngOnInit(): void {}
 }

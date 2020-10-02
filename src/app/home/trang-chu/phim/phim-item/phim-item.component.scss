@@ -101,11 +101,13 @@ $width-2: 55px;
       p {
         font-size: $font-size2;
         color: $color-fontL-o8;
+        margin-top: $pad-mar1;
       }
       .item-phim__title {
+        @include text-overflow(2);
         font-weight: bold;
-        height: 42px;
-        max-height: 42px;
+        height: 45px;
+        max-height: 45px;
         font-family: "SF Medium";
         font-size: 18px;
         // color: #000;
@@ -123,10 +125,10 @@ $width-2: 55px;
           font-size: 18px;
         }
         @include for-size(sm) {
-          font-size: 20px;
+          // font-size: 20px;
         }
         @include for-size(phone-sm) {
-          font-size: 25px;
+          font-size: 20px;
         }
 
         .item-phim__maPhim {

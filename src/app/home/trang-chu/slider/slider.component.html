@@ -1,5 +1,5 @@
 <!-- Không có data img full size nên phải set cứng -->
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" [ngClass]='{"dark-slider":isTheme}'>
   <div class="carousel-inner carousel-inner--content">
     <div *ngFor="let slider of mangSlider;let index = index" class="carousel-item" [ngClass]="{'active':!index}">
       <div class="carousel-item__blur">

@@ -48,10 +48,10 @@
   }
 }
 img {
-  width: 100%;
+  @include wh-circle(100%);
 }
 .ung-dung__dt {
-  width: 100%;
+  @include wh-circle(100%);
   .ung-dung__img {
     width: 45%;
     position: relative;

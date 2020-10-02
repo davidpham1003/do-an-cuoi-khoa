@@ -100,7 +100,7 @@
         </div>
     </div>
 
-    <div data-backdrop="static" data-keyboard="false" class="modal fade" id="modalConfirm" tabindex="-1" role="dialog"
+    <div *ngIf='currentUser.taiKhoan' data-backdrop="static" data-keyboard="false" class="modal fade" id='modalConfirm' tabindex="-1" role="dialog"
         aria-labelledby="modelTitleId" aria-hidden="true">
         <app-modal-confirm [mangDatVe]=mangDatVe></app-modal-confirm>
     </div>
@@ -117,7 +117,7 @@
 </div>
 <div [ngClass]="{'show-background':isCombo}" class="background-drop"></div>
 <div class="bg-combo" [ngClass]="{'show-combo':isCombo}">
-    <table class="table">
+    <table class="table" [ngClass]='{"table-phone": currentHeight <= 375}'>
         <div class="col-12 combo-content">
             <div (click)='closeCombo()' class="button-close">
                 <i class="fas fa-times"></i>

@@ -8,6 +8,7 @@ $width-controller: 300px;
 }
 
 .dashboard {
+  overflow: hidden;
 }
 .header {
   display: flex;
@@ -16,6 +17,33 @@ $width-controller: 300px;
   padding-left: $width-controller + $pad-mar4;
   box-shadow: 0 2px 5px 0px $color-fontL-o8;
   transition: all 0.5s;
+  @include for-size(iphone-5){
+    padding-left:265px
+  }
+  &.hide {
+    padding-left: $pad-mar4;
+  }
+  &.show {
+    .btn-menu {
+      span:nth-child(1) {
+        transform: translate(0, 15px) rotate(45deg);
+      }
+      span:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      span:nth-child(3) {
+        transform: translate(0, -15px) rotate(-45deg);
+      }
+    }
+    .avatar-admin {
+      transition: all .3s;
+      @include for-size(sm) {
+        opacity: 0;
+      }
+    }
+    
+  }
+
   .btn-menu {
     font-size: 0;
     cursor: pointer;
@@ -25,20 +53,26 @@ $width-controller: 300px;
       transition: 0.4s ease all;
     }
   }
-  &.hide {
-    padding-left: $pad-mar4;
+  .avatar-admin {
+    display: flex;
+    margin-left: auto;
+    margin-right: $pad-mar8;
+    @include for-size(xs) {
+      opacity: 0;
+      margin-right: 0;
+    }
+    p {
+      color: $color-fontD-o8;
+      align-self: center;
+      margin: 0 $pad-mar2;
+    }
+    img {
+      @include wh-circle(50px);
+    }
   }
-  &.show .btn-menu {
-    span:nth-child(1) {
-      transform: translate(0, 15px) rotate(45deg);
-    }
-    span:nth-child(2) {
-      transform: rotate(45deg);
-    }
-    span:nth-child(3) {
-      transform: translate(0, -15px) rotate(-45deg);
-    }
+  &.show {
   }
+
   h4 {
     margin-left: $pad-mar4;
     align-self: center;
@@ -50,6 +84,9 @@ $width-controller: 300px;
   height: 100%;
   background-color: $color-fontD;
   width: $width-controller;
+  @include for-size(iphone) {
+    width: 80%;
+  }
   &.show {
     left: 0;
     transition: all 0.5s;
@@ -90,7 +127,6 @@ $width-controller: 300px;
     img {
       height: 73px;
       padding: $pad-mar2;
-
     }
   }
   .controller-item {
@@ -100,15 +136,17 @@ $width-controller: 300px;
     transition: all 0.5s;
     &:hover {
       background-color: $color-admin-login;
-      h5,i{
-        color:$color-fontD;
-      } 
+      h5,
+      i {
+        color: $color-fontD;
+      }
     }
-    &.active{
+    &.active {
       background-color: $color-admin-login;
-      h5,i{
-        color:$color-fontD;
-      } 
+      h5,
+      i {
+        color: $color-fontD;
+      }
     }
     h5,
     i {
@@ -141,11 +179,12 @@ $width-controller: 300px;
   //     padding-top: $pad-mar5;
   //   }
 }
-.dashboard-content{
-  transition: all .5s;
+.dashboard-content {
+  transition: all 0.5s;
   padding: $pad-mar8;
   // overflow-x: auto;
-  &.show{
+  &.show {
     padding-left: $width-controller + $pad-mar8;
+
   }
 }
