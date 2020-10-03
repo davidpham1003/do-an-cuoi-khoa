@@ -1,0 +1,28 @@
+<div id="kho-phim">
+    <div class="kho-phim" [ngClass]="{'dark-khoPhim':isTheme}">
+        <h3 class="active kho-phim_title">Kho Phim</h3>
+        <div class="kho-phim__filter">
+            <pagination-controls *ngIf="dsPhimFilter.length > 0" id="foo" (pageChange)="p = $event" maxSize="5" directionLinks="true" responsive="true"
+                previousLabel="Previous" nextLabel="Next">
+            </pagination-controls>
+            <div class="tim-kiem">
+                <div class="group">
+                    <input #looking (keyup)='filter($event)' type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Tìm kiếm</label>
+                </div>
+                <div (click)='clearInput()' class="btn-close"><i class="fas fa-times"></i></div>
+            </div>
+        </div>
+    
+        <div class="kho-phim__content row">
+            <div class="kho-phim__item col-12 col-sm-6 col-lg-3 col-md-4" *ngFor='let phimItem of dsPhimFilter| paginate: { id: "foo", itemsPerPage:
+                pageSize, currentPage: p, totalItems: total }'>
+                <app-phim-item [isTheme]=isTheme [phim]=phimItem></app-phim-item>
+            </div>
+    
+        </div>
+</div>
+
+</div>

@@ -35,7 +35,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   mangDatVe: any = {};
   leftTime: number = 300;
   currentWidth: number;
-  currentHeight:number;
+  currentHeight: number;
   currentUser: any;
   @HostListener('window:resize')
   onResize() {
@@ -68,7 +68,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     },
   ];
   constructor(
-    public router:Router,
+    public router: Router,
     private auth: AuthenticationService,
     private ghe: GheService,
     private activatedRoute: ActivatedRoute
@@ -152,12 +152,50 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
         danhSachVe: this.gheDangChon,
         taiKhoanNguoiDung: this.currentUser.taiKhoan,
       };
-    }else{
-      Swal.fire('Đăng Nhập?','Vui lòng đăng nhập để tiếp tục đặt ghế !','warning')
+      this.ghe.datVe(this.mangDatVe).subscribe({
+        next: (result) => {
+          Swal.fire({
+            title: 'Xác nhận đặt vé ?',
+            icon: 'question',
+            reverseButtons:true,
+            cancelButtonColor:'#d33',
+            showCancelButton: true,
+            confirmButtonText: 'Xác Nhận!',
+            cancelButtonText: 'Hủy',
+          }).then((result) => {
+            if(result.isConfirmed){
+              Swal.fire('', 'Đặt vé thành công!', 'success').then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: 'Tiếp tục đặt vé ?',
+                    icon: 'question',
+                    showDenyButton: true,
+                    confirmButtonText: 'Xác Nhận!',
+                    denyButtonText: 'Xem lịch sử đặt vé',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      location.reload();
+                    } else {
+                      this.gheDangChon = []
+                      this.router.navigate(['/thongTin']);
+                      this.ghe.getLichDatVe('lichSuVe')
+                    }
+                  });
+                }
+              });
+            }
+          
+          });
+        },
+      });
+    } else {
+      Swal.fire(
+        'Đăng Nhập?',
+        'Vui lòng đăng nhập để tiếp tục đặt ghế !',
+        'warning'
+      );
     }
   }
-    
-
 
   datVeBuoc1() {
     this.isConfirm = true;
@@ -172,7 +210,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.currentHeight = window.innerHeight;
-    console.log(this.currentHeight)
+    console.log(this.currentHeight);
     this.currentWidth = window.innerWidth;
     if (this.currentWidth > 420) {
       this.isThanhToan = true;
@@ -185,7 +223,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
       next: (data) => {
         if (data) {
           this.currentUser = data;
-        } 
+        }
       },
     });
     this.activatedRoute.params.subscribe({

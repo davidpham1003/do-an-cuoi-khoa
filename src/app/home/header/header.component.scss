@@ -139,10 +139,12 @@ img {
   }
   .helloUser {
     padding: 0 15px;
-
+    cursor: pointer;
     .UserName-img {
       position: relative;
+
       img {
+  
         width: 40px;
         height: 40px;
         border-radius: 50%;

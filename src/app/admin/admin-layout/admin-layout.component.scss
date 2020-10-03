@@ -58,7 +58,7 @@ $width-controller: 300px;
     margin-left: auto;
     margin-right: $pad-mar8;
     @include for-size(xs) {
-      opacity: 0;
+      // opacity: 0;
       margin-right: 0;
     }
     p {
@@ -68,10 +68,11 @@ $width-controller: 300px;
     }
     img {
       @include wh-circle(50px);
+      border-radius: 50px;
     }
   }
-  &.show {
-  }
+  // &.show {
+  // }
 
   h4 {
     margin-left: $pad-mar4;

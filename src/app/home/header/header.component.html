@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse navbar-collapse--config" id="navbarNav">
             <ul class="navbar-nav text-center mx-auto">
                 <li class="nav-item" (click)='isInfo = false'>
-                    <a class="nav-link" [routerLink]="['']" pageScroll href="#phim">Kho Phim</a>
+                    <a class="nav-link" [routerLink]="['/khoPhim']" >Kho Phim</a>
                 </li>
                 <li class="nav-item" (click)='isInfo = false'>
                     <a class="nav-link" [routerLink]="['']" pageScroll href="#cumRap">Cụm Rạp</a>
@@ -34,16 +34,16 @@
         <div class="navbar__right">
             <div *ngIf="!currentUser.taiKhoan;else hello" (click)="showLogin()" class="btn-dangNhap">Đăng Nhập</div>
             <ng-template #hello>
-                <div #helloUser class="helloUser d-flex">
-                    <div class="UserName-img ">
-                        <img (click)='UserInfo()' [src]=" url ? url.img : 'assets/img/avatar.png' " alt="">
+                <div #helloUser class="helloUser d-flex" (mouseenter) ="isInfo = true"  (mouseleave) ="isInfo = false">
+                    <div class="UserName-img " >
+                        <img   [src]=" url ? url.img : 'assets/img/avatar.png' " alt="">
                         <div class="UserInfo" [ngClass]='{"activeUserInfo":isInfo}'>
                             <div class="arrow-up">
                                 <img src="assets/img/togglle.png" alt="">
                             </div>
                             <div class="UserInfo__content">
                                 <div class="inFo">
-                                    <p (click)='isInfo = false' routerLink='/thongTin'>Thông Tin Người Dùng</p>
+                                    <p (click)='thongTinUser()' routerLink='/thongTin'>Thông Tin Người Dùng</p>
                                 </div>
                                 <div class="logOut">
                                     <p (click)="logOut()">Đăng Xuất</p>

@@ -1,0 +1,236 @@
+@import "main";
+#kho-phim {
+  background-image: url("../../../assets/img/background-star.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.kho-phim {
+  height: 100%;
+  max-width: $width-ll;
+  margin: 0 auto;
+  padding-top: $height-header;
+  padding-bottom: $pad-mar8;
+  @include for-size(lg){
+    max-width: $width-lg;
+  }
+  @include for-size(md){
+    max-width: $width-md;
+  }
+  @include for-size(sm){
+    max-width: $width-sm;
+  }
+  @include for-size(xs){
+    max-width: $width-xs;
+  }
+  .kho-phim_title {
+    margin: $pad-mar6;
+    text-align: center;
+  }
+  .kho-phim__filter {
+    display: flex;
+    @include for-size(sm){
+        flex-direction: column-reverse;
+      }
+    .tim-kiem {
+      position: relative;
+      margin-left: auto;
+      margin-right: 30px;
+      @include for-size(sm){
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+    .btn-close {
+      position: absolute;
+      top: 20%;
+      right: 5px;
+      cursor: pointer;
+      i {
+        color: $color-fontL;
+        opacity: 0.5;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+::ng-deep  #foo .ngx-pagination{
+    .disabled {
+        color: $color-fontL-o6;
+      }
+      &.responsive .small-screen{
+        @include for-size(sm){
+            display: none;
+          }
+      }
+      &.responsive li:not(.small-screen):not(.pagination-previous):not(.pagination-next) {
+       display: inline-block;
+    }
+}
+.dark-khoPhim {
+  ::ng-deep {
+    #foo {
+      align-self: center;
+    }
+    #foo .ngx-pagination {
+      a {
+        color: $color-fontD;
+      }
+      .disabled {
+        color: $color-fontD-o6;
+      }
+    }
+  }
+  .kho-phim__filter {
+    .group {
+      input {
+        color: $color-fontD-o8;
+      }
+
+      label {
+        color: $color-fontD-o6;
+      }
+      input:focus ~ label,
+      input:valid ~ label {
+        color: #2199e8;
+      }
+    }
+    .btn-close {
+      i {
+        color: $color-fontD;
+      }
+    }
+  }
+}
+
+.group {
+  position: relative;
+  margin-bottom: 30px;
+  input {
+    font-size: $font-size2;
+    padding: 5px 10px;
+    display: block;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    background: transparent;
+    color: $color-fontL-o8;
+    @include for-size(sm){
+        width:100%;
+      }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/* LABEL ======================================= */
+label {
+  color: $color-fontL-o6;
+  font-size: $font-size2;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label,
+input:valid ~ label {
+  top: -15px;
+  font-size: $font-size1;
+  color: #2199e8;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width: 250px;
+  @include for-size(sm){
+    width: 80%;
+  }
+  &::before,
+  &::after {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #2199e8;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  &:before {
+    left: 50%;
+  }
+  &:after {
+    right: 50%;
+  }
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+
+/* HIGHLIGHTER 
+  .highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #2199e8;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #2199e8;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: #2199e8;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

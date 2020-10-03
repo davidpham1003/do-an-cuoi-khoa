@@ -6,6 +6,7 @@ import { UserService } from '../../core/Servers/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { GheService } from 'src/app/core/Servers/ghe.service';
 
 @Component({
   selector: 'app-user-info',
@@ -29,7 +30,7 @@ export class UserInfoComponent implements OnInit {
   thongTinDatVe: any[];
   warning: string;
   isTheme: any;
-  method: string = 'thongTin';
+  method: any = 'thongTin';
   currentUser: any = {};
   isShowPassCu:boolean = false;
   isShowPassMoi:boolean = false;
@@ -55,7 +56,8 @@ export class UserInfoComponent implements OnInit {
     private user: UserService,
     private dateTheme: ChangeThemeService,
     private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private ghe:GheService,
   ) {
     this.formUpdate = new FormGroup({
       hoTen: new FormControl(null, Validators.required),
@@ -78,6 +80,7 @@ export class UserInfoComponent implements OnInit {
   }
   changeMethod(value) {
     this.method = value;
+    console.log(this.method)
   }
   capNhatMatKhau(value) {
     this.formUpdatePass.markAllAsTouched();
@@ -127,7 +130,7 @@ export class UserInfoComponent implements OnInit {
     };
     this.auth.capNhat(userUpdate).subscribe({
       next: (data) => {
-        Swal.fire('','Cập nhật mật khẩu thành công','success')
+        Swal.fire('','Cập nhật thông tin thành công','success')
       },
       error:(err)=>{
         Swal.fire('',`${err.error}`,'warning')
@@ -140,10 +143,14 @@ export class UserInfoComponent implements OnInit {
     this.user.avatarUser.subscribe({
       next: (data) => {
         this.url = data;
-
       },
     });
-
+    this.ghe.lichDatVe.subscribe(data=>{
+      if(data){
+        this.method = data
+        console.log(data)
+      }
+    })
     this.dateTheme.shareIsTheme.subscribe((data) => {
       this.isTheme = data;
     });

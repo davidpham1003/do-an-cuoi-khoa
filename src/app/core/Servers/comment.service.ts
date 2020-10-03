@@ -12,6 +12,7 @@ export class CommentService {
       taiKhoan: 'Thái Tài',
       danhGia: 7,
       trangThai: false,
+      heart: 5,
     },
     {
       img:
@@ -20,6 +21,7 @@ export class CommentService {
       taiKhoan: 'Hà Văn Tâm',
       danhGia: 8,
       trangThai: false,
+      heart: 8,
     },
     {
       img:
@@ -29,6 +31,7 @@ export class CommentService {
       taiKhoan: 'Mỹ Tiên',
       danhGia: 10,
       trangThai: false,
+      heart: 10,
     },
     {
       img:
@@ -38,6 +41,7 @@ export class CommentService {
       taiKhoan: 'Thùy Dương',
       danhGia: 8,
       trangThai: false,
+      heart: 3,
     },
   ];
   constructor() {}

@@ -100,10 +100,10 @@
         </div>
     </div>
 
-    <div *ngIf='currentUser.taiKhoan' data-backdrop="static" data-keyboard="false" class="modal fade" id='modalConfirm' tabindex="-1" role="dialog"
+    <!-- <div *ngIf='currentUser.taiKhoan' data-backdrop="static" data-keyboard="false" class="modal fade" id='modalConfirm' tabindex="-1" role="dialog"
         aria-labelledby="modelTitleId" aria-hidden="true">
         <app-modal-confirm [mangDatVe]=mangDatVe></app-modal-confirm>
-    </div>
+    </div> -->
     <div (click)='backBuoc1()' class="btn-back" *ngIf='isThanhToan && currentWidth <= 420'>
         <i class="fas fa-arrow-left"></i>
     </div>

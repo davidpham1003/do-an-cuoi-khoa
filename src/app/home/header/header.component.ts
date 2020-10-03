@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
+import { GheService } from 'src/app/core/Servers/ghe.service';
 import { UserService } from 'src/app/core/Servers/user.service';
 import { ChangeThemeService } from '../../core/Servers/change-theme.service';
 declare var $: any;
@@ -38,6 +39,10 @@ export class HeaderComponent implements OnInit {
     this.ShowLogin.emit(this.isLogin);
     this.isInfo = false;
   }
+  thongTinUser(){
+    this.isInfo = false
+    this.ghe.getLichDatVe('thongTin')
+  }
   UserInfo() {
     this.isInfo = !this.isInfo;
   }
@@ -50,7 +55,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private data: ChangeThemeService,
     private auth: AuthenticationService,
-    private user: UserService
+    private user: UserService,
+    private ghe:GheService,
   ) {}
 
   ngOnInit(): void {

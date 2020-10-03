@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeLayoutComponent } from './home-layout/home-layout.component';
 import { TrangChuComponent } from './trang-chu/trang-chu.component';
@@ -21,6 +21,7 @@ import { LichChieuPhimComponent } from './trang-chu/he-thong-rap/lich-chieu-rap/
 import { PhimSapChieuComponent } from './trang-chu/phim/phim-sap-chieu/phim-sap-chieu.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PhimItemComponent } from './trang-chu/phim/phim-item/phim-item.component';
 import { GioXemComponent } from './trang-chu/he-thong-rap/lich-chieu-rap/lich-chieu-phim/gio-xem/gio-xem.component';
 import { PipeModule } from '../pipe/pipe.module';
@@ -52,7 +53,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatIconModule} from '@angular/material/icon';
 import { ThemSuaNguoiDungComponent } from './Modal/them-sua-nguoi-dung/them-sua-nguoi-dung.component'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ThemSuaPhimComponent } from './Modal/them-sua-phim/them-sua-phim.component';
@@ -60,6 +62,7 @@ import { ThemSuaLichChieuComponent } from './Modal/them-sua-lich-chieu/them-sua-
 import { SpinnerBackgroundComponent } from './spinner/spinner-background/spinner-background.component';
 import { ToTopComponent } from './to-top/to-top.component';
 import { ThaTimComponent } from './spinner/tha-tim/tha-tim.component';
+import { KhoPhimComponent } from './kho-phim/kho-phim.component';
 
 const route: Routes = [
   {
@@ -71,6 +74,7 @@ const route: Routes = [
       { path: 'dangky', component: TrangDangKyComponent,canDeactivate: [SignupGuard] },
       { path: 'datve/:maLichChieu', component: TrangDatVeComponent,canDeactivate: [MuaVeGuard]  },
       { path: 'thongTin', component: UserInfoComponent },
+      {path:'khoPhim',component:KhoPhimComponent},
     ],
   },
 ];
@@ -114,6 +118,7 @@ const route: Routes = [
     SpinnerBackgroundComponent,
     ToTopComponent,
     ThaTimComponent,
+    KhoPhimComponent,
   ],
   imports: [
     CommonModule,
@@ -123,8 +128,11 @@ const route: Routes = [
     NzButtonModule,
     NzDrawerModule,
     SidebarModule,
+    MatProgressSpinnerModule,
     MatInputModule,
     MatButtonModule,
+    MatPaginatorModule,
+    MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
     SlickCarouselModule,
