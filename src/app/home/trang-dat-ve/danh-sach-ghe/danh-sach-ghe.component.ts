@@ -12,8 +12,6 @@ export class DanhSachGheComponent implements OnInit {
   sendTenGhe(value){
     this.getGhe.emit(value)
   }
-
-
   constructor() { }
 
   ngOnInit(): void {

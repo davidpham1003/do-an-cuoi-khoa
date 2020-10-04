@@ -26,29 +26,15 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
   gheDangChon: any[] = [];
   tienVe: number = 0;
   tienCombo: number = 0;
-  isCombo: boolean = false;
-  isAnimate: boolean;
-  isWarning: boolean;
-  isDatVe: boolean;
-  isThanhToan: boolean = false;
-  isConfirm: boolean;
+  isCombo: boolean = false; //show-hide combo
+  isWarning: boolean; // show-hide warning
+  isThanhToan: boolean = false; // show-hide button mua vé (ở màn đt)
+  isConfirm: boolean; // show hide button đặt ghế (ở màn đt)
   mangDatVe: any = {};
-  leftTime: number = 300;
+  leftTime: number = 300; // Thời gian count down
   currentWidth: number;
   currentHeight: number;
   currentUser: any;
-  @HostListener('window:resize')
-  onResize() {
-    this.currentWidth = window.innerWidth;
-    this.currentHeight = window.innerHeight;
-    if (this.currentWidth > 420) {
-      this.isThanhToan = true;
-      this.isConfirm = true;
-    } else {
-      this.isThanhToan = false;
-      this.isConfirm = false;
-    }
-  }
   mangCombo: any[] = [
     {
       id: 'combo1',
@@ -67,6 +53,21 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
       thanhTien: 0,
     },
   ];
+  @HostListener('window:resize')
+  onResize() {
+    this.currentWidth = window.innerWidth;
+    this.currentHeight = window.innerHeight;
+    if (this.currentWidth > 420) {
+      // màn lớn hươn 420 --> hiển thị button mua vé , hide button đặt ghế
+      this.isThanhToan = true;
+      this.isConfirm = true;
+    } else {
+      // màn nhỏ hươn 420 --> hiển thị button đặt ghế , hide button mua vé
+      this.isThanhToan = false;
+      this.isConfirm = false;
+    }
+  }
+
   constructor(
     public router: Router,
     private auth: AuthenticationService,
@@ -82,23 +83,24 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
             parseInt(this.gheDangChon[i + 1].tenGhe)
         );
         if (a === 2) {
+          // Không được có ghế trống ở giữa. 
           this.isWarning = true;
-          console.log(a);
           return;
         } else {
           this.isWarning = false;
         }
-        console.log(a);
       }
     }
   }
-  onTimerFinished(event) {
+  onTimerFinished(event:Event) {
     if (event['action'] == 'done') {
+      // hết giờ sẽ open modal 
       this.openModal.nativeElement.click();
     }
   }
 
   datCombo(id: string, value: boolean) {
+    // xử lý đặt bắp nước
     this.mangCombo.forEach((combo) => {
       if (combo.id === id) {
         if (value) {
@@ -108,7 +110,6 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
             return;
           } else {
             combo.soLuong -= 1;
-            this.isAnimate = false;
           }
         }
         combo.thanhTien = combo.soLuong * combo.gia;
@@ -119,12 +120,13 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     }, 0);
   }
   combo() {
-    this.isCombo = !this.isCombo;
+    this.isCombo = !this.isCombo; // show-hide combo khi click
   }
   closeCombo() {
-    this.isCombo = false;
+    this.isCombo = false; // hide combo khi click (x)
   }
   datGhe(ghe) {
+    //Xử lý đặt ghế
     if (ghe.daDat) {
       this.gheDangChon.push(ghe);
       this.gheDangChon.sort(
@@ -142,11 +144,11 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
     this.tienVe = this.gheDangChon.reduce((ve, gheItem, index) => {
       return (ve += gheItem.giaVe);
     }, 0);
-    // console.log(this.gheDangChon);
   }
   datVe() {
+    // xử lý mua vé
     if (this.currentUser.taiKhoan) {
-      this.isDatVe = true;
+      // Nếu có tài khoản ==> mới được đặt vé
       this.mangDatVe = {
         maLichChieu: this.thongTinPhim.maLichChieu,
         danhSachVe: this.gheDangChon,
@@ -167,7 +169,7 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
               Swal.fire('', 'Đặt vé thành công!', 'success').then((result) => {
                 if (result.isConfirmed) {
                   Swal.fire({
-                    title: 'Tiếp tục đặt vé ?',
+                    title: 'Tiếp tục đặt vé ?', 
                     icon: 'question',
                     showDenyButton: true,
                     confirmButtonText: 'Xác Nhận!',
@@ -176,15 +178,15 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
                     if (result.isConfirmed) {
                       location.reload();
                     } else {
+                      // Tới trang thông tin đặt vé khi Click 'Xem lịch sử đặt vé'
                       this.gheDangChon = []
-                      this.router.navigate(['/thongTin']);
-                      this.ghe.getLichDatVe('lichSuVe')
+                      this.router.navigate(['/thongTin']); 
+                      this.ghe.getLichDatVe('lichSuVe') // xét method ở thông tin thành ' lịch sử đặt vé'
                     }
                   });
                 }
               });
             }
-          
           });
         },
       });
@@ -210,7 +212,6 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.currentHeight = window.innerHeight;
-    console.log(this.currentHeight);
     this.currentWidth = window.innerWidth;
     if (this.currentWidth > 420) {
       this.isThanhToan = true;
@@ -232,10 +233,8 @@ export class TrangDatVeComponent implements OnInit, AfterViewInit {
           next: (result) => {
             this.danhSachGhe = result.danhSachGhe;
             this.thongTinPhim = result.thongTinPhim;
-            console.log(result);
           },
           complete: () => {
-            console.log('a');
           },
         });
       },
