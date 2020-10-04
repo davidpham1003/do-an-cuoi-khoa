@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
+import { PatternService } from 'src/app/core/Servers/pattern.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -29,12 +30,10 @@ export class TrangDangKyComponent implements OnInit {
       next: () => {
         this.loading = true;
         Swal.fire('', 'Đăng ký thành công', 'success').then((result) => {
-          if(result.isConfirmed){
+          if (result.isConfirmed) {
             this.router.navigate(['/']);
           }
         });
-       
-    
       },
       error: (err) => {
         this.errors = err;
@@ -45,11 +44,16 @@ export class TrangDangKyComponent implements OnInit {
     });
     console.log(val);
   }
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(
+    private auth: AuthenticationService,
+    private router: Router,
+    private pattern: PatternService
+  ) {
     this.formDangKy = new FormGroup({
       taiKhoan: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
+        Validators.pattern(this.pattern.Pattern.taiKhoan),
       ]),
       matKhau: new FormControl(null, [
         Validators.required,
@@ -58,11 +62,12 @@ export class TrangDangKyComponent implements OnInit {
       hoTen: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [
         Validators.required,
-        Validators.pattern(
-          '^[a-z][a-z0-9_.]{5,32}@[a-z0-9]{2,}(.[a-z0-9]{2,4}){1,2}$'
-        ),
+        Validators.pattern(this.pattern.Pattern.email),
       ]),
-      soDt: new FormControl(),
+      soDt: new FormControl(
+        null,
+        Validators.pattern(this.pattern.Pattern.soDt)
+      ),
     });
   }
 

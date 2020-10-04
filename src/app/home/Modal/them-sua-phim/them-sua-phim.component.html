@@ -95,9 +95,6 @@
                     <div *ngIf="formFilm.get('danhGia').errors['required']">
                         * Bạn chưa nhập hình đánh giá phim.
                     </div>
-                    <div *ngIf="formFilm.get('danhGia').errors['pattern']">
-                        * Đánh giá Phim.
-                    </div>
                     <div *ngIf="formFilm.get('danhGia').errors['max']">
                         * Đánh giá chỉ từ 1 đến 10.
                     </div>

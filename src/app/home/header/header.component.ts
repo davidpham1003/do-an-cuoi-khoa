@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   ElementRef,
-  ViewChild,
+  ViewChild, HostListener
 } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/Servers/authentication.service';
 import { GheService } from 'src/app/core/Servers/ghe.service';
@@ -20,35 +20,43 @@ export class HeaderComponent implements OnInit {
   @ViewChild('helloUser') ShowLogOut: ElementRef;
   @Output() ChangeTheme = new EventEmitter();
   @Output() ShowLogin = new EventEmitter();
+  active: string;
   url: any;
-  isTogggle:boolean = false
+  isTogggle: boolean = false;
   isInfo: boolean = false;
   isTheme: boolean = true;
   isLogin: boolean = false;
   currentUser: any = {};
-  toggle(){
-    this.isTogggle = !this.isTogggle
+  scroll:number = 0
+  toggle() {
+    // thay đổi button toggle khi ở màn hình nhỏ
+    this.isTogggle = !this.isTogggle;
   }
   changeThemes() {
+    // button đổi themes
     this.isTheme = !this.isTheme;
     this.data.shareDataIsTheme(this.isTheme);
     this.ChangeTheme.emit(this.isTheme);
   }
+  changeActive(value:string) {
+    // click vào các nav-item sẽ active 
+    this.isInfo=false;
+    this.data.shareDataActiveHeader(value);
+  }
   showLogin() {
+    // ẩn hiện login khi click button đăng nhập
     this.isLogin = !this.isLogin;
     this.ShowLogin.emit(this.isLogin);
-    this.isInfo = false;
   }
-  thongTinUser(){
-    this.isInfo = false
-    this.ghe.getLichDatVe('thongTin')
-  }
-  UserInfo() {
-    this.isInfo = !this.isInfo;
+  thongTinUser() {
+    // click vào nav-item kho phim
+    this.isInfo = false; 
+    this.ghe.getLichDatVe('thongTin'); 
   }
   logOut() {
-    localStorage.removeItem('userInfo');
-    this.auth.dangXuat('taiKhoan');
+    // đăng xuất tài khoản
+    localStorage.removeItem('userInfo'); // xóa local storage
+    this.auth.dangXuat('taiKhoan'); // cập nhật lại giá trị của current User 
     this.isLogin = false;
   }
 
@@ -56,21 +64,22 @@ export class HeaderComponent implements OnInit {
     private data: ChangeThemeService,
     private auth: AuthenticationService,
     private user: UserService,
-    private ghe:GheService,
+    private ghe: GheService,
   ) {}
 
   ngOnInit(): void {
-    // const user = localStorage.getItem('userInfo')
-    // this.taiKhoan = JSON.parse(user).taiKhoan
+    this.data.shareActiveHeader.subscribe(data=>{
+      this.active = data
+    })
     this.auth.currentUser.subscribe({
       next: (result) => {
         this.currentUser = result;
       },
     });
-    // console.log(this.)
+
     this.user.avatarUser.subscribe({
       next: (data) => {
-        this.url=data
+        this.url = data;
       },
     });
   }

@@ -89,6 +89,7 @@
                     <option value="KhachHang">Khách Hàng</option>
                     <option value="QuanTri">Quản Trị</option>
                 </select>
+                <label for="maRap"> <i class="fas fa-chevron-down"></i></label>
                 <div class=' error' *ngIf="formUser.get('maLoaiNguoiDung').invalid &&
                 (formUser.get('maLoaiNguoiDung').dirty || formUser.get('maLoaiNguoiDung').touched)">
                     <div *ngIf="formUser.get('maLoaiNguoiDung').errors['required']">

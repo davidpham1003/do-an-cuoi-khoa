@@ -24,8 +24,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 registerLocaleData(en);
 const appRoutes :Routes=[
-  {path:'',loadChildren:()=> HomeModule},
-  {path:'admin',loadChildren:()=> AdminModule},
+  {path:'',loadChildren:'./home/home.module#HomeModule'},
+  {path:'admin',loadChildren:'./admin/admin.module#AdminModule' },
 ]
 
 @NgModule({

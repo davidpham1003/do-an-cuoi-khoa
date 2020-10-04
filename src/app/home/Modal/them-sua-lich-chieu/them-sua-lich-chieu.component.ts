@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { CinemaService } from 'src/app/core/Servers/cinema.service';
@@ -10,8 +10,9 @@ import Swal from 'sweetalert2';
   templateUrl: './them-sua-lich-chieu.component.html',
   styleUrls: ['./them-sua-lich-chieu.component.scss'],
 })
-export class ThemSuaLichChieuComponent implements OnInit, OnChanges {
+export class ThemSuaLichChieuComponent implements OnInit, OnChanges,OnDestroy {
   @Input() objectThemLichChieu;
+  @Output('close') btnClose : ElementRef; 
   formLichChieu: FormGroup;
   heThongRap: any[];
   cumRapChieu: any[];
@@ -28,24 +29,23 @@ export class ThemSuaLichChieuComponent implements OnInit, OnChanges {
   }
 
   addLichChieu(value) {
-    console.log(value);
     let lichChieu = {
-      maRap : parseInt(value.maRap),
-      giaVe:parseInt(value.giaVe),
-      maPhim:value.maPhim,
+      maRap : parseInt(value.maRap), // Chuyển mã rạp về thành dạng Number
+      giaVe:parseInt(value.giaVe),// Chuyển Giá vé về thành dạng Number
+      maPhim:parseInt(value.maPhim),// Chuyển Mã phim về thành dạng Number
       ngayChieuGioChieu:value.ngayChieuGioChieu
-        // value.ngayChieuGioChieu.split('-')[2] +
-        // '/' +
-        // value.ngayChieuGioChieu.split('-')[1] +
-        // '/' +
-        // value.ngayChieuGioChieu.split('-')[0],
     };
     this.ghe.taoLichChieu(lichChieu).subscribe({
+      //Api tạo lịch chiếu
       next: () => {
         Swal.fire({
           title: 'Tạo lịch chiếu!',
           text: 'Tạo lịch chiếu thành công',
           icon: 'success',
+        }).then(result=>{
+          if(result.isConfirmed){
+            this.btnClose.nativeElement.click() // đóng modal khi click xác nhận tạo lịch chiếu thành công
+          }
         });
       },
       error: (err) => {
@@ -58,25 +58,25 @@ export class ThemSuaLichChieuComponent implements OnInit, OnChanges {
     });
   }
   layMaHeThongRap(event) {
+    // khi thay đổi Rạp thì cụm rạp và mã hệ thống rạp sẽ thay đổi
     this.layApiCumRap(event.target.value);
-    console.log(event);
   }
   layMaRap(event) {
+    // Khi thay đổi cụm rạp ==> maRapTheoCum sẽ thay đổi. với event = maCumRap
     let cumRap = this.cumRapChieu.filter(
       (itemCumRap) => itemCumRap.maCumRap === event.target.value
     );
     this.maRapTheoCum = cumRap[0].danhSachRap;
   }
   layApiCumRap(value) {
+    // Hàm lấy thông tin cụm rạp với value = maHeThongRap
     this.cinema.layThongTinCumRap(value).subscribe({
       next: (result) => {
         this.cumRapChieu = result;
-        console.log(result);
-        this.maRapTheoCum = result[0].danhSachRap;
-        this.formLichChieu.patchValue({
+        this.maRapTheoCum = result[0].danhSachRap; // Mã rạp ban đầu = dsRap đầu tiên.
+        this.formLichChieu.patchValue({ // set value mã rạp đầu tiên
           maRap:this.maRapTheoCum[0].maRap
         })
-        console.log(this.maRapTheoCum);
       },
     });
   }
@@ -87,13 +87,19 @@ export class ThemSuaLichChieuComponent implements OnInit, OnChanges {
         maPhim: this.objectThemLichChieu.maPhim,
       });
     }
+    this.formLichChieu.reset();
   }
   ngOnInit(): void {
+    // Lấy ds Rạp
     this.cinema.layThongTinRap().subscribe({
       next: (data) => {
         this.heThongRap = data;
+        // Lấy DS cụm rạp vs thông số là ma hệ thống rạp ban đầu
         this.layApiCumRap(data[0].maHeThongRap);
       },
     });
+  }
+  ngOnDestroy(){
+    
   }
 }

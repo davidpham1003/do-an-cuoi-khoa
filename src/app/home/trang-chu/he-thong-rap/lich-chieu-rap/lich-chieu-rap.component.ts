@@ -20,17 +20,17 @@ export class LichChieuRapComponent implements OnInit, OnChanges, OnDestroy {
   subscription: SubscriptionLike;
   indexActive: number = 0;
   maCumRap: string = '';
-  isShowPhim: boolean = false;
+  isShowCumRap: boolean = false;
   public currentWindowWidth: number;
   @HostListener('window:resize')
   onResize() {
     this.currentWindowWidth = window.innerWidth;
   }
-  showPhim() {
-    this.isShowPhim = !this.isShowPhim;
+  showCumRap() {
+    this.isShowCumRap = !this.isShowCumRap; // show hide cụm rạp khi ở màn hình đt
   }
   layMaCupRap(value) {
-    this.maCumRap = value;
+    this.maCumRap = value; // get cụm rạp 
   }
   changeIndex(index) {
     this.indexActive = index;
@@ -47,17 +47,14 @@ export class LichChieuRapComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe({
         next: (result) => {
           this.thongTinRap = result;
-          this.maCumRap = result[0].maCumRap;
-          // console.log('getApi',result)
+          this.maCumRap = result[0].maCumRap; // set maCumRap ban đầu
         },
-        error: (err) => {
-          // console.log(err);
-        },
+        error: () => {
+        }
       });
     this.indexActive = 0;
-    // console.log(this.maRap)
-  }
+  };
   ngOnDestroy() {
-    // this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

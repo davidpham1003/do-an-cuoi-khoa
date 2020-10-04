@@ -16,18 +16,15 @@ export class ChiTietRateComponent implements OnInit {
   @Input() isTheme;
   public formComment: FormGroup;
   mangComment: any[];
-  close: boolean = true;
   currentUser: any = {};
-  mangContent: any[] = [];
+  mangContent: any[] = []; // sử dụng ngfor và hiển thị giao diện
   trangThai: boolean = false;
-  star: number = 0;
-  rate: boolean;
-  url: any;
-  count: number = 1;
+  star: number = 0; // số sao đánh giá
+  url: any; // Ảnh avatar comment
+  count: number = 1; 
   constructor(
     public comment: CommentService,
     private auth: AuthenticationService,
-    private router: Router,
     private user: UserService
   ) {
     this.formComment = new FormGroup({
@@ -36,13 +33,9 @@ export class ChiTietRateComponent implements OnInit {
   }
   Comment(value) {
     this.formComment.markAllAsTouched();
-    if (this.star == 0) {
-      this.rate = true;
-    }
     if (this.formComment.invalid || this.star == 0) {
       return;
-    }
-
+    } // Nếu chưa bình luận và đánh giá ==> không submit được
     this.mangComment = [
       {
         binhLuan: value.binhLuan,
@@ -53,13 +46,13 @@ export class ChiTietRateComponent implements OnInit {
         heart:0,
       },
       ...this.mangComment,
-    ];
-    this.mangContent = this.mangComment.slice(0, 5 * this.count);
+    ];// push value lên đầu của mảng comment
+    this.mangContent = this.mangComment.slice(0, 5 * this.count);// Mảng content để hiển thị giao diện = 5 giá trị đầu tiên của mảng comment
     localStorage.setItem('comment', JSON.stringify(this.mangComment));
     $('input[name="rating"]').prop('checked', false); // Reset Rating khi Submit thành công
     this.star = 0; // Reset Đánh giá về 0
     this.formComment.reset(); // Reset Value Form
-    this.closeModal.nativeElement.click();
+    this.closeModal.nativeElement.click(); // Tắt modal
   }
   thaTim(value) {
     this.mangContent.forEach((commentItem) => {
@@ -77,15 +70,16 @@ export class ChiTietRateComponent implements OnInit {
         commentItem.trangThai = false;
       }
     });
-
     localStorage.setItem('comment', JSON.stringify(this.mangContent));
-    console.log(value, this.mangContent);
   }
   showMore() {
+    // button show
     this.count++;
     this.mangContent = this.mangComment.slice(0, 5 * this.count);
+    // Mỗi lần click mảng content sẽ +5 giá trị của mảng comment
   }
   hideee() {
+    // reset lại giá trị ban đầu của mảng content
     this.count = 1;
     this.mangContent = this.mangComment.slice(0, 5 * this.count);
   }
@@ -118,7 +112,6 @@ export class ChiTietRateComponent implements OnInit {
         }
       },
     });
-
-    this.mangContent = this.mangComment.slice(0, 5 * this.count);
+    this.mangContent = this.mangComment.slice(0, 5 * this.count); // mảng content ban đầu
   }
 }

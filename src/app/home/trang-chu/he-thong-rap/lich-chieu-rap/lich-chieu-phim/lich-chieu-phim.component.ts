@@ -15,8 +15,6 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
   @Input() isTheme;
   @Input() maRap: string;
   @Input() maCumRap: string;
-  indexx:number = 0
-
   constructor(private cinemaService: CinemaService) {}
   phimChieu: boolean = true;
   lichChieuPhim: [] = [];
@@ -27,46 +25,28 @@ export class LichChieuPhimComponent implements OnInit, OnChanges {
   @HostListener('window:resize')
   onResize() {
     this.currentWindowWidth = window.innerWidth;
-
   }
   showGio() {
-    this.isShowGio = !this.isShowGio;
+    this.isShowGio = !this.isShowGio; //Show-hide giờ ở màn hình đt
   }
   layMaPhim(value:number) {
-    this.MaPhim = value;
+    this.MaPhim = value; //get mã phim
   }
   ngOnInit(): void {
     this.currentWindowWidth = window.innerWidth;
-
   }
   ngOnChanges(): void {
-
     this.cinemaService.layLichChieuTheoRap(this.maRap).subscribe({
       next: (result) => {
         let dsRap: any[] = result[0].lstCumRap;
-
-
           let a = dsRap.filter((item) => item.maCumRap === this.maCumRap);
           if (a.length > 0) {
+            // tìm trong lịch chiếu nếu không có mã cụm rạp tương ứng ==> không có lịch chiếu
             this.lichChieuPhim = a[0].danhSachPhim;
             this.phimChieu = true;
           } else {
             this.phimChieu = false;
           }
-
-       
-
-
-        // dsRap.forEach((dsRapItem) => {
-        //   if (dsRapItem.maCumRap === this.maCumRap) {
-        //     this.lichChieuPhim = dsRapItem.danhSachPhim;
-        //     SuatChieu = dsRapItem.danhSachPhim;
-        //     return
-        //   }else{
-        //     this.lichChieuPhim = []
-        //   }
-        // });;
-
       },
       error: (err) => {
 

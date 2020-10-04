@@ -11,6 +11,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/core/Servers/api.service';
 import { MoviesService } from 'src/app/core/Servers/movies.service';
+import { PatternService } from 'src/app/core/Servers/pattern.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,13 +32,12 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
   header: string;
   HinhAnh: any = 'assets/img/avatar-phim.jpg';
   tenPhim: string;
-  constructor(private movies: MoviesService, private api: ApiService) {
+  constructor(private movies: MoviesService, private api: ApiService,private pattern:PatternService) {
     // Khai báo form group và thiết lập giá trị
     this.formFilm = new FormGroup({
       maPhim: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^[0-9]*$'),
-        Validators.pattern(/^\S*$/),
+        Validators.pattern(this.pattern.Pattern.number),
       ]),
       tenPhim: new FormControl(null, Validators.required),
       biDanh: new FormControl(null, Validators.required),
@@ -48,30 +48,19 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       ngayKhoiChieu: new FormControl(null, Validators.required),
       danhGia: new FormControl(null, [
         Validators.required,
-        Validators.pattern(/^\S*$/),
         Validators.max(10),
       ]),
     });
   }
-  // setTenPhim(value) {
-  //   this.tenPhim = value;
-  // }
+
   updateDsPhim() {
     // đẩy giá trị qua component quan ly phim để cập nhật lại danh sách phim
     this.dsPhim.emit();
   }
   onSelectFile(event) {
-    // this.fileInput = event.target.files[0];
-    // var reader = new FileReader();
-    // reader.readAsDataURL(this.fileInput); // read file as data url
-    // reader.onload = (event) => {
-    //   // // called once readAsDataURL is completed
-
-    //   this.HinhAnh = event.target.result;
-    // };
-
+    // Upload ảnh từ file
     if (event.target.files && event.target.files[0]) {
-      // set file input
+      // set file input = giá trị của file
       this.fileInput = event.target.files[0];
       var reader = new FileReader();
       reader.readAsDataURL(this.fileInput);
@@ -80,32 +69,18 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         // gán HinhAnh = file input để hiện thị ra giao diện
         this.HinhAnh = event.target.result;
       };
-      // var frm = new FormData();
-      // if (this.objectSuaFilm) {
-      //   frm.append('File', this.fileInput, this.fileInput.name);
-      //   frm.append('tenphim', this.objectSuaFilm.tenPhim);
-      //   frm.append('manhom', 'GP05');
-      //   this.movies.uploadHinh(frm).subscribe({
-      //     next: (data) => {
-
-      //     },
-      //     error: (err) => {
-
-      //     },
-      //   });
-      // }
     }
   }
   resetForm() {
     //hàm reset lại form khi thay đổi giữa sửa phim và thêm phim
-    this.HinhAnh = '';
+    this.HinhAnh = ''; 
     this.formFilm.reset();
     this.formFilm.patchValue({
-      maNhom: 'GP05',
+      maNhom: 'GP05', // set cứng mã Nhóm
     });
   }
   sweetAlert(text: string, value: string, method: string) {
-    //sweet alert 2
+    //sweet alert 2 với text='Thêm Phim' hoặc 'Sửa Phim', value 'tên phim', method = 'success' hoặc 'error'
     if (method == 'success') {
       Swal.fire({
         title: `${text}`,
@@ -113,6 +88,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         icon: 'success',
       }).then((data) => {
         if (text == 'Thêm Phim') {
+          // Nếu là thêm phim sẽ hỏi có tiếp tục thêm hay không
           Swal.fire({
             title: `Thêm Phim`,
             text: `Tiếp tục thêm phim.`,
@@ -127,7 +103,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
             if (!result.isConfirmed) {
               this.btnClose.nativeElement.click();
             }
-            this.resetForm();
+            this.resetForm(); // Gọi hàm reset ở dòng 75 khi thêm phim thành công
           });
         }
       });
@@ -159,10 +135,10 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
     };
     const frm = new FormData(); // New formdata để append lên
     if (this.objectSuaFilm) {
-      // Nếu Sửa phim -->
+      // Nếu objectSuaFilm có giá trị =>  cập nhật thông tin phim -->
       const frm = new FormData();
       if (this.fileInput) {
-        phimThem.hinhAnh = this.fileInput;
+        phimThem.hinhAnh = this.fileInput; // gắn giá trị hinhAnh = file
         //Nếu file Input hình ảnh có giá trị --> append giá trị object phimThem bằng formdata
         for (let key in phimThem) {
           frm.append(key, phimThem[key]);
@@ -175,7 +151,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
               this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
               // this.update.capNhatDsPhim()
               this.btnClose.nativeElement.click(); // Close modal khi sửa thành công
-              this.resetForm(); // reset lại form modal
+              this.resetForm(); // Gọi hàm reset ở dòng 75
               this.updateDsPhim(); // đẩy giá trị ra component quản lý phim để update lại ds phim
               this.fileInput = null; // reset giá trị file hình ảnh
             },
@@ -187,12 +163,12 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         //Nếu file Input hình ảnh không có giá trị --> truyền object phimThem lên serve để xử lý
         this.movies.suaPhim(phimThem).subscribe({
           next: () => {
-            this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');
+            this.sweetAlert('Sửa Phim', phimThem.tenPhim, 'success');  //gọi hàm sweetarlet ở dòng 83
             // this.update.capNhatDsPhim()
-            this.btnClose.nativeElement.click();
-            this.resetForm();
-            this.updateDsPhim();
-            this.fileInput = null;
+            this.btnClose.nativeElement.click(); // Close modal khi sửa thành công
+            this.resetForm(); // Gọi hàm reset ở dòng 75
+            this.updateDsPhim(); // đẩy giá trị ra component quản lý phim để update lại ds phim
+            this.fileInput = null; // reset giá trị file hình ảnh
           },
           error: (err) => {
             this.sweetAlert('Sửa Phim', err.error, 'error');
@@ -211,19 +187,19 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
           .post('/QuanLyPhim/ThemPhimUploadHinh', frm, { responseType: 'text' })
           .subscribe({
             next: () => {
-              this.sweetAlert('Thêm Phim', values.tenPhim, 'success');
-              this.updateDsPhim();
+              this.sweetAlert('Thêm Phim', values.tenPhim, 'success'); //gọi hàm sweetarlet ở dòng 83
+              this.updateDsPhim();// đẩy giá trị ra component quản lý phim để update lại ds phim
             },
             error: (err) => {
               this.sweetAlert('Thêm Phim', err.error, 'error');
             },
           });
       }else{
-        phimThem.hinhAnh = 'empty.png'
+        phimThem.hinhAnh = 'empty.png' // set hinhAnh ban đầu có dạng text.png nếu không sẽ báo lỗi hình ảnh k đúng dịnh dạng
         this.movies.themPhim(phimThem).subscribe({
           next:()=>{
             this.sweetAlert('Thêm Phim', values.tenPhim, 'success');
-            this.updateDsPhim();
+            this.updateDsPhim();// đẩy giá trị ra component quản lý phim để update lại ds phim
           },
           error:(err)=>{
              this.sweetAlert('Thêm Phim', err.error, 'error');
@@ -243,7 +219,7 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
         biDanh: this.objectSuaFilm.biDanh,
         trailer: this.objectSuaFilm.trailer,
         moTa: this.objectSuaFilm.moTa,
-        ngayKhoiChieu: this.objectSuaFilm.ngayKhoiChieu.split('T')[0],
+        ngayKhoiChieu: this.objectSuaFilm.ngayKhoiChieu.split('T')[0], 
         danhGia: this.objectSuaFilm.danhGia,
         maNhom: this.objectSuaFilm.maNhom,
         hinhAnh: this.objectSuaFilm.hinhAnh,
@@ -253,9 +229,9 @@ export class ThemSuaPhimComponent implements OnInit, OnChanges {
       this.header = 'Cập Nhật Phim';
     } else {
       //reset value modal khi click thêm phim
-      this.resetForm();
+      this.resetForm();// Gọi hàm reset ở dòng 75
       this.isThemPhim = true;
-      this.button = 'Thêm Phim'; //
+      this.button = 'Thêm Phim';
       this.header = 'Thêm Phim';
     }
   }

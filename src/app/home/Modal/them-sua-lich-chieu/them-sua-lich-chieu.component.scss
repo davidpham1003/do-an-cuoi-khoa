@@ -22,7 +22,7 @@
         width: 608px;
         margin-left: 100px;
         @include for-size(md){
-            width: 580px;
+            width: 86.5%;
             margin-left: 95px;
             padding-left: 10px;
         }
@@ -33,6 +33,11 @@
         }
         @include for-size(phone-sm){
             padding-left: 85px;
+        }
+        +label{
+            i{
+                right: 7%;
+            }
         }
     }
 

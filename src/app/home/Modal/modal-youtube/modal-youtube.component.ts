@@ -19,6 +19,5 @@ export class ModalYoutubeComponent implements OnInit,OnChanges {
     this.currentHeight = window.innerHeight;
   }
   ngOnChanges(){
-    console.log(this.trailer)
   }
 }

@@ -19,7 +19,7 @@ import { CinemaService } from '../../../core/Servers/cinema.service';
 export class HeThongRapComponent implements OnInit,OnDestroy {
   @Input() isTheme;
   subscription: SubscriptionLike;
-  dsRap: [] = [];
+  dsRap: [] = []; // Ds rạp hiển thị giao diện (ngFor)
   maRap: string = '';
   public currentWindowWidth: number;
   @HostListener('window:resize')
@@ -28,32 +28,29 @@ export class HeThongRapComponent implements OnInit,OnDestroy {
   }
   indexActive: number = 0;
   changeIndex(index) {
+    // Thay đổi logo rạp active
     this.indexActive = index;
   }
   constructor(private cinemaService: CinemaService) {}
 
   layMaRap(value) {
     this.maRap = value;
-    // console.log(this.maRap)
-  }
+  };
   ngOnInit(): void {
     this.currentWindowWidth = this.currentWindowWidth = window.innerWidth;
     if(this.currentWindowWidth <=420){
-      this.maRap = null
+      this.maRap = null 
     }
     this.subscription = this.cinemaService.layThongTinRap().subscribe({
       next: (result) => {
-        this.maRap = result[0].maHeThongRap;
+        this.maRap = result[0].maHeThongRap; // set mã rạp ban đầu
         this.dsRap = result;
       },
-      error: (err) => {
-        console.log(err);
+      error: () => {
       },
     });
-    // console.log(this.maRap)
-    
-  }
+  };
   ngOnDestroy(){
-    // this.subscription.unsubscribe()
+    this.subscription.unsubscribe()
   }
 }

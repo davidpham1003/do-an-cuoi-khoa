@@ -14,7 +14,6 @@ export class SpinnerComponent implements OnInit {
     this.changeTheme.shareIsTheme.subscribe(data=>{
       this.isThemes = data
     })
-    console.log(this.isThemes)
   }
 
 }

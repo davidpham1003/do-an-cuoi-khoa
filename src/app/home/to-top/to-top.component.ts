@@ -16,7 +16,6 @@ export class ToTopComponent implements OnInit {
   onWindowScroll() {
     const offset = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isToTop = offset > 300 ? true : false
-    console.log(this.isToTop)
   }
   constructor() { }
 

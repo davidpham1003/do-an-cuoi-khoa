@@ -4,6 +4,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 5;
 }
 .kho-phim {
   height: 100%;
@@ -22,6 +23,9 @@
   }
   @include for-size(xs){
     max-width: $width-xs;
+  }
+  @include for-size(phone-sm){
+    max-width: $width-phone;
   }
   .kho-phim_title {
     margin: $pad-mar6;
@@ -55,8 +59,18 @@
       }
     }
   }
+  .kho-phim__item{
+    @include for-size(xs){
+      @include col-bs4(50%)
+    }
+    @include for-size(phone-sm){
+      @include col-bs4(100%);
+      margin:$pad-mar2 0;
+    }
+  }
 }
 ::ng-deep  #foo .ngx-pagination{
+  padding: 0;
     .disabled {
         color: $color-fontL-o6;
       }
@@ -154,7 +168,7 @@ input:valid ~ label {
   display: block;
   width: 250px;
   @include for-size(sm){
-    width: 80%;
+    width: 100%;
   }
   &::before,
   &::after {

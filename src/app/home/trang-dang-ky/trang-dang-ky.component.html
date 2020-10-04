@@ -24,6 +24,9 @@
                             <div *ngIf='formDangKy.get("taiKhoan").errors["minlength"]'>
                                 * Tài Khoản phải lớn hơn 6 ký tự
                             </div>
+                            <div *ngIf='formDangKy.get("taiKhoan").errors["pattern"]'>
+                                * Tài Khoản không được có khoảng trắng và ký tự đặc biệt
+                            </div>
                         </div>
                     </div>
                     <div class="form-item col-lg-12 col-sm-6 col-12">
@@ -71,6 +74,12 @@
                                 <input placeholder="Số Điện Thoại" class="input--style-5" type="text" name="soDT"
                                     formControlName='soDt'>
                                 <i class="icon-form fas fa-phone"></i>
+                                <div *ngIf="formDangKy.get('soDt').invalid && (formDangKy.get('soDt').dirty || formDangKy.get('soDt').touched)"
+                                class="text-danger mt-1 small p-1 text-left">
+                                <div *ngIf="formDangKy.get('soDt').errors.pattern">
+                                    * soDt Không hợp lệ!
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>

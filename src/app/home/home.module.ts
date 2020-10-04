@@ -64,6 +64,7 @@ import { ToTopComponent } from './to-top/to-top.component';
 import { ThaTimComponent } from './spinner/tha-tim/tha-tim.component';
 import { KhoPhimComponent } from './kho-phim/kho-phim.component';
 
+
 const route: Routes = [
   {
     path: '',
@@ -119,6 +120,7 @@ const route: Routes = [
     ToTopComponent,
     ThaTimComponent,
     KhoPhimComponent,
+
   ],
   imports: [
     CommonModule,

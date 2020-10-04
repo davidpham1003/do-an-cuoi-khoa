@@ -29,6 +29,7 @@
                     <option *ngFor='let rapItem of heThongRap' [value]="rapItem.maHeThongRap">{{rapItem.tenHeThongRap}}
                     </option>
                 </select>
+                <label for="heThongRap"> <i class="fas fa-chevron-down"></i></label>
 
             </div>
 
@@ -38,6 +39,7 @@
                     <option *ngFor='let cumRapItem of cumRapChieu' [value]="cumRapItem.maCumRap">
                         {{cumRapItem.tenCumRap}}</option>
                 </select>
+                <label for="cumRap"> <i class="fas fa-chevron-down"></i></label>
 
             </div>
 
@@ -47,6 +49,7 @@
                         <option *ngFor='let maRapItem of maRapTheoCum' [value]='maRapItem.maRap'>{{maRapItem.maRap}}
                         </option>
                 </select>
+                <label for="maRap"> <i class="fas fa-chevron-down"></i></label>
                 <div class=' error' *ngIf="formLichChieu.get('maRap').invalid &&
                 (formLichChieu.get('maRap').dirty || formLichChieu.get('maRap').touched)">
                     <div
@@ -87,6 +90,7 @@
                     <option value="75000">75.000 VNĐ</option>
                     <option value="85000">85.000 VNĐ</option>
                 </select>
+                <label for="giaVe"> <i class="fas fa-chevron-down"></i></label>
 
             </div>
 

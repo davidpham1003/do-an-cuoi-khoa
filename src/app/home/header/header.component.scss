@@ -7,7 +7,7 @@
   }
   position: fixed;
   top: 0%;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
@@ -65,6 +65,9 @@
           transition: 0.4s all;
           font-weight: 400;
           &:hover {
+            color: $color-but-lo;
+          }
+          &.active{
             color: $color-but-lo;
           }
         }

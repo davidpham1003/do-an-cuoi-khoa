@@ -15,7 +15,6 @@ export class PopupComboComponent implements OnInit,AfterViewInit {
   }
   popup(){
     this.isPopup = true
-    console.log(this.isPopup)
   }
 
   constructor() { }

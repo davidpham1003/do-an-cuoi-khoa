@@ -5,7 +5,7 @@
                 class="lich-chieu__item py-2 border-bottom" [ngClass]="{'active':index==indexActive}"
                 (click)="layMaCupRap(thongTinRap.maCumRap);changeIndex(index)"
                  >
-                        <div class="d-flex" (click)="showPhim()" data-toggle="collapse" [attr.data-target]="'#'+thongTinRap.maCumRap">
+                        <div class="d-flex" (click)="showCumRap()" data-toggle="collapse" [attr.data-target]="'#'+thongTinRap.maCumRap">
                             <img src="assets/img/rap-demo.jpg" alt="">
                             <div class="item__title ml-2">
                                 <span class="tenRap" [ngClass]="{'BHD':maRap=='BHDStar',

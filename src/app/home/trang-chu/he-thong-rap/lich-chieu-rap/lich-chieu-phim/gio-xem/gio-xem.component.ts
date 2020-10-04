@@ -16,10 +16,10 @@ export class GioXemComponent implements OnInit {
   constructor(private router :Router,private auth:AuthenticationService) { }
   datVe(value){
     if(this.currentUser.taiKhoan){
-      this.router.navigate([`/datve/${value}`])
+      this.router.navigate([`/datve/${value}`]) // Nếu đã đăng nhập thì router tới trang mua vé
     }else{
       Swal.fire({
-        title:"Đăng Nhập",
+        title:"Đăng Nhập!",
         text:"Vui lòng đăng nhập để mua vé",
         icon:'warning'
       })

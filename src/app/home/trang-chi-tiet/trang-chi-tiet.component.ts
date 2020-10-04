@@ -25,7 +25,6 @@ export class TrangChiTietComponent implements OnInit {
   isTheme:any;
   chiTietPhim: any = {};
   trailer:string =''
-  danhGia:number;
   cumRapActive:[];
   maCumRapActive:string;
   dieuKien:string = 'lichChieu'
@@ -35,9 +34,9 @@ export class TrangChiTietComponent implements OnInit {
     this.currentWidth = window.innerWidth;
   }
   changeDieuKien(value){
+    // active khi click vào 'Lịch Chiếu' hoặc 'Thông tin' hoặc 'Đánh Giá'
     this.dieuKien = value
   }
-  soLuongSao:any[]=[]
   getTrailer(){
     this.trailer = this.chiTietPhim.trailer
   }
@@ -55,13 +54,11 @@ export class TrangChiTietComponent implements OnInit {
         this.cinema.layLichChieuTheoPhim(params.maPhim).subscribe({
           next:(result)=>{
             this.chiTietPhim = result
-            console.log(this.chiTietPhim)
             this.cumRapActive = result.heThongRapChieu[0].cumRapChieu
           }
         })
       },
       error:(err)=>{
-        console.log(err)
       }
     })
     this.data.shareIsTheme.subscribe((data)=>{

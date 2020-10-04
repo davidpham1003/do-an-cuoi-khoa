@@ -35,6 +35,9 @@
     top: 15px;
     right: 10%;
     opacity: 0.5;
+    @include for-size(xs) {
+      right: 7%
+    }
     &.showPass{
       opacity: 1;
     }

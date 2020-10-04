@@ -1,6 +1,6 @@
 <div class="header" [ngClass]="{'dark-header':isTheme,'noneHide':isTogggle}" >
     <nav class="navbar navbar--config navbar-expand-md">
-        <a  class="navbar-brand " routerLink='/'>
+        <a  class="navbar-brand " (click)='changeActive(null)' routerLink='/'>
             <img src="assets/img/logo.png" alt="">
         </a>
         <!-- <ng-template #logo2>
@@ -14,19 +14,19 @@
         </button>
         <div class="collapse navbar-collapse navbar-collapse--config" id="navbarNav">
             <ul class="navbar-nav text-center mx-auto">
-                <li class="nav-item" (click)='isInfo = false'>
-                    <a class="nav-link" [routerLink]="['/khoPhim']" >Kho Phim</a>
+                <li class="nav-item" (click)='changeActive("khoPhim")' >
+                    <a class="nav-link" [routerLink]="['/khoPhim']" [ngClass]='{"active":active=="khoPhim"}' >Kho Phim</a>
                 </li>
-                <li class="nav-item" (click)='isInfo = false'>
-                    <a class="nav-link" [routerLink]="['']" pageScroll href="#cumRap">Cụm Rạp</a>
+                <li class="nav-item" (click)='changeActive("cumRap")'>
+                    <a class="nav-link" [routerLink]="['']"  pageScroll href="#cumRap">Cụm Rạp</a>
                 </li>
-                <li class="nav-item"(click)='isInfo = false'>
+                <li class="nav-item"(click)='changeActive("tinTuc")'>
                     <a class="nav-link" [routerLink]="['']" pageScroll href="#tinTuc">Tin Tức</a>
                 </li>
-                <li class="nav-item" (click)='isInfo = false'>
+                <li class="nav-item" (click)='changeActive("ungDung")'>
                     <a class="nav-link " [routerLink]="['']" pageScroll href="#ungDung">Ứng Dụng</a>
                 </li>
-                <li class="nav-item" (click)='isInfo = false'>
+                <li class="nav-item" (click)='changeActive("admin")'>
                     <a class="nav-link " [routerLink]="['/admin']" >Admin</a>
                 </li>
             </ul>
@@ -34,7 +34,7 @@
         <div class="navbar__right">
             <div *ngIf="!currentUser.taiKhoan;else hello" (click)="showLogin()" class="btn-dangNhap">Đăng Nhập</div>
             <ng-template #hello>
-                <div #helloUser class="helloUser d-flex" (mouseenter) ="isInfo = true"  (mouseleave) ="isInfo = false">
+                <div #helloUser class="helloUser d-flex" (click)='isInfo=!isInfo' (mouseenter) ="isInfo = true"  (mouseleave) ="isInfo = false">
                     <div class="UserName-img " >
                         <img   [src]=" url ? url.img : 'assets/img/avatar.png' " alt="">
                         <div class="UserInfo" [ngClass]='{"activeUserInfo":isInfo}'>

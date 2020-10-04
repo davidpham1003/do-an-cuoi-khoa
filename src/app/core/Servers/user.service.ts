@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiService } from './api.service';
+import {User} from '../models/Users'
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +30,8 @@ export class UserService {
       taiKhoan: values,
     });
   }
-  layDanhSachNguoiDung():Observable<any>{
-    return this.api.get(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05`)
+  layDanhSachNguoiDung():Observable<User[]>{
+    return this.api.get<User[]>(`QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP05`)
   }
   timKiemNguoiDung(ten:string):Observable<any>{
     return this.api.get(`QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP05&tuKhoa=${ten}`)

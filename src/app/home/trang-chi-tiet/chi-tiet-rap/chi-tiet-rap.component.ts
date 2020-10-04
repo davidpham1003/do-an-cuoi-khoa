@@ -37,12 +37,10 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
   changeIndex(index) {
     // Active icon rạp khi click vào
     this.indexActive = index;
-    console.log(this.indexActive)
   }
   changeIndexCumRap(index) {
     // Active icon Cụm rạp khi click vào
     this.indexActiveCumRap = index;
-    console.log(this.indexActive)
   }
   changeNgayActive(value) {
     this.ngayActive = value;
@@ -94,9 +92,10 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
     this.gioChieu = this.lichChieu.filter(
       (item) => item.ngayChieuGioChieu.split('T')[0] == value // Lọc giờ chiếu theo ngày
     );
-    console.log(this.gioChieu);
+
   }
   datVe(value) {
+    //value = ma lich chieu
     if (this.currentUser.taiKhoan) {
       this.router.navigate([`/datve/${value}`]);
     }
@@ -110,7 +109,6 @@ export class ChiTietRapComponent implements OnInit, OnChanges {
     this.auth.currentUser.subscribe({
       next: (result) => {
         this.currentUser = result;
-        console.log(this.currentUser)
       },
     });
   }
