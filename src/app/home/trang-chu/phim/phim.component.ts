@@ -23,26 +23,17 @@ declare var $: any;
 })
 export class PhimComponent implements OnInit {
   @Input () isTheme
-  isActive:boolean = true;
-  dsPhim:Movies[]=[];
+  @Input () dsPhim:Movies[] = []
+  isActive:boolean = true; // active khi click 'phim đang chiếu' hoặc 'phim sắp chiếu'
   doiPhim(boolean){
-    this.isActive = boolean
+    this.isActive = boolean // active khi click 'phim đang chiếu' hoặc 'phim sắp chiếu'
   }
   constructor(private movieService: MoviesService) { 
-    this.movieService.layDanhSachPhim().subscribe({
-      next: (result) => {
-        this.dsPhim = result;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-      complete: () => {
-        // console.log('GET MOVIES DONE');
-      },
-    });
+   
   }
 
   ngOnInit(): void {
+   
   }
 
 }

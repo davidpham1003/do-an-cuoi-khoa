@@ -11,11 +11,10 @@ export class SliderComponent implements OnInit {
   trailer:string 
   isTheme:any;
   closeModal(){
-    this.trailer=''
+    this.trailer='' //close modal youtube
   }
   getTrailer(value){
-    this.trailer = value
-
+    this.trailer = value //get trailer youtube
   }
   mangSlider:any[];
   constructor( public slider : MangSliderService,private changeTheme : ChangeThemeService ) {
@@ -25,7 +24,6 @@ export class SliderComponent implements OnInit {
     this.mangSlider = this.slider.mangSlider 
     this.changeTheme.shareIsTheme.subscribe(data=>{
       this.isTheme = data
-      console.log(data)
     })
   }
 

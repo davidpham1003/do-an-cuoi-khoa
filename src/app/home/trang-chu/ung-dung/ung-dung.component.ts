@@ -9,8 +9,5 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 export class UngDungComponent implements OnInit {
   slideConfig = { slidesToShow: 1, slidesToScroll: 1,autoplay:true,arrows:false };
   constructor() {}
-
-  
-
   ngOnInit(): void {}
 }

@@ -27,13 +27,10 @@ export class QuanLyPhimComponent implements OnInit {
     'ngayKhoiChieu',
     'danhGia',
   ];
-  objectSuaFilm: any;
+  objectSuaFilm: any; 
   objectThemLichChieu:any;
-
   danhSachPhim: any;
-
   constructor(private cinema: CinemaService, private movies: MoviesService) {}
-
   sweetAlertXoa(maPhim, tenPhim) {
     Swal.fire({
       title: 'Xóa Phim?',
@@ -57,44 +54,45 @@ export class QuanLyPhimComponent implements OnInit {
           },
           error: (err) => {
             Swal.fire('Xóa Không Thành Công', ` ${err.error} `, 'error');
-            console.log(err)
           },
         });
       }
     });
   }
   applyFilter(event: Event) {
+    // tìm kiếm phim
     const filterValue = (event.target as HTMLInputElement).value;
     this.danhSachPhim.filter = filterValue.trim().toLowerCase();
-    console.log(event.target)
   }
   xoaInput(){
+    // clear input khi click (x)
     this.looking.nativeElement.value =''
-    this.capNhatDsPhim()
+    this.capNhatDsPhim() // cập nhật lại ds Phim
   }
   themPhim() {
-    this.objectSuaFilm = null;
+    // click thêm phim ==> objectSuaFilm = null
+    this.objectSuaFilm = null; 
   }
   xoaPhim(maPhim: number, tenPhim: string) {
     this.sweetAlertXoa(maPhim, tenPhim);
-    this.capNhatDsPhim();
+    this.capNhatDsPhim();// cập nhật lại ds Phim
   }
   capNhatPhim(maPhim) {
     let objectPhim = this.danhSachPhim.data.find(
       (filmItem) => maPhim == filmItem.maPhim
     );
+    //set giá trị cho ojectSuaPhim theo đk
     this.objectSuaFilm = objectPhim;
     this.objectThemLichChieu = objectPhim;
-    console.log(this.objectSuaFilm);
   }
 
   capNhatDsPhim() {
+    // Cập nhật lại ds Phim
     this.movies.layDanhSachPhim().subscribe({
       next: (data) => {
         this.danhSachPhim = new MatTableDataSource(data.reverse());
         this.danhSachPhim.paginator = this.paginator;
         this.danhSachPhim.sort = this.sort;
-        console.log('phim', this.danhSachPhim);
       },
     });
   }

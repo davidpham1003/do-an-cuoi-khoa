@@ -15,12 +15,6 @@ export class TrangDangNhapComponent implements OnInit {
   errors: string;
   previousUrl: string;
   constructor(private auth: AuthenticationService, private router: Router) {
-    // router.events
-    //   .pipe(filter((event) => event instanceof NavigationEnd))
-    //   .subscribe((event: NavigationEnd) => {
-    //     console.log('prev:', event.url);
-    //     this.previousUrl = event.url;
-    //   });
     this.formDangNhap = new FormGroup({
       TaiKhoan: new FormControl(null, Validators.required),
       MatKhau: new FormControl(null, Validators.required),
@@ -37,16 +31,7 @@ export class TrangDangNhapComponent implements OnInit {
     }
     this.auth.dangNhap(this.formDangNhap.value).subscribe({
       next: (result) => {
-        // this.auth.initCurrentUser(result)
-        localStorage.setItem('userInfo', JSON.stringify(result));
-        // console.log(result.maLoaiNguoiDung)
-        // Kiểm tra mã loại người dùng để chuyển trang
-        // Đối tượng Router là dùng để chuyển trang trong component
-        // if (result.maLoaiNguoiDung === 'KhachHang') {
-        //   // this.router.navigate(['/']);
-        // } else {
-        //   // this.router.navigate(['/admin']);
-        // }
+        localStorage.setItem('userInfo', JSON.stringify(result)); //Set local storage khi đăng nhập thành công
       },
       error: (err) => {
         this.errors = err;
@@ -60,8 +45,6 @@ export class TrangDangNhapComponent implements OnInit {
       }
     }
   }
-
   ngOnChanges() {
-    // console.log(this.isLogin)
   }
 }

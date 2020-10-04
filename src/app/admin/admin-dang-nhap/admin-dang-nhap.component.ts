@@ -28,7 +28,7 @@ export class AdminDangNhapComponent implements OnInit {
       this.auth.dangNhap(value).subscribe({
         next:(result) =>{
           if(result.maLoaiNguoiDung == 'KhachHang'){
-            this.errors = "Vui lòng nhập tài khoản admin"
+            this.errors = "Vui lòng nhập tài khoản admin" // tài khoản phải là admin mới vào được dasboard
           }else{
             const adminInfo = JSON.stringify(result);
            localStorage.setItem('adminInfo',adminInfo)
@@ -43,17 +43,9 @@ export class AdminDangNhapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.auth.initCurrentAdmin
-    // this.auth.currentAdmin.subscribe({
-    //   next:(data)=>{
-    //     if(data){
-    //       this.router.navigate(['/dashboard'])
-    //     }
-    //   }
-    // })
     const adminInfo = JSON.parse(localStorage.getItem('adminInfo'))
     if(adminInfo){
-      this.router.navigate(['/dashboard'])
+      this.router.navigate(['/dashboard']) // nếu admin đã đăng nhập thì chuyển tới dashboard
     }
   }
 

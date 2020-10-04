@@ -29,9 +29,8 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
     'SoDt',
     'maLoaiNguoiDung',
   ];
-  objectSuaUser:any;
-  objectThemLichChieu:any;
-  danhSachNguoiDung: any;
+  objectSuaUser:any; // object khi sửa thông tin user
+  danhSachNguoiDung: any; //ds người dùng (ngFor)
   errors: string;
   constructor(private user: UserService) {}
   applyFilter(event: Event) {
@@ -39,6 +38,7 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
     // Dòng comment dùng filter của angular material
     // this.danhSachNguoiDung.filter = filterValue.trim().toLowerCase();
     this.user.timKiemNguoiDung(filterValue).subscribe({
+      // Tìm kiếm người dùng
       next:(data)=>{
         if(filterValue.trim() != ''){
           this.danhSachNguoiDung.data = data
@@ -47,14 +47,13 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
         }       
       }
     })
-    console.log((event.target as HTMLInputElement).value)
   }
   xoaInput(){
-   this.looking.nativeElement.value = ''
-    this.capNhatDsNguoiDung()
+   this.looking.nativeElement.value = '' //clear input khi click button (x)
+    this.capNhatDsNguoiDung() // cập nhật lại ds người dùng 
   }
   themNguoiDung(){
-    this.objectSuaUser = null
+    this.objectSuaUser = null // click thêm người dùng thì objectSuaUser = null
   }
   
   xoaNguoiDung(value) {
@@ -75,7 +74,7 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
               ` ${value} đã được xóa khỏi danh sách`,
               'success'
             );
-            this.capNhatDsNguoiDung()
+            this.capNhatDsNguoiDung() // cập nhật lại ds người dùng 
           },
           error: (err) => {
             Swal.fire('Xóa Không Thành Công', ` ${err.error} `, 'error');
@@ -86,21 +85,13 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
   }
 
   suaNguoiDung(value){
+    // click sửa User
     let userInfo = this.danhSachNguoiDung.data.find(userItem => userItem.taiKhoan == value)
-    this.objectSuaUser = userInfo;
-    console.log(this.objectSuaUser)
+    this.objectSuaUser = userInfo; // gắn objectSuaUser theo điều kiện 
   }
-  public saveEmail(email: string): void {
-    // ... save user email
-  }
-
-  public handleRefusalToSetEmail(dismissMethod: string): void {
-    // dismissMethod can be 'cancel', 'overlay', 'close', and 'timer'
-    // ... do something
-  }
-
   
   capNhatDsNguoiDung(){
+    // PT cập nhật ds người dùng 
     this.user.layDanhSachNguoiDung().subscribe({
       next: (data) => {
         this.danhSachNguoiDung = new MatTableDataSource(data.reverse());
@@ -115,7 +106,6 @@ export class QuanLyNguoiDungComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.capNhatDsNguoiDung()
-
   }
   ngAfterViewInit() {}
 }

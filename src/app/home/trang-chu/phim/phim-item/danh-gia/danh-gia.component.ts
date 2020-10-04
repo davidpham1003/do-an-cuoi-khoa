@@ -13,6 +13,7 @@ export class DanhGIaComponent implements OnInit {
   soLuongSao:string [] = [];
 
   ngOnInit(): void {
+    // set đánh giá cho từng phim
     let DanhGia;
     let star = this.danhGia % 2
     for (let index = 0; index < Math.floor((this.danhGia)/2); index++) {

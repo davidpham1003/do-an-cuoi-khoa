@@ -12,19 +12,15 @@ import Swal from 'sweetalert2';
 })
 export class TrangDangKyComponent implements OnInit {
   public formDangKy: FormGroup;
-  loading: boolean = false;
+  loading: boolean = false; // canDeactivate cho component
   errors: any = {};
-  isShowPass: boolean = false;
-  checkDirtyForm() {
-    return this.formDangKy.dirty;
-  }
+  isShowPass: boolean = false; // show Pass
   DangKy(val) {
     this.formDangKy.markAllAsTouched();
-    console.log(this.formDangKy.dirty);
     if (this.formDangKy.invalid) {
       return;
     }
-    this.loading = true;
+    this.loading = true; // Bằng true --> không alert khi rời trang 
     this.errors = [];
     this.auth.dangKy(val).subscribe({
       next: () => {
@@ -38,11 +34,9 @@ export class TrangDangKyComponent implements OnInit {
       error: (err) => {
         this.errors = err;
         this.loading = false;
-        console.log(this.errors);
       },
       complete: () => {},
     });
-    console.log(val);
   }
   constructor(
     private auth: AuthenticationService,

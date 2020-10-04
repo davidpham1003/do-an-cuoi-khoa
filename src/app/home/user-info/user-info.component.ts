@@ -26,32 +26,18 @@ import { GheService } from 'src/app/core/Servers/ghe.service';
   styleUrls: ['./user-info.component.scss'],
 })
 export class UserInfoComponent implements OnInit {
-  page: number = 1;
-  thongTinDatVe: any[];
-  warning: string;
+  page: number = 1; // page ban đầu ng-pagination
+  thongTinDatVe: any[]; // mảng thông tin đặt vé 
+  warning: string; // warning validation đổi pass
   isTheme: any;
-  method: any = 'thongTin';
-  currentUser: any = {};
-  isShowPassCu:boolean = false;
-  isShowPassMoi:boolean = false;
-  isShowPassConfirm:boolean = false;
+  method: any = 'thongTin'; // active item 'Thông tin tài khoản' hoặc 'đổi mật khẩu' hoặc 'thông tin đặt vé'
+  currentUser: any = {}; // tài khoản đăng nhập
+  isShowPassCu:boolean = false; // Show pass cũ (trong đổi pass)
+  isShowPassMoi:boolean = false; // Show pass mới (trong đổi pass)
+  isShowPassConfirm:boolean = false;// Show pass xác nhận mới (trong đổi pass)
   public formUpdate: FormGroup;
   public formUpdatePass: FormGroup;
-  url: any;
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event) => {
-        // // called once readAsDataURL is completed
-
-        this.url = event.target.result
-        const imgUser = {taiKhoan : this.currentUser.taiKhoan, img:this.url}
-        localStorage.setItem(this.currentUser.taiKhoan, JSON.stringify(imgUser));
-        this.user.updateAvatarUser(imgUser);
-      };
-    }
-  }
+  url: any; // hình ảnh avatar
   constructor(
     private user: UserService,
     private dateTheme: ChangeThemeService,
@@ -78,27 +64,42 @@ export class UserInfoComponent implements OnInit {
       ]),
     });
   }
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => {
+        // // called once readAsDataURL is completed
+        // thay đổi avatar
+        this.url = event.target.result 
+        const imgUser = {taiKhoan : this.currentUser.taiKhoan, img:this.url}
+        localStorage.setItem(this.currentUser.taiKhoan, JSON.stringify(imgUser));
+        this.user.updateAvatarUser(imgUser);
+      };
+    }
+  }
   changeMethod(value) {
+    // thay đổi active giữa 'Thông tin tài khoản' hoặc 'đổi mật khẩu' hoặc 'thông tin đặt vé'
     this.method = value;
-    console.log(this.method)
   }
   capNhatMatKhau(value) {
     this.formUpdatePass.markAllAsTouched();
     if (this.formUpdatePass.invalid) {
       return;
     }
-    if (value.matKhau === this.currentUser.matKhau) {
+    //validation
+    if (value.matKhau === this.currentUser.matKhau) {  
       if (value.matKhau === value.matKhauMoi) {
-        this.warning = 'trungMkCu';
+        this.warning = 'trungMkCu'; // MK mới không được trùng MK cũ
       } else if (value.matKhauMoi !== value.xacNhanMk) {
-        this.warning = 'saiXacNhan';
+        this.warning = 'saiXacNhan'; // Xác nhận mk mới không chính xác
       } else {
         this.warning = '';
       }
     } else {
-      this.warning = 'saiMkCu';
+      this.warning = 'saiMkCu'; // Nhập không chính xác mk cũ
     }
-    if (this.warning == '') {
+    if (this.warning == '') { 
       const userUpdate = {
         ...this.currentUser,
         matKhau: value.matKhauMoi,
@@ -107,7 +108,7 @@ export class UserInfoComponent implements OnInit {
       this.auth.capNhat(userUpdate).subscribe({
         next: (data) => {
           Swal.fire('','Cập nhật mật khẩu thành công','success')
-          this.formUpdatePass.reset()
+          this.formUpdatePass.reset() //reset lại value của MK khi đổi mk thành công
         },
         error:(err)=>{
           Swal.fire('',`${err.error}`,'warning')
@@ -117,6 +118,7 @@ export class UserInfoComponent implements OnInit {
     }
   }
   capNhat(value) {
+    // Cập nhật thông tin (chỉ cập nhật được họ tên và SĐT)
     this.formUpdate.markAllAsTouched();
     if (this.formUpdate.invalid) {
       return;
@@ -141,14 +143,17 @@ export class UserInfoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.user.avatarUser.subscribe({
+      //Set hình ảnh từ service 
       next: (data) => {
         this.url = data;
       },
     });
     this.ghe.lichDatVe.subscribe(data=>{
+      //set method ban đầu khi sang component thông tin. nếu từ trang đặt vé sang thì 'thông tin vé' sẽ được active
       if(data){
         this.method = data
-        console.log(data)
+      }else{
+        this.method = 'thongTin' // nếu không 'thông tin' sẽ được active
       }
     })
     this.dateTheme.shareIsTheme.subscribe((data) => {
@@ -159,7 +164,7 @@ export class UserInfoComponent implements OnInit {
       next: (data) => {
         user = data;
         if (!user.taiKhoan) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/']); // khi đăng xuất sẽ về lại trang chủ
         } else {
           this.user.layThongTinUser(user.taiKhoan).subscribe({
             next: (data) => {
@@ -175,7 +180,5 @@ export class UserInfoComponent implements OnInit {
         }
       },
     });
-    const img = JSON.parse(localStorage.getItem('avatar'));
-    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   }
 }

@@ -10,7 +10,6 @@ export class TinTucComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // console.log('theme',this.isTheme)
   }
 
 }

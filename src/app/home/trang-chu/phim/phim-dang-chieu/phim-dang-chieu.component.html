@@ -8,5 +8,5 @@
 
 <!-- Modal -->
 <div *ngIf="trailer">
-  <app-modal-youtube (click)="closeModal()" [trailer]=trailer></app-modal-youtube>
+  <app-modal-youtube (click)="closeModal()" [trailer]='trailer|urlYoutube'></app-modal-youtube>
   <div>

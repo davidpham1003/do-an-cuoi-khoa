@@ -57,7 +57,7 @@
     .dropdown-menu--config {
       top: 2px !important;
       left: -10px !important;
-      height: 350px;
+      max-height: 350px;
       overflow: auto;
       width: 100%;
       transform: translate3d(10px, 33px, 0px) !important;

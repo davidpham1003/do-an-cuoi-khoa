@@ -9,26 +9,26 @@ import { UserService } from 'src/app/core/Servers/user.service';
   styleUrls: ['./admin-layout.component.scss'],
 })
 export class AdminLayoutComponent implements OnInit {
-  isShowController: boolean;
+  isShowController: boolean; // show-hide controller
   currentAdmin: any = {};
-  dieuKien: string = 'user';
+  dieuKien: string = 'user'; // active 'quản lý người dùng' hoặc 'quản lý phim'
   avatar: any;
-  public currentWindowWidth: number;
+  public currentWindowWidth: number; // reponsive
   constructor(private router: Router, private auth: AuthenticationService,private admin : UserService) {}
   @HostListener('window:resize')
   onResize() {
     this.currentWindowWidth = window.innerWidth;
-    this.isShowController = this.currentWindowWidth > 991 ? true : false;
+    this.isShowController = this.currentWindowWidth > 991 ? true : false; // Nếu màn < 991px thì hide controller
   }
   setdieuKien(value) {
-    this.dieuKien = value;
+    this.dieuKien = value; // active 'quản lý người dùng' hoặc 'quản lý phim'
   }
 
   showController() {
-    this.isShowController = !this.isShowController;
+    this.isShowController = !this.isShowController;// show-hide controller
   }
   addClassShow() {
-    return this.isShowController ? 'show' : 'hide';
+    return this.isShowController ? 'show' : 'hide'; // show-hide controller
   }
   logOut() {
     localStorage.removeItem('adminInfo');
@@ -37,7 +37,7 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit(): void {
     
     this.currentWindowWidth = window.innerWidth;
-    this.isShowController = this.currentWindowWidth > 991 ? true : false;
+    this.isShowController = this.currentWindowWidth > 991 ? true : false;// Nếu màn < 991px thì hide controller
     this.auth.initCurrentAdmin();
     this.auth.currentAdmin.subscribe({
       next: (data) => {
@@ -57,9 +57,5 @@ export class AdminLayoutComponent implements OnInit {
         }
       }
     })
-    // const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
-    // if (!adminInfo) {
-    //   this.router.navigate(['/admin']);
-    // }
   }
 }

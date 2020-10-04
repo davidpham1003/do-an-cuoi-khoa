@@ -10,6 +10,13 @@ export class PhimSapChieuComponent implements OnInit {
   @Input() isTheme;
   @Input() phimSC;
   trailer: string;
+  isModal: boolean;
+  getTrailer(value) {
+    this.trailer = value;
+  }
+  closeModal() {
+    this.trailer = '';
+  }
   slideConfig = {
     slidesToShow: 4,
     slidesToScroll: 4,
