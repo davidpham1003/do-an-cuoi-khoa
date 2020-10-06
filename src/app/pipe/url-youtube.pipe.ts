@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class UrlYoutubePipe implements PipeTransform {
 
   transform(value:string) {
-    let a = value.search('watch?v=')
-    if(a != -1){
+    let a = value.includes('watch?v=')
+    if(a){
       return value.split('watch?v=')[0]+'embed/'+value.split('watch?v=')[1]
     }else{
       return value 

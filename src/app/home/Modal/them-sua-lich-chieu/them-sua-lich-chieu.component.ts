@@ -20,7 +20,7 @@ export class ThemSuaLichChieuComponent implements OnInit, OnChanges,OnDestroy {
 
   constructor(private cinema: CinemaService, private ghe: GheService) {
     this.formLichChieu = new FormGroup({
-      maPhim: new FormControl(null),
+      maPhim: new FormControl(this.objectThemLichChieu ? this.objectThemLichChieu.maPhim : null),
       ngayChieuGioChieu: new FormControl(null, Validators.required),
       maRap: new FormControl(null , Validators.required),
       giaVe: new FormControl('75000', Validators.required),
@@ -82,12 +82,14 @@ export class ThemSuaLichChieuComponent implements OnInit, OnChanges,OnDestroy {
   }
 
   ngOnChanges() {
+    this.formLichChieu.reset();
     if (this.objectThemLichChieu) {
       this.formLichChieu.patchValue({
         maPhim: this.objectThemLichChieu.maPhim,
       });
+      console.log(this.objectThemLichChieu.maPhim)
     }
-    this.formLichChieu.reset();
+   
   }
   ngOnInit(): void {
     // Lấy ds Rạp

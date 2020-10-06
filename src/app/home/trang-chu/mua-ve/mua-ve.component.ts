@@ -87,6 +87,7 @@ export class MuaVeComponent implements OnInit {
   selectTime(value,value2){
     //value : Giờ Chiếu, value2: Mã lịch chiếu
     this.gioChieu = value; // Gán Giờ chiếu bằng value để binding ra html
+    this.maLichChieu = value2
 
   }
   datVe(){

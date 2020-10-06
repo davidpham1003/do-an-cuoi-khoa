@@ -3,7 +3,7 @@
         <div class="close-modal" [ngStyle]="{opacity : currentHeight < 500 ? '1':''}">
             <img src="assets/img/close.png" alt="">
         </div>
-        <iframe width="100%" height="100%" [src]="trailer|safe" frameborder="0"
+        <iframe width="100%" height="100%" [src]="trailer|urlYoutube|safe" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
