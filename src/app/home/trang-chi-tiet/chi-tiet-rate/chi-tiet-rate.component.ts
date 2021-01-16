@@ -13,7 +13,8 @@ declare var $: any;
 })
 export class ChiTietRateComponent implements OnInit {
   @ViewChild('close') closeModal: ElementRef;
-  @Input() isTheme;
+  @Input() isTheme:boolean;
+  @Input() tenPhim:string;
   public formComment: FormGroup;
   mangComment: any[];
   currentUser: any = {};
@@ -23,9 +24,9 @@ export class ChiTietRateComponent implements OnInit {
   url: any; // Ảnh avatar comment
   count: number = 1; 
   constructor(
-    public comment: CommentService,
+    private comment: CommentService,
     private auth: AuthenticationService,
-    private user: UserService
+    private user: UserService,
   ) {
     this.formComment = new FormGroup({
       binhLuan: new FormControl(null, Validators.required),
@@ -36,13 +37,18 @@ export class ChiTietRateComponent implements OnInit {
     if (this.formComment.invalid || this.star == 0) {
       return;
     } // Nếu chưa bình luận và đánh giá ==> không submit được
+    const mangPush = {
+      binhLuan: value.binhLuan,
+      heart:0,
+      danhGia: this.star,
+      taiKhoan: this.currentUser.taiKhoan,
+    }
+    this.comment.createComment(this.tenPhim,mangPush)
     this.mangComment = [
       {
         binhLuan: value.binhLuan,
         danhGia: this.star,
         taiKhoan: this.currentUser.taiKhoan,
-        trangThai: this.trangThai,
-        img: this.url ? this.url.img : null,
         heart:0,
       },
       ...this.mangComment,
@@ -54,24 +60,7 @@ export class ChiTietRateComponent implements OnInit {
     this.formComment.reset(); // Reset Value Form
     this.closeModal.nativeElement.click(); // Tắt modal
   }
-  thaTim(value) {
-    this.mangContent.forEach((commentItem) => {
-      if (this.currentUser.taiKhoan) {
-        if (value == commentItem.taiKhoan) {
-          if (!commentItem.trangThai) {
-            commentItem.trangThai = true;
-            commentItem.heart += 1;
-          } else {
-            commentItem.trangThai = false;
-            commentItem.heart -= 1;
-          }
-        }
-      }else{
-        commentItem.trangThai = false;
-      }
-    });
-    localStorage.setItem('comment', JSON.stringify(this.mangContent));
-  }
+
   showMore() {
     // button show
     this.count++;
@@ -92,26 +81,18 @@ export class ChiTietRateComponent implements OnInit {
         this.currentUser = result;
       },
     });
-    this.user.avatarUser.subscribe({
-      next: (data) => {
-        this.url = data;
 
-        let comment_local = JSON.parse(localStorage.getItem('comment'));
-        if (comment_local) {
-          if (this.url) {
-            comment_local.forEach((commentItem) => {
-              if (commentItem.taiKhoan == this.url.taiKhoan) {
-                commentItem.img = this.url.img;
-              }
-            });
-            localStorage.setItem('comment', JSON.stringify(comment_local));
-          }
-          this.mangComment = comment_local;
-        } else {
-          this.mangComment = this.comment.mangComment;
-        }
-      },
-    });
-    this.mangContent = this.mangComment.slice(0, 5 * this.count); // mảng content ban đầu
+    // this.comment.getPolicies(this.tenPhim)
+    this.comment.getPolicies(this.tenPhim).subscribe((data)=>{
+      this.mangComment = [];
+     data.forEach(e=>{
+       this.mangComment.push(e.payload.doc.data());
+       this.mangContent = this.mangComment.slice(0, 5 * this.count);
+     })
+    })
+    
+
+
+    // mảng content ban đầu
   }
 }

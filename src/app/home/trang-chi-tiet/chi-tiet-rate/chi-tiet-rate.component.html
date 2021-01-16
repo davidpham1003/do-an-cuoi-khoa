@@ -34,17 +34,17 @@
                 
             </div>
             <div data-toggle="modal" data-target="#warning-dangNhap"  class="tha-tim d-flex">
-                <app-tha-tim [isActive]=comment.trangThai  (click)='thaTim(comment.taiKhoan)'></app-tha-tim>
+                <app-tha-tim [isActive]=comment.trangThai  ></app-tha-tim>
                 <span>{{comment.heart}}</span>
             </div>
          
         </div>
-        <div class="show-more">
+        <!-- <div class="show-more">
             <i *ngIf="mangComment.length > mangContent.length" (click)="showMore()"
                 class=" show fas fa-angle-double-down"></i>
             <i *ngIf="mangContent.length > 5" (click)="hideee()" class="px-3 hide fas fa-angle-double-up"></i>
 
-        </div>
+        </div> -->
     </div>
 </div>
 

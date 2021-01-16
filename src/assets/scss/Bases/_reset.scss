@@ -368,3 +368,4 @@ html [type="button"] {
   -webkit-appearance: none !important;
   -moz-appearance: none;
 }
+.selector:not(*:root) {}

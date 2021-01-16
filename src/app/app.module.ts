@@ -21,6 +21,9 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 registerLocaleData(en);
 const appRoutes :Routes=[
@@ -47,7 +50,9 @@ const appRoutes :Routes=[
     SlickCarouselModule,
     PipeModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass: AuthInterceptor,multi:true},
